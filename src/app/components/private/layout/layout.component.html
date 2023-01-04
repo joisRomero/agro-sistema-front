@@ -1,0 +1,10 @@
+<div class="app-menu__background" *ngIf="vars.showSidebar" (click)="onClickBackground()"></div>
+<app-sidebar
+[ngClass]="{ 'app-menu--mobile': vars.showSidebar }"
+></app-sidebar>
+<div class="inicio">
+  <app-header></app-header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,72 @@
+<div class="d-flex flex-column h-100">
+  <app-general-section titulo="Lista de cultivos">
+    <div class="d-flex justify-content-end">
+      <app-general-button
+        claseBoton="primary"
+        valor="Nuevo"
+        (click) = "onClick.nuevoCultivo()"
+        nombreIcono="bi-plus-square"
+      ></app-general-button>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col" >Estado</th>
+            <th scope="col">Operaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemsTabla; let i = index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ item.nombre }}</td>
+            <td>
+              <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
+              <ng-template #inactivo>
+                <span class="badge bg-danger">Inactivo</span>
+              </ng-template>
+            </td>
+            <td>
+              <div class="gap-2 d-flex">
+                <app-general-button
+                  claseBoton="info px-3"
+                  [esSmall]="true"
+                  (click) = "onClick.editarCultivo(item.id)"
+                  nombreIcono="bi-pencil-square"
+                ></app-general-button>
+
+                <app-general-button
+                  *ngIf="item.estado; else inactivar"
+                  claseBoton="info px-3"
+                  [esSmall]="true"
+                  nombreIcono="bi-x-lg"
+                  (click) = "onClick.cambiarEstadoCultivo(item.id)"
+                ></app-general-button>
+                <ng-template #inactivar>
+                  <app-general-button
+                    claseBoton="info px-3"
+                    [esSmall]="true"
+                    nombreIcono="bi-check-lg"
+                    (click) = "onClick.cambiarEstadoCultivo(item.id)"
+                  ></app-general-button>
+                </ng-template>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </app-general-section>
+</div>
+<app-modal-nuevo-editar-cultivo 
+  *ngIf="modalNuevoEditarCultivoService.mostrarModal"
+  [isEditar]="isEditar"
+  [cultivoItem]="cultivoItem"
+></app-modal-nuevo-editar-cultivo>
+<app-alert-eliminar
+  *ngIf="alertEliminarService.mostrar"
+  [idCultivo]="idCultivo"
+  (elimino)="actualizarTabla()"
+></app-alert-eliminar>

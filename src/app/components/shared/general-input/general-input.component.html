@@ -1,0 +1,42 @@
+<label [for]="nombreControl" class="form-label">{{ label }}</label>
+<input
+  *ngIf="tipo != 'area'"
+  class="form-control"
+  [id]="nombreControl"
+  type="{{ tipo }}"
+  [formControl]="control"
+  placeholder="{{ placeholder }}"
+  [numbersOnly]="soloNumeros"
+  [decimalsOnly]="soloDecimales"
+  [lettersOnly]="soloLetras"
+  [allCharacters]="todosLosCaracteres"
+  [datesOnly]="soloFechas"
+  [lettersNumbersOnly]="soloLetrasNumeros"
+  [attr.disabled]="desabilitado || null"
+  [attr.maxlength]="maxlength"
+  [ngClass]="{'is-invalid' : hayErrores && control.touched}"
+/>
+
+<textarea
+  *ngIf="tipo == 'area'"
+  class="form-control"
+  [id]="nombreControl"
+  [rows]="filas"
+  [formControl]="control"
+  placeholder="{{ placeholder }}"
+  [numbersOnly]="soloNumeros"
+  [decimalsOnly]="soloDecimales"
+  [lettersOnly]="soloLetras"
+  [allCharacters]="todosLosCaracteres"
+  [datesOnly]="soloFechas"
+  [lettersNumbersOnly]="soloLetrasNumeros"
+  [attr.disabled]="desabilitado || null"
+  [attr.maxlength]="maxlength"
+  [ngClass]="{'is-invalid' : hayErrores && control.touched}"
+></textarea>
+
+<span *ngIf='nombreIcono != ""' class="input-group-text" (click)="onClickButton!()"><i class="bi" [class]="nombreIcono"></i> </span>
+
+<div class="invalid-feedback" *ngIf="hayErrores && control.touched" >
+    {{ mensajeError != null ? mensajeError : "" }}
+</div>

@@ -1,0 +1,15 @@
+<div class="contenedor-modal">
+  <div class="fondo-modal" (click)="cerrarModal!()" ></div>
+  <div class="contenido-modal m-2">
+    <div class="modal-header py-2 px-3">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button type="button" class="btn-close" (click)="cerrarModal!()"></button>
+    </div>
+    <div class="modal-body border-top p-3 ">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer pb-3 px-3">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+</div>

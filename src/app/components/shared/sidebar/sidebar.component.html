@@ -1,0 +1,12 @@
+<div class="bg-light sidebar">
+  <h2 class="my-3 h3 text-center fw-bolder">Agro-sitema</h2>
+  <nav *ngFor="let item of items" class="nav flex-column px-3">
+    <a 
+        routerLinkActive="activo" 
+        class="nav-link border-bottom item"
+        [routerLink]="[item.path!]"
+    >
+        {{item.name}}
+    </a>
+  </nav>
+</div>

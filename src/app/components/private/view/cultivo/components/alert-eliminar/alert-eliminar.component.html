@@ -1,0 +1,20 @@
+<app-general-alert titulo="Cultivo" [cerrarAlert]="onClick.cerrarAlert">
+  <p class="fw-normal mb-0">¿Está seguro de querer cambiar el estado?</p>
+  <div footer>
+    <app-general-button
+      claseBoton="secondary"
+      valor="Cancelar"
+      [esSmall]="true"
+      [esSecundario]="true"
+      class="m-1"
+      (click)="onClick.cerrarAlert()"
+    ></app-general-button>
+    <app-general-button
+      claseBoton="primary"
+      valor="Cambiar"
+      [esSmall]="true"
+      class="m-1"
+      (click)="onClick.cambiarEstado()"
+    ></app-general-button>
+  </div>
+</app-general-alert>
