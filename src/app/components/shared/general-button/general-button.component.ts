@@ -7,13 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GeneralButtonComponent implements OnInit {
 
-  @Input() tipoBoton: string = "button";
+  @Input() tipo: string = "button";
   @Input() esDisable: boolean = false;
   @Input() esSmall: boolean = false;
   @Input() esSecundario: boolean = false;
   @Input() claseBoton: string = "";
   @Input() nombreIcono: string = "";
-  @Input() valor?: string = "";
+  @Input() label?: string = "";
   @Input() onClickButton?: () => void;
 
 

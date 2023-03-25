@@ -9,14 +9,11 @@ import { SidebarVars } from '../../shared/sidebar/sidebar.component.vars';
 export class LayoutComponent implements OnInit {
 
   constructor(
-    public vars: SidebarVars
+    public sidebarVars: SidebarVars
   ) { }
 
   ngOnInit(): void {
-  }
-
-  onClickBackground(){
-    this.vars.showSidebar = false;
+    console.log(this.sidebarVars)
   }
 
 }

@@ -29,7 +29,7 @@ export class GeneralInputComponent implements OnInit {
 
 
   public control: any;
-  public esRequerido: boolean = false;
+  public esObligatorio: boolean = false;
   public hayErrores: boolean = false;
 
   constructor(
@@ -42,12 +42,12 @@ export class GeneralInputComponent implements OnInit {
   }
 
   ngAfterContentInit() {
-    this.esRequerido = this.control.hasValidator(Validators.required);
+    this.esObligatorio = this.control.hasValidator(Validators.required);
     this.hayErrores = this.control.errors;
   }
 
   ngAfterViewChecked() {
-    this.esRequerido = this.control.hasValidator(Validators.required);
+    this.esObligatorio = this.control.hasValidator(Validators.required);
     this.hayErrores = this.control.errors;
   }
 

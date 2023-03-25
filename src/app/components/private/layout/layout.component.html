@@ -1,10 +1,13 @@
-<div class="app-menu__background" *ngIf="vars.showSidebar" (click)="onClickBackground()"></div>
-<app-sidebar
-[ngClass]="{ 'app-menu--mobile': vars.showSidebar }"
-></app-sidebar>
-<div class="inicio">
+<div style="background-color: #fafafa; height: 100vh;">
   <app-header></app-header>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+  <div class="contenedor">
+    <div>
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="contenido">
+      <main class="ab">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
 </div>

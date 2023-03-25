@@ -1,0 +1,25 @@
+.boton {
+  box-shadow: 0 .125rem .25rem rgba(#000, .075);
+}
+
+.boton:hover {
+  box-shadow: 0 .5rem 1rem rgba(#000, .15);
+  color: #0d6efd;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ref-campania {
+  text-decoration: none;
+  color: #212529;
+}
+
+.boton-campania {
+  box-shadow: 0 .125rem .25rem rgba(#000, .075);
+
+}
+
+.boton-campania:hover {
+  box-shadow: 0 .5rem 1rem rgba(#000, .15);
+  cursor: pointer;
+}

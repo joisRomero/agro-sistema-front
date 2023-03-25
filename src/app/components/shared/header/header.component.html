@@ -1,11 +1,20 @@
-<nav class="navbar navbar-light bg-light header">
-  <div class="container-fluid header__content">
-    <div class="nav-button">
-      <i class="bi bi-list"  (click)="onClickNavButton()"></i>
+<nav class="navbar navbar-dark bg-primary sticky-top p-0 shadow-sm">
+  <div class="container-fluid">
+    <div>
+      <button class="boton boton-desplegable" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuDesplegable"
+        aria-controls="menuDesplegable">
+        <i class="icono bi bi-list"></i>
+      </button>
+      <a class="navbar-brand ps-1">
+        AgroSistema
+      </a>
     </div>
-    <h3 class="navbar-brand">{{tituloHeader}}</h3>
-    <div class="user-button">
-      <i class="bi bi-person-fill"></i>
+
+    <div class="d-flex">
+      <button class="boton" type="button">
+        <i class="icono bi bi-person"></i>
+      </button>
+
     </div>
   </div>
 </nav>

@@ -18,12 +18,20 @@
         texto="Activo"
       ></app-general-checkbox>
 
+      <app-general-select
+        class="px-2 py-1 col-12 col-md-6 col-sm-6"
+        [fGroup]="form"
+        nombreControl="prueba"
+        label="Prueba: "
+        [mensajeError]="mensajesError.nombre"
+      ></app-general-select>
+
     </div>
   </form>
   <div footer>
     <app-general-button
       claseBoton="secondary"
-      valor="Cancelar"
+      label="Cancelar"
       [esSmall]="true"
       [esSecundario]="true"
       class="m-1"
@@ -31,7 +39,7 @@
     ></app-general-button>
     <app-general-button
       claseBoton="primary"
-      valor="Guardar"
+      label="Guardar"
       [esSmall]="true"
       class="m-1"
       (click)="guardar()"

@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneralCheckboxComponent } from './general-checkbox/general-checkbox.component';
 import { GeneralAlertComponent } from './general-alert/general-alert.component';
 import { GeneralAlertInformationComponent } from './general-alert-information/general-alert-information.component';
+import { GeneralSelectComponent } from './general-select/general-select.component';
+import { GeneralPaginationComponent } from './general-pagination/general-pagination.component';
+import { GeneralSinDatosComponent } from './general-sin-datos/general-sin-datos.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { GeneralAlertInformationComponent } from './general-alert-information/ge
     ClickOutsideDirective,
     GeneralCheckboxComponent,
     GeneralAlertComponent,
-    GeneralAlertInformationComponent
+    GeneralAlertInformationComponent,
+    GeneralSelectComponent,
+    GeneralPaginationComponent,
+    GeneralSinDatosComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +56,9 @@ import { GeneralAlertInformationComponent } from './general-alert-information/ge
     ClickOutsideDirective,
     GeneralCheckboxComponent,
     GeneralAlertComponent,
-    GeneralAlertInformationComponent
+    GeneralAlertInformationComponent,
+    GeneralSelectComponent,
+    GeneralSinDatosComponent
   ]
 })
 export class SharedModule { }

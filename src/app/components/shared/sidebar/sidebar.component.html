@@ -1,12 +1,32 @@
-<div class="bg-light sidebar">
-  <h2 class="my-3 h3 text-center fw-bolder">Agro-sitema</h2>
-  <nav *ngFor="let item of items" class="nav flex-column px-3">
-    <a 
-        routerLinkActive="activo" 
-        class="nav-link border-bottom item"
-        [routerLink]="[item.path!]"
-    >
-        {{item.name}}
-    </a>
-  </nav>
+<div class="offcanvas-md offcanvas-start canvas" tabindex="-1" id="menuDesplegable" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header pt-2 ps-2 pb-2">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menú</h5>
+  </div>
+  <div class="offcanvas-body">
+    <nav class="sidebar pt-2 ">
+      <ul class="lista">
+        <li class="lista-item"
+            *ngFor="let item of items"
+            [ngClass]="{'lista-item-click': item.menus != undefined}"
+        >
+
+          <div class="lista-boton" [ngClass]="{'lista-boton-click': item.menus != undefined}" routerLinkActive="activo"  [routerLink]="item.path!">
+            <i class="bi bi-house-fill lista-icono"></i>
+            <a class="navegacion-link">{{ item.nombre }}</a>
+              <i class="bi bi-chevron-right lista-flecha" *ngIf="item.menus != undefined"></i>
+          </div>
+
+          <ul class="lista-mostrar" >
+            <li class="lista-inside" *ngFor="let subMenu of item.menus">
+              <a class="navegacion-link navegacion-link-inside" [routerLink]="[subMenu.path!]"  routerLinkActive="activo" >{{subMenu.nombre}}</a>
+            </li>
+          </ul>
+
+        </li>
+
+      </ul>
+    </nav>
+  </div>
 </div>
+
+

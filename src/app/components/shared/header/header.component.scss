@@ -1,28 +1,29 @@
-.header {
-  height: 50px;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+.icono {
+  color: #fff;
+  font-size: 20px;
+}
+
+.boton {
+  text-decoration: none;
+  border: 0;
+  padding: 8px;
+  background-color: transparent
+}
+
+.boton:hover {
+  background-color: #0b5ed7;
+}
+
+.boton-desplegable {
+  visibility: visible;
+}
+
+.boton-retroceder {
+  display: none;
 }
 
 @media only screen and (min-width: 768px) {
-  .header__content {
-    padding: 0 0px 0px 10px ;
-    margin: 0 10px 0 0;
-  }
-}
-
-.nav-button {
-  font-size: 24px;
-  cursor: pointer;
-  overflow: hidden;
-  @media only screen and (min-width: 768px) {
+  .boton-desplegable {
     display: none;
   }
-}
-
-.user-button {
-  font-size: 24px;
-  cursor: pointer;
 }

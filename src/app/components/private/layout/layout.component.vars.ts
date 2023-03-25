@@ -7,24 +7,63 @@ import { Menu } from "src/app/models/menu";
 export class LayoutVars {
   public vistas: Menu[] = [
     {
-      codMenu: 1,
-      name: "Inicio",
-      mostrar: true,
-      path: "inicio"
+      nombre: "Inicio",
+      path: "inicio",
+      icono: "bi bi-house-fill"
     },
     {
-      codMenu: 2,
-      name: "Cultivo",
-      mostrar: true,
-      path: "cultivo"
+      nombre: "Agroquímicos",
+      icono: "bi bi-house-fill",
+      menus: [
+        {
+          nombre: "Agroquímicos",
+          path: "agroquimico"
+        },
+        {
+          nombre: "Tipo de agroquímicos",
+          path: "tipo-agroquimicos"
+        },
+        {
+          nombre: "Compra de agroquímicos",
+          path: "compra-agroquimicos"
+        }
+      ]
     },
     {
-      codMenu: 3,
-      name: "Abono",
-      mostrar: true,
-      path: "abono"
+      nombre: "Abonos",
+      icono: "bi bi-house-fill",
+      menus: [
+        {
+          nombre: "Abonos",
+          path: "abonos"
+        },
+        {
+          nombre: "Compra de abonos",
+          path: "compra-abonos"
+        }
+      ]
+    },
+    {
+      nombre: "Datos",
+      icono: "bi bi-house-fill",
+      menus: [
+        {
+          nombre: "Cultivos",
+          path: 'cultivos',
+        },
+        {
+          nombre: "Terrenos",
+          path: 'terrenos',
+        },
+        {
+          nombre: "Tipo actividad",
+          path: 'tipo-actividad',
+        },
+        {
+          nombre: "Tipo trabajador",
+          path: 'tipo-trabajador',
+        },
+      ]
     }
   ]
-  
-
 }

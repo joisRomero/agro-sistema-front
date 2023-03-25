@@ -1,10 +1,10 @@
 <button
   class="btn"
   [class]="claseBoton"
-  type="{{ tipoBoton }}"
+  type="{{ tipo }}"
   [disabled]="esDisable"
   [ngClass]="{ 'btn-sm': esSmall }"
   (click)="onClickButton != null ? onClickButton!() : null"
 >
-  <i class="bi" [class]="nombreIcono"></i> {{ valor }}
+  <i class="bi" [class]="nombreIcono"></i> {{ label }}
 </button>

@@ -4,7 +4,5 @@ import { Injectable } from "@angular/core";
   providedIn: 'root'
 })
 export class SidebarVars {
-
-  public showSidebar?: boolean = false;
-
+  public mostrarSidebar?: boolean = false;
 }

@@ -1,4 +1,5 @@
 <label [for]="nombreControl" class="form-label">{{ label }}</label>
+<span *ngIf="esObligatorio" style="color: red"> {{ " *" }} </span>
 <input
   *ngIf="tipo != 'area'"
   class="form-control"

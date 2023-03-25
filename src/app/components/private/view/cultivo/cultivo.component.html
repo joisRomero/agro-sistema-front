@@ -1,20 +1,42 @@
-<div class="d-flex flex-column h-100">
-  <app-general-section titulo="Lista de cultivos">
-    <div class="d-flex justify-content-end">
-      <app-general-button
-        claseBoton="primary"
-        valor="Nuevo"
-        (click) = "onClick.nuevoCultivo()"
-        nombreIcono="bi-plus-square"
-      ></app-general-button>
-    </div>
-    <div class="table-responsive mt-3">
-      <table class="table table-bordered">
-        <thead class="table-light">
+<div class="d-flex flex-column h-100" >
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="m-0">Cultivos</h4>
+
+    <app-general-button
+    claseBoton="primary"
+    label="Nuevo"
+    (click) = "onClick.nuevoCultivo()"
+    ></app-general-button>
+  </div>
+
+  <div class="input-group mt-3">
+    <input type="text" class="form-control" style="width: 60%;" placeholder="Buscar por nombre" aria-label="Recipient's username"
+    aria-describedby="button-addon2">
+
+    <select class="form-select "  aria-label=".form-select-sm example" id="button-addon2">
+      <option selected>Open this select menu</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    <app-general-button
+      claseBoton="secondary"
+      nombreIcono="bi-search"
+      [esSecundario]="true"
+      id="button-addon2"
+    ></app-general-button>
+
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-body p-0">
+      <table class="table mb-0 table-hover">
+        <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">Nro.</th>
             <th scope="col">Nombre</th>
-            <th scope="col" >Estado</th>
+            <th scope="col">Estado</th>
             <th scope="col">Operaciones</th>
           </tr>
         </thead>
@@ -30,27 +52,14 @@
             </td>
             <td>
               <div class="gap-2 d-flex">
-                <app-general-button
-                  claseBoton="info px-3"
-                  [esSmall]="true"
-                  (click) = "onClick.editarCultivo(item.id)"
-                  nombreIcono="bi-pencil-square"
-                ></app-general-button>
+                <app-general-button claseBoton="info px-3" [esSmall]="true" (click)="onClick.editarCultivo(item.id)"
+                  nombreIcono="bi-pencil-square"></app-general-button>
 
-                <app-general-button
-                  *ngIf="item.estado; else inactivar"
-                  claseBoton="info px-3"
-                  [esSmall]="true"
-                  nombreIcono="bi-x-lg"
-                  (click) = "onClick.cambiarEstadoCultivo(item.id)"
-                ></app-general-button>
+                <app-general-button *ngIf="item.estado; else inactivar" claseBoton="info px-3" [esSmall]="true"
+                  nombreIcono="bi-x-lg" (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
                 <ng-template #inactivar>
-                  <app-general-button
-                    claseBoton="info px-3"
-                    [esSmall]="true"
-                    nombreIcono="bi-check-lg"
-                    (click) = "onClick.cambiarEstadoCultivo(item.id)"
-                  ></app-general-button>
+                  <app-general-button claseBoton="info px-3" [esSmall]="true" nombreIcono="bi-check-lg"
+                    (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
                 </ng-template>
               </div>
             </td>
@@ -58,9 +67,10 @@
         </tbody>
       </table>
     </div>
-  </app-general-section>
+  </div>
+
 </div>
-<app-modal-nuevo-editar-cultivo 
+<app-modal-nuevo-editar-cultivo
   *ngIf="modalNuevoEditarCultivoService.mostrarModal"
   [isEditar]="isEditar"
   [cultivoItem]="cultivoItem"

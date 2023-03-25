@@ -1,0 +1,17 @@
+<label [for]="nombreControl" class="form-label">{{ label }}</label>
+<span *ngIf="esObligatorio" style="color: red"> {{ " *" }} </span>
+<select
+  class="form-select"
+  [id]="nombreControl"
+  [formControl]="control"
+  [ngClass]="{'is-invalid' : hayErrores && control.touched, 'form-select-sm': esSmall}"
+>
+  <option [value]="null" selected disabled hidden>Seleccionar</option>
+  <option [value]="''">Seleccionar</option>
+  <option *ngFor="let item of values" [ngValue]="item.value">
+    {{ item.text }}
+  </option>
+</select>
+<div class="invalid-feedback" *ngIf="hayErrores && control.touched">
+  {{ mensajeError != null ? mensajeError : "" }}
+</div>

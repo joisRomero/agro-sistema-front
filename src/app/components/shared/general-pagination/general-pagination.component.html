@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between">
+  <p class="m-0 align-middle">Total de registros: {{ totalFilas }}</p>
+  <nav>
+    <ul class="pagination justify-content-end m-0">
+      <li
+        class="page-item"
+        (click)="paginaAnterior()"
+        [ngClass]="{
+          'disabled inhabilitar': paginaActual === 1,
+          'habilitar': paginaActual !== 1
+        }"
+      >
+        <a class="page-link" aria-label="Previous">
+          <i class="bi bi-chevron-double-left"></i>
+        </a>
+      </li>
+      <li
+        *ngFor="let item of paginas"
+        class="page-item"
+        [ngClass]="{'active': item === paginaActual}"
+        (click)="seleccionarPagina(item)"
+      >
+        <a class="page-link">{{ item }}</a>
+      </li>
+      <li
+        class="page-item"
+        (click)="paginaSiguiente()"
+        [ngClass]="{
+          'disabled inhabilitar': paginaActual === totalPaginas,
+          'habilitar': paginaActual !== totalPaginas
+        }"
+      >
+        <a class="page-link" aria-label="Next">
+          <i class="bi bi-chevron-double-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

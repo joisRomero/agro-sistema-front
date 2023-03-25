@@ -21,7 +21,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
 
   public tituloModal: string = '';
   public form!: FormGroup;
-  
+
   public mensajesError = {
     nombre: "El campo es obligatorio.",
   }
@@ -33,7 +33,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     private alertInformationService: GeneralAlertInformationService
   ) { }
 
-  
+
   ngOnInit(): void {
     this.initialControls();
     if(this.isEditar) {
@@ -43,9 +43,8 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     } else {
       this.tituloModal = "Nuevo cultivo"
     }
-    this.onChange.a();
   }
-  
+
   async guardar() {
     this.form.markAllAsTouched();
     if(!this.form.valid) {
@@ -64,23 +63,13 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     this.form = this.fb.nonNullable.group({
       nombre: ["", [Validators.required]],
       estado: [true],
+      prueba: ["", [Validators.required]]
     });
   }
 
   onClick = {
     cerrarModal: () => {
       this.servicioModal.mostrarModal = false;
-    }
-  }
-
-  onChange = {
-    a: () => {
-      this.form.controls["estado"].valueChanges.subscribe(
-        (value: any) => {
-          console.log(value)
-          console.log('hoal')
-        }
-      );
     }
   }
 

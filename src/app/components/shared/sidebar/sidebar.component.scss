@@ -1,28 +1,138 @@
-.sidebar {
-  background: #ffffff;
-  display: block;
-  height: 100%;
-  position: fixed;
-  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.1);
-  width: 220px;
-  z-index: 500;
-  a {
-    cursor: pointer;
-  }
-}
-
-
 .item {
-  color: black;
+  padding: 6px 0 6px 5px;
+  margin-right: 10px;
+  margin: 2px;
 }
 
 .activo {
-  font-weight: bold;
-  color: #0d6efd;
+  font-weight: 600;
+  // background-color: #fafafa;
+  background-color: #cfe4fa;
+}
+
+.sidebar {
+  padding-top: 0px;
+}
+
+.canvas {
+  width: 250px;
 }
 
 @media only screen and (min-width: 768px) {
   .sidebar {
     display: block;
+    border-right: 1.5px solid #dee2e6;
+    height: calc(100vh - 46px);
+    width: 250px;
+    padding: 0px 1px;
+    padding-top: 10px;
+    position: sticky;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    background: #fff;
   }
+
+  .canvas {
+    width: auto;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navegacion-link {
+  color: #303440;
+  display: block;
+  padding: 5px 1px;
+  text-decoration: none;
+}
+
+.navegacion-link-inside {
+  border-radius: 6px;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.navegacion-link-inside:hover {
+  background: #f0f0f0;
+}
+
+.lista {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-item {
+  list-style: none;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.lista-item-click {
+  cursor: pointer;
+}
+
+.lista-boton {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.lista-boton:hover {
+  background: #f0f0f0;
+}
+
+.flecha .lista-flecha {
+  transform: rotate(90deg);
+}
+
+.lista-flecha {
+  margin-left: auto;
+  transition: transform .3s;
+}
+
+.lista-mostrar {
+  margin-left: 20px;
+  border-left: 2px solid #303440;
+  list-style: none;
+  transition: height .4s;
+  height: 0;
+}
+
+.sidebar::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.sidebar::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-button:increment,
+.sidebar::-webkit-scrollbar-button {
+  display: none;
+}
+
+.sidebar::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #98a3a6;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  border-radius: 10px;
 }

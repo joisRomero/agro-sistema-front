@@ -1,1 +1,53 @@
-<p>inicio works!</p>
+<div class="mt-1 animate__animated animate__fadeIn animate__faster">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="m-0">Campañas</h4>
+    <div>
+      <app-general-button
+      class="me-2"
+      claseBoton="primary"
+      [esSecundario]="true"
+      label="Ver todos"
+      ></app-general-button>
+      <app-general-button
+      claseBoton="primary"
+      label="Nuevo"
+      ></app-general-button>
+    </div>
+  </div>
+
+  <div class="row g-2 mt-1">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <a href="" class="ref-campania">
+        <div class="boton-campania card">
+          <div class="card-body">
+            <h5 class="card-title">Campaña de arroz</h5>
+            <p class="card-text m-0">Propietario: Yo <br> Terreno: Dominga</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="mt-4 d-flex justify-content-between align-items-center">
+    <h4 class="m-0 align-text-bottom">Sociedades</h4>
+    <div>
+      <app-general-button
+      class="me-2"
+      claseBoton="primary"
+      [esSecundario]="true"
+      label="Ver todos"
+      ></app-general-button>
+      <app-general-button
+      claseBoton="primary"
+      label="Nuevo"
+      ></app-general-button>
+    </div>
+  </div>
+
+  <div class="row g-2  mt-1">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="p-3 border bg-light boton p-3 bg-body rounded">Mi almacén</div>
+    </div>
+  </div>
+</div>

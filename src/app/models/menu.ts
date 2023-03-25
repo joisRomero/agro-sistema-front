@@ -1,7 +1,7 @@
 export interface Menu {
-    codMenu: number;
-    name: string;
-    path: string;
-    mostrar: boolean;
+  nombre: string,
+  path?: string,
+  icono?: string,
+  menus?: Menu[]
 }
 

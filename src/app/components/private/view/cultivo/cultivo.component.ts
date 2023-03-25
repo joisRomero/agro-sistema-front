@@ -6,6 +6,7 @@ import { ModalNuevoEditarCultivoService } from './components/modal-nuevo-editar-
 import { Component, OnInit } from '@angular/core';
 import { CultivoService } from 'src/app/services/cultivo.service';
 import { lastValueFrom } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cultivo',
@@ -19,15 +20,24 @@ export class CultivoComponent implements OnInit {
   public itemsTabla: ListaCultivosResponse[] = [];
   public idCultivo!: number;
   public cultivoItem!: Cultivo;
+  public form!: FormGroup;
 
-  constructor( 
+  constructor(
     public modalNuevoEditarCultivoService: ModalNuevoEditarCultivoService,
     public cultivoService: CultivoService,
-    public alertEliminarService: AlertEliminarService
+    public alertEliminarService: AlertEliminarService,
+    public fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.buscar();
+    this.initialControls();
+  }
+
+  private initialControls() {
+    this.form = this.fb.nonNullable.group({
+      nombre: [""]
+    });
   }
 
   private async buscar() {
@@ -70,6 +80,6 @@ export class CultivoComponent implements OnInit {
   public actualizarTabla() {
     this.buscar();
   }
-  
+
 
 }

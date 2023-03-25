@@ -1,3 +1,3 @@
 export interface IdCultivo {
-    id: number;
+  id: number;
 }

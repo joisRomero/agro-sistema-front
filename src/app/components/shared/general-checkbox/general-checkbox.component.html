@@ -1,12 +1,11 @@
 <label class="form-label"> {{ label }} </label>
-<div class="input-group-text bg-body check" (click)="cambioEstado()">
-  <input 
-    class="form-check-input mt-0 check" 
-    type="checkbox" 
-    [value]="value" 
-    [id]="nombreControl" 
-    [checked]="presionado" 
+<div class="input-group-text bg-body check">
+  <input
+    class="form-check-input mt-0 check"
+    type="checkbox"
+    [value]="value"
+    [id]="nombreControl"
     [formControl]="control"
   />
-  <label class="form-check-label ms-2 check" > {{ texto }} </label>
+  <label class="form-check-label ms-2 check" [for]="nombreControl"> {{ texto }} </label>
 </div>
