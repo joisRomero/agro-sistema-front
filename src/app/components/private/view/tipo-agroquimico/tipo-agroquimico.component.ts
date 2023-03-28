@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-tipo-agroquimico',
   templateUrl: './tipo-agroquimico.component.html',
@@ -8,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 export class TipoAgroquimicoComponent implements OnInit {
 
   constructor() { }
+
 
   ngOnInit(): void {
   }

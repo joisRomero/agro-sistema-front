@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="fondo">
+<div class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="card bg-white shadow-lg">
+          <div class="card-body p-5">
+            <form class="mb-3 mt-md-4" [formGroup]="form!" (ngSubmit)="iniciarSesion()">
+              <h2 class="fw-bold mb-2 text-uppercase ">AgroSistema</h2>
+              <p class=" mb-4">Por favor ingrese su usuario y contraseña</p>
+              <div class="mb-3">
+                <app-general-input
+                  [fGroup]="form"
+                  nombreControl="usuario"
+                  label="Usuario:"
+                  [mensajeError]="mensajesError.usuario"
+                  tipo="text"
+                  id="usuario"
+                  placeholder="usuario"
+                ></app-general-input>
+              </div>
+              <div class="mb-3">
+                <app-general-input
+                  [fGroup]="form"
+                  nombreControl="clave"
+                  label="Contraseña:"
+                  [mensajeError]="mensajesError.clave"
+                  id="clave"
+                  tipo="password"
+                  placeholder="*******"
+                ></app-general-input>
+              </div>
+              <div class="d-grid">
+                <app-general-button
+                  claseBoton="primary anchoBoton"
+                  label="Iniciar sesión"
+                  tipo="submit"
+                ></app-general-button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

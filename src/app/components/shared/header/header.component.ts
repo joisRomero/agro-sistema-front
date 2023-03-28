@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public sidebarVars: SidebarVars,
+    public route: Router
   ) {}
 
   ngOnInit(): void {
@@ -22,5 +23,8 @@ export class HeaderComponent implements OnInit {
     this.sidebarVars.mostrarSidebar = !this.sidebarVars.mostrarSidebar;
   }
 
-
+  cerrarSesion() {
+    this.route.navigate(['']);
+    sessionStorage.clear();
+  }
 }

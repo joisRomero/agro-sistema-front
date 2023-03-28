@@ -1,4 +1,4 @@
-import { GeneralAlertInformationService } from './../../../../../shared/general-alert-information/general-alert-information.service';
+import { GeneralAlertInformationVars } from '../../../../../shared/general-alert-information/general-alert-information.vars';
 import { CultivoService } from 'src/app/services/cultivo.service';
 import { lastValueFrom } from 'rxjs';
 import { Cultivo } from './../../../../../../models/cultivo';
@@ -30,12 +30,12 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     public servicioModal: ModalNuevoEditarCultivoService,
     private fb: FormBuilder,
     private cultivoService: CultivoService,
-    private alertInformationService: GeneralAlertInformationService
+    private alertInformationService: GeneralAlertInformationVars
   ) { }
 
 
   ngOnInit(): void {
-    this.initialControls();
+    this.iniciarControles();
     if(this.isEditar) {
       this.tituloModal = "Editar cultivo";
       this.form.controls["nombre"].setValue(this.cultivoItem.nombre);
@@ -59,7 +59,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     }
   }
 
-  private initialControls() {
+  private iniciarControles() {
     this.form = this.fb.nonNullable.group({
       nombre: ["", [Validators.required]],
       estado: [true],

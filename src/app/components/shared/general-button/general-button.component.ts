@@ -21,9 +21,9 @@ export class GeneralButtonComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.esSecundario){
-      this.claseBoton = `btn-outline-${this.claseBoton}`;
+      this.claseBoton = `btn btn-outline-${this.claseBoton}`;
     } else {
-      this.claseBoton = `btn-${this.claseBoton}`;
+      this.claseBoton = `btn btn-${this.claseBoton}`;
     }
   }
 

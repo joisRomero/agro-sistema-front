@@ -12,6 +12,16 @@ export class LayoutVars {
       icono: "bi bi-house-fill"
     },
     {
+      nombre: "Campañas",
+      path: "campanias",
+      icono: "bi bi-house-fill"
+    },
+    {
+      nombre: "Sociedades",
+      path: "sociedades",
+      icono: "bi bi-house-fill"
+    },
+    {
       nombre: "Agroquímicos",
       icono: "bi bi-house-fill",
       menus: [
@@ -50,10 +60,6 @@ export class LayoutVars {
         {
           nombre: "Cultivos",
           path: 'cultivos',
-        },
-        {
-          nombre: "Terrenos",
-          path: 'terrenos',
         },
         {
           nombre: "Tipo actividad",

@@ -14,6 +14,8 @@ import { TipoAgroquimicoComponent } from './view/tipo-agroquimico/tipo-agroquimi
 import { CompraAgroquimicoComponent } from './view/compra-agroquimico/compra-agroquimico.component';
 import { AbonosComponent } from './view/abonos/abonos.component';
 import { CompraAbonosComponent } from './view/compra-abonos/compra-abonos.component';
+import { SociedadesComponent } from './view/sociedades/sociedades.component';
+import { CampaniasComponent } from './view/campanias/campanias.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { CompraAbonosComponent } from './view/compra-abonos/compra-abonos.compon
     CompraAgroquimicoComponent,
     AbonosComponent,
     CompraAbonosComponent,
+    SociedadesComponent,
+    CampaniasComponent,
   ],
   imports: [
     CommonModule,

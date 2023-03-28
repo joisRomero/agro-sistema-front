@@ -1,4 +1,4 @@
-import { GeneralAlertInformationService } from './general-alert-information.service';
+import { GeneralAlertInformationVars } from './general-alert-information.vars';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class GeneralAlertInformationComponent implements OnInit {
 
   constructor(
-    public service: GeneralAlertInformationService
-  ) { 
-    console.log("hola soy la alerta")
+    public service: GeneralAlertInformationVars
+  ) {
   }
 
   ngOnInit(): void {

@@ -13,7 +13,6 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.sidebarVars)
   }
 
 }

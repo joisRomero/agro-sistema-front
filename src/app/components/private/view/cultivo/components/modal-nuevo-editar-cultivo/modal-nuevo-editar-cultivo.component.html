@@ -1,5 +1,5 @@
 <app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
-  <form class="w-100">
+  <form class="w-100" [formGroup]="form!">
     <div class="d-flex flex-wrap">
       <app-general-input
         [fGroup]="form"

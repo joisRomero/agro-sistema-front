@@ -16,6 +16,8 @@ import { GeneralAlertInformationComponent } from './general-alert-information/ge
 import { GeneralSelectComponent } from './general-select/general-select.component';
 import { GeneralPaginationComponent } from './general-pagination/general-pagination.component';
 import { GeneralSinDatosComponent } from './general-sin-datos/general-sin-datos.component';
+import { GeneralAlertErrorComponent } from './general-alert-error/general-alert-error.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { GeneralSinDatosComponent } from './general-sin-datos/general-sin-datos.
     GeneralAlertInformationComponent,
     GeneralSelectComponent,
     GeneralPaginationComponent,
-    GeneralSinDatosComponent
+    GeneralSinDatosComponent,
+    GeneralAlertErrorComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +62,9 @@ import { GeneralSinDatosComponent } from './general-sin-datos/general-sin-datos.
     GeneralAlertComponent,
     GeneralAlertInformationComponent,
     GeneralSelectComponent,
-    GeneralSinDatosComponent
+    GeneralSinDatosComponent,
+    LoaderComponent,
+    GeneralAlertErrorComponent
   ]
 })
 export class SharedModule { }

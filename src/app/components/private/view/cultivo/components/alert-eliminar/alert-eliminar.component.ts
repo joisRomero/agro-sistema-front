@@ -1,5 +1,5 @@
 import { IdCultivo } from './../../../../../../models/id-cultivo';
-import { GeneralAlertInformationService } from './../../../../../shared/general-alert-information/general-alert-information.service';
+import { GeneralAlertInformationVars } from '../../../../../shared/general-alert-information/general-alert-information.vars';
 import { EventEmitter } from '@angular/core';
 import { CultivoService } from './../../../../../../services/cultivo.service';
 import { Component, Input, OnInit, Output } from '@angular/core';
@@ -18,7 +18,7 @@ export class AlertEliminarComponent implements OnInit {
   constructor(
     public servicioAlert: AlertEliminarService,
     public cultivoService: CultivoService,
-    public alertInformationService: GeneralAlertInformationService
+    public alertInformationService: GeneralAlertInformationVars
   ) {}
 
   ngOnInit(): void {}

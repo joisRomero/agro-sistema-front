@@ -1,0 +1,75 @@
+<div class="d-flex flex-column h-100" >
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="m-0">Sociedades</h4>
+
+    <app-general-button
+    claseBoton="primary"
+    label="Nuevo"
+    (click) = "onClick.nuevo()"
+    ></app-general-button>
+  </div>
+
+  <div class="input-group mt-3">
+    <input type="text" class="form-control" style="width: 60%;" placeholder="Buscar por ..." aria-label="Recipient's username"
+    aria-describedby="button-addon2">
+
+    <select class="form-select "  aria-label=".form-select-sm example" id="button-addon2">
+      <option selected value="1">Nombre</option>
+    </select>
+    <app-general-button
+      claseBoton="secondary"
+      nombreIcono="bi-search"
+      [esSecundario]="true"
+      id="button-addon2"
+    ></app-general-button>
+
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-body p-0">
+      <table class="table mb-0 table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Operaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemsTabla.data">
+            <th scope="row">{{ item.numero }}</th>
+            <td>{{ item.nombre }}</td>
+            <td>
+              <div class="gap-2 d-flex">
+                <app-general-button claseBoton="info px-3" [esSmall]="true"
+                  label="Ver más"></app-general-button>
+              </div>
+            </td>
+            <!-- <td>
+              <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
+              <ng-template #inactivo>
+                <span class="badge bg-danger">Inactivo</span>
+              </ng-template>
+            </td>
+            <td>
+              <div class="gap-2 d-flex">
+                <app-general-button claseBoton="info px-3" [esSmall]="true" (click)="onClick.editarCultivo(item.id)"
+                  nombreIcono="bi-pencil-square"></app-general-button>
+
+                <app-general-button *ngIf="item.estado; else inactivar" claseBoton="info px-3" [esSmall]="true"
+                  nombreIcono="bi-x-lg" (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
+                <ng-template #inactivar>
+                  <app-general-button claseBoton="info px-3" [esSmall]="true" nombreIcono="bi-check-lg"
+                    (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
+                </ng-template>
+              </div>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

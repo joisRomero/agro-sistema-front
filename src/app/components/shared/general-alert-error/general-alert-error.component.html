@@ -1,0 +1,16 @@
+<app-general-alert
+  titulo="Erorr"
+  [cerrarAlert]="onClick.cerrar"
+  *ngIf="service.mostrar"
+>
+  <p class="fw-normal mb-0">{{ service.texto }}</p>
+  <div footer>
+    <app-general-button
+      claseBoton="primary"
+      label="Cerrar"
+      [esSmall]="true"
+      class="m-1"
+      (click)="onClick.cerrar()"
+    ></app-general-button>
+  </div>
+</app-general-alert>

@@ -9,7 +9,6 @@
             *ngFor="let item of items"
             [ngClass]="{'lista-item-click': item.menus != undefined}"
         >
-
           <div class="lista-boton" [ngClass]="{'lista-boton-click': item.menus != undefined}" routerLinkActive="activo"  [routerLink]="item.path!">
             <i class="bi bi-house-fill lista-icono"></i>
             <a class="navegacion-link">{{ item.nombre }}</a>

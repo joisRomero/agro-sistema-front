@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router, Routes } from '@angular/router';
 import { Menu } from 'src/app/models/menu';
 import { LayoutVars } from '../../private/layout/layout.component.vars';
-import { SidebarVars } from './sidebar.component.vars';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,10 +14,7 @@ export class SidebarComponent implements OnInit,AfterViewInit  {
 
   constructor(
     private layautVars: LayoutVars
-  ) {
-
-
-  }
+  ) {}
   ngAfterViewInit(): void {
     this.listaElementos = document.querySelectorAll('.lista-boton-click');
     this.listaElementos.forEach((listaElemento: any) => {
