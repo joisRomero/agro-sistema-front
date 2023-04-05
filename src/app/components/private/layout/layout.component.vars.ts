@@ -19,7 +19,7 @@ export class LayoutVars {
     {
       nombre: "Sociedades",
       path: "sociedades",
-      icono: "bi bi-house-fill"
+      icono: "bi bi-people-fill"
     },
     {
       nombre: "Agroquímicos",

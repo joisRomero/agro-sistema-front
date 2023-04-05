@@ -20,7 +20,7 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],

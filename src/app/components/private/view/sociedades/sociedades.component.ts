@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Paginacion } from 'src/app/models/paginacion';
 import { ListaPaginadaSociedadesRequest } from 'src/app/models/requests/listaPaginadaSociedadesRequest';
@@ -20,11 +21,12 @@ export class SociedadesComponent implements OnInit {
   public sociedadItem!: ListaPaginadaSociedadesResponseItem;
   public listaSociedades!: ListaPaginadaSociedadesRequest;
   private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
-  private verMensajeSinDatos: boolean = false;
+  public verMensajeSinDatos: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    public sociedadService: SociedadService
+    public sociedadService: SociedadService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class SociedadesComponent implements OnInit {
     this.listaSociedades = {
       nombre: this.form.controls["nombre"].value.trim(),
       idUsuario: parseInt(this.idUsuario),
-      pageNumber: 1,
+      pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10
     }
   }
@@ -77,6 +79,11 @@ export class SociedadesComponent implements OnInit {
   public onClick = {
     nuevo: () => {
 
+    },
+    verMas: (item: ListaPaginadaSociedadesResponseItem) => {
+      this.router.navigate(["intranet/sociedades/ver-detalle-sociedad",
+                            item.idSociedad.toString(),
+                            item.nombre]);
     }
   }
 

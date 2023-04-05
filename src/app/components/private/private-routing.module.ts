@@ -11,6 +11,7 @@ import { CultivoComponent } from './view/cultivo/cultivo.component';
 import { InicioComponent } from './view/inicio/inicio.component';
 import { SociedadesComponent } from './view/sociedades/sociedades.component';
 import { TipoAgroquimicoComponent } from './view/tipo-agroquimico/tipo-agroquimico.component';
+import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
 
 export const privateModuleRoutes: Routes = [
   {
@@ -39,6 +40,12 @@ export const privateModuleRoutes: Routes = [
         path: 'sociedades',
         title: 'Sociedades',
         component: SociedadesComponent,
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'sociedades/ver-detalle-sociedad/:id/:nombre',
+        title: 'Detalle sociedad',
+        component: VerDetalleSociedadComponent,
         canActivate: [LoginGuard]
       },
       {

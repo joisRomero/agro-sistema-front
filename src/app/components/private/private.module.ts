@@ -16,6 +16,7 @@ import { AbonosComponent } from './view/abonos/abonos.component';
 import { CompraAbonosComponent } from './view/compra-abonos/compra-abonos.component';
 import { SociedadesComponent } from './view/sociedades/sociedades.component';
 import { CampaniasComponent } from './view/campanias/campanias.component';
+import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CampaniasComponent } from './view/campanias/campanias.component';
     CompraAbonosComponent,
     SociedadesComponent,
     CampaniasComponent,
+    VerDetalleSociedadComponent,
   ],
   imports: [
     CommonModule,

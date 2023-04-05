@@ -64,7 +64,8 @@ import { LoaderComponent } from './loader/loader.component';
     GeneralSelectComponent,
     GeneralSinDatosComponent,
     LoaderComponent,
-    GeneralAlertErrorComponent
+    GeneralAlertErrorComponent,
+    GeneralPaginationComponent
   ]
 })
 export class SharedModule { }

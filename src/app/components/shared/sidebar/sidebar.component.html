@@ -10,7 +10,7 @@
             [ngClass]="{'lista-item-click': item.menus != undefined}"
         >
           <div class="lista-boton" [ngClass]="{'lista-boton-click': item.menus != undefined}" routerLinkActive="activo"  [routerLink]="item.path!">
-            <i class="bi bi-house-fill lista-icono"></i>
+            <i class="lista-icono" [ngClass]="item.icono"></i>
             <a class="navegacion-link">{{ item.nombre }}</a>
               <i class="bi bi-chevron-right lista-flecha" *ngIf="item.menus != undefined"></i>
           </div>
