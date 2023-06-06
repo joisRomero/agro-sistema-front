@@ -7,10 +7,12 @@ main {
 
 .contenedor {
   display: flex;
+  max-width: 100%;
 }
 
 .contenido {
   width: 100%;
+  overflow-x: auto;
 }
 
 .ab::-webkit-scrollbar {

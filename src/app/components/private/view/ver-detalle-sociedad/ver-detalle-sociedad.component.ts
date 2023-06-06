@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Paginacion } from 'src/app/models/paginacion';
@@ -17,6 +18,7 @@ import { SociedadService } from 'src/app/services/sociedad.service';
 export class VerDetalleSociedadComponent implements OnInit {
 
   private idSociedad: string = "";
+  public form!: FormGroup;
   public nombreSociedad: string = "";
   private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
   public integrantes: ObtenerIntegrantesSociedadResponse[] = [];
@@ -24,12 +26,13 @@ export class VerDetalleSociedadComponent implements OnInit {
   public campaniaItem!: ListaPaginaCampaniasSocidadResponseItem;
   public itemsTabla: ListaPaginaCampaniasSocidadResponse = new ListaPaginaCampaniasSocidadResponse();
   public verMensajeSinDatos: boolean = false;
+  public mostrarMensaje: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private sociedadService: SociedadService,
-    private router: Router
-
+    private router: Router,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -37,16 +40,23 @@ export class VerDetalleSociedadComponent implements OnInit {
       this.idSociedad = routeParams.id;
       this.nombreSociedad = routeParams.nombre;
     })
-    this.cargarDatos();
+    this.inicarControles();
     this.setDatosBusqueda();
-    this.buscar();
+    this.cargarDatos();
+  }
+
+  private inicarControles() {
+    this.form = this.fb.nonNullable.group({
+      nombre: [""]
+    });
   }
 
   setDatosBusqueda() {
     this.listaCampanias = {
       idSociedad:  parseInt(this.idSociedad),
       pageNumber: this.paginacionVars.paginaActual,
-      pageSize: 10
+      pageSize: 10,
+      nombre: this.form.controls["nombre"].value.trim(),
     }
   }
 
@@ -73,12 +83,25 @@ export class VerDetalleSociedadComponent implements OnInit {
   public onClick = {
     irAtras: () => {
       this.router.navigate(["intranet/sociedades"]);
-    }
+    },
+    buscar: () => {
+      this.buscar();
+    },
+    verMas: (item: ListaPaginaCampaniasSocidadResponseItem) => {
+      this.router.navigate(["intranet/sociedades/ver-detalle-campania",
+                            item.idCampania.toString(),
+                            item.nombre]);
+    },
   }
 
   private async cargarDatos() {
-    let response = await this.service.obtenerIntregrantesSociedad();
-    this.integrantes = response.body!;
+    try {
+      let response = await this.service.obtenerIntregrantesSociedad();
+      this.integrantes = response.body!;
+      this.buscar();
+    } catch (error) {
+      this.mostrarMensaje = true;
+    }
   }
 
   private service = {
@@ -90,6 +113,7 @@ export class VerDetalleSociedadComponent implements OnInit {
       return lastValueFrom(this.sociedadService.obtenerIntegrantesSociedad(params));
     },
     obtenerListaPaginaCampaniasSocidad: () => {
+      this.setDatosBusqueda();
       return lastValueFrom(this.sociedadService.obtenerListaPaginaCampaniasSocidad(this.listaCampanias));
     }
   }

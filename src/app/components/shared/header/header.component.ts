@@ -3,6 +3,7 @@ import { Location } from '@angular/common'
 import { Router, Routes } from '@angular/router';
 import { privateModuleRoutes } from '../../private/private-routing.module';
 import { SidebarVars } from '../sidebar/sidebar.component.vars';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,9 @@ import { SidebarVars } from '../sidebar/sidebar.component.vars';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+
+  public usuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+  public nombreCompleto: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).nombreCompleto;
 
   constructor(
     public sidebarVars: SidebarVars,

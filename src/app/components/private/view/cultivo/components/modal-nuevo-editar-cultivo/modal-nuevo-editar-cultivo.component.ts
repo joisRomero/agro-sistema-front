@@ -14,7 +14,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ModalNuevoEditarCultivoComponent implements OnInit {
 
-  @Input() nombreModal: string = '';
   @Input() isEditar: boolean = false;
   @Input() cultivoItem!: Cultivo;
   @Output() elimino = new EventEmitter();

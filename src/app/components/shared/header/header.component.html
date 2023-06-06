@@ -9,15 +9,40 @@
         AgroSistema
       </a>
     </div>
+    <div class="d-flex align-items-center">
+      <span class="fs-6 text-light pe-1 d-none d-md-block">
+        {{ nombreCompleto }}
+      </span>
 
-    <div class="btn-group ">
-      <button class="boton " type="button" id="dropdownUsuario" data-bs-toggle="dropdown"
-          data-bs-display="static" aria-expanded="false">
+      <div class="btn-group" >
+        <button class="boton" type="button" id="dropdownUsuario" data-bs-toggle="dropdown" data-bs-display="static"
+          aria-expanded="false">
           <i class="icono bi bi-person"></i>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
-        <li><button class="dropdown-item" type="button" (click)="cerrarSesion()">Cerrar sesión</button></li>
-      </ul>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;" aria-labelledby="dropdownUsuario">
+          <li>
+            <span class="dropdown-item-text fw-normal">
+              {{ nombreCompleto }} <br><span class="text-muted">{{ usuario }}</span>
+            </span>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <button class="dropdown-item" type="button">
+              Editar perfil
+            </button>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <button class="dropdown-item" type="button" (click)="cerrarSesion()">
+              Cerrar sesión
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

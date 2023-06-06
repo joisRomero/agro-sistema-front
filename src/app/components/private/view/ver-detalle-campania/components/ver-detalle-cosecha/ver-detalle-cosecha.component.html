@@ -1,0 +1,62 @@
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
+  <div class="d-flex justify-content-end mt-3 align-items-center">
+    <app-general-button
+      claseBoton="primary"
+      label="Agregar"
+      [esSmall]="true"
+    ></app-general-button>
+  </div>
+
+  <div class="card mt-2">
+    <div class="card-body p-0 table-responsive">
+      <table class="table table-sm mb-0 table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Calidad</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of itemsTabla.data">
+              <td class="ps-2" scope="row">{{ item.numero }}</td>
+              <td scope="row">{{ item.fecha }}</td>
+              <td scope="row">{{ item.descripcion }}</td>
+              <td>
+                <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
+                <ng-template #inactivo>
+                  <span class="badge bg-danger">Inactivo</span>
+                </ng-template>
+              </td>
+              <td>
+                <div class="gap-2 d-flex">
+                  <app-general-button
+                    claseBoton="info px-3"
+                    [esSmall]="true"
+                    label="Ver más"
+                    (click)="onClick.verMas(item)"
+                  ></app-general-button>
+                </div>
+              </td>
+            </tr> -->
+        </tbody>
+      </table>
+      <!-- <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos> -->
+    </div>
+  </div>
+  <!-- <div footer>
+    <app-general-button
+      claseBoton="secondary"
+      label="Salir"
+      [esSmall]="true"
+      [esSecundario]="true"
+      class="m-1"
+      [onClickButton]="onClick.cerrarModal"
+    ></app-general-button>
+  </div> -->
+</app-modal>
+
+

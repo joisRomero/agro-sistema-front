@@ -14,6 +14,7 @@ export class GeneralButtonComponent implements OnInit {
   @Input() claseBoton: string = "";
   @Input() nombreIcono: string = "";
   @Input() label?: string = "";
+  @Input() sinClasesDeBoton: boolean = false;
   @Input() onClickButton?: () => void;
 
 
@@ -22,6 +23,8 @@ export class GeneralButtonComponent implements OnInit {
   ngOnInit(): void {
     if(this.esSecundario){
       this.claseBoton = `btn btn-outline-${this.claseBoton}`;
+    } else if(this.sinClasesDeBoton){
+      this.claseBoton = this.claseBoton;
     } else {
       this.claseBoton = `btn btn-${this.claseBoton}`;
     }

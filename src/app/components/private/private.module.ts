@@ -17,6 +17,11 @@ import { CompraAbonosComponent } from './view/compra-abonos/compra-abonos.compon
 import { SociedadesComponent } from './view/sociedades/sociedades.component';
 import { CampaniasComponent } from './view/campanias/campanias.component';
 import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
+import { VerDetalleCampaniaComponent } from './view/ver-detalle-campania/ver-detalle-campania.component';
+import { VerDetalleCosechaComponent } from './view/ver-detalle-campania/components/ver-detalle-cosecha/ver-detalle-cosecha.component';
+import { NuevoCosechaComponent } from './view/ver-detalle-campania/components/nuevo-cosecha/nuevo-cosecha.component';
+import { NuevoDetalleCosechaComponent } from './view/ver-detalle-campania/components/nuevo-detalle-cosecha/nuevo-detalle-cosecha.component';
+import { EliminarCosechaComponent } from './view/ver-detalle-campania/components/eliminar-cosecha/eliminar-cosecha.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,11 @@ import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-det
     SociedadesComponent,
     CampaniasComponent,
     VerDetalleSociedadComponent,
+    VerDetalleCampaniaComponent,
+    VerDetalleCosechaComponent,
+    NuevoCosechaComponent,
+    NuevoDetalleCosechaComponent,
+    EliminarCosechaComponent,
   ],
   imports: [
     CommonModule,

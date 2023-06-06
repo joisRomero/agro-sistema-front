@@ -12,6 +12,7 @@ import { InicioComponent } from './view/inicio/inicio.component';
 import { SociedadesComponent } from './view/sociedades/sociedades.component';
 import { TipoAgroquimicoComponent } from './view/tipo-agroquimico/tipo-agroquimico.component';
 import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
+import { VerDetalleCampaniaComponent } from './view/ver-detalle-campania/ver-detalle-campania.component';
 
 export const privateModuleRoutes: Routes = [
   {
@@ -46,6 +47,12 @@ export const privateModuleRoutes: Routes = [
         path: 'sociedades/ver-detalle-sociedad/:id/:nombre',
         title: 'Detalle sociedad',
         component: VerDetalleSociedadComponent,
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'sociedades/ver-detalle-campania/:id/:nombre',
+        title: 'Detalle campaña',
+        component: VerDetalleCampaniaComponent,
         canActivate: [LoginGuard]
       },
       {

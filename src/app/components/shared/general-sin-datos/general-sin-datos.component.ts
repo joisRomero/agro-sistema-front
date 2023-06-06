@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-general-sin-datos',
@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class GeneralSinDatosComponent {
 
+  @Input() texto: string = 'No se encontraron datos';
 }

@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
           this.loginResponse = responseLogin.body!;
           let usuario: Usuario = {
             nombreUsuario: this.loginResponse.nombreUsuario,
-            idUsuario: this.loginResponse.idUsuario
+            idUsuario: this.loginResponse.idUsuario,
+            nombreCompleto: this.loginResponse.nombreCompleto
           }
           sessionStorage.setItem("usuario", JSON.stringify(usuario));
           this.router.navigate(["intranet"]);

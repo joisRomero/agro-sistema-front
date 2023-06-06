@@ -1,4 +1,4 @@
-<div class="d-flex flex-column h-100" >
+<div class="d-flex flex-column h-100">
 
   <div class="d-flex justify-content-between align-items-center">
     <h4 class="m-0">Sociedades</h4>
@@ -6,27 +6,25 @@
     <app-general-button
     claseBoton="primary"
     label="Nuevo"
+    [esSmall]="true"
     (click) = "onClick.nuevo()"
     ></app-general-button>
   </div>
 
-  <div class="input-group mt-3">
-    <input type="text" class="form-control" style="width: 60%;" placeholder="Buscar por ..." aria-label="Recipient's username"
-    aria-describedby="button-addon2">
-
-    <select class="form-select "  aria-label=".form-select-sm example" id="button-addon2">
-      <option selected value="1">Nombre</option>
-    </select>
-    <app-general-button
-      claseBoton="secondary"
-      nombreIcono="bi-search"
-      [esSecundario]="true"
-      id="button-addon2"
-    ></app-general-button>
-
+  <div class="row p-0 m-0">
+    <app-general-input
+    [fGroup]="form"
+    nombreControl="nombre"
+    class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
+    tipo="text"
+    placeholder="Buscar por nombre"
+    nombreIcono="bi-search"
+    [onClickButton]="onClick.buscar"
+    (keyup.enter)="onClick.buscar()"
+    ></app-general-input>
   </div>
 
-  <div class="card mt-4">
+  <div class="card mt-2">
     <div class="card-body p-0 ">
       <table class="table table-sm mb-0 table-hover">
         <thead>

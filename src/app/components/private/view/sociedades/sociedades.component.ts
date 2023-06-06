@@ -52,7 +52,7 @@ export class SociedadesComponent implements OnInit {
     }
   }
 
-  private async buscar() {
+  public async buscar() {
     this.itemsTabla = new ListaPaginadaSociedadesResponse();
     let response = await this.service.obtenerListaPaginadaSociedades();
     this.itemsTabla = response.body!;
@@ -72,6 +72,7 @@ export class SociedadesComponent implements OnInit {
 
   private service = {
     obtenerListaPaginadaSociedades: () => {
+      this.setDatosBusqueda();
       return lastValueFrom(this.sociedadService.obtenerListaPaginadaSociedades(this.listaSociedades));
     }
   }
@@ -84,6 +85,9 @@ export class SociedadesComponent implements OnInit {
       this.router.navigate(["intranet/sociedades/ver-detalle-sociedad",
                             item.idSociedad.toString(),
                             item.nombre]);
+    },
+    buscar: () => {
+      this.buscar();
     }
   }
 

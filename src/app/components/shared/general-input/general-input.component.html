@@ -1,22 +1,25 @@
-<label [for]="nombreControl" class="form-label">{{ label }}</label>
-<span *ngIf="esObligatorio" style="color: red"> {{ " *" }} </span>
-<input
-  *ngIf="tipo != 'area'"
-  class="form-control"
-  [id]="nombreControl"
-  type="{{ tipo }}"
-  [formControl]="control"
-  placeholder="{{ placeholder }}"
-  [numbersOnly]="soloNumeros"
-  [decimalsOnly]="soloDecimales"
-  [lettersOnly]="soloLetras"
-  [allCharacters]="todosLosCaracteres"
-  [datesOnly]="soloFechas"
-  [lettersNumbersOnly]="soloLetrasNumeros"
-  [attr.disabled]="desabilitado || null"
-  [attr.maxlength]="maxlength"
-  [ngClass]="{'is-invalid' : hayErrores && control.touched}"
-/>
+<div [ngClass]="{'input-group ': nombreIcono != ''}">
+  <label [for]="nombreControl" class="form-label">{{ label }}</label>
+  <span *ngIf="esObligatorio" style="color: red"> {{ " *" }} </span>
+  <input
+    *ngIf="tipo != 'area'"
+    class="form-control"
+    [id]="nombreControl"
+    type="{{ tipo }}"
+    [formControl]="control"
+    placeholder="{{ placeholder }}"
+    [numbersOnly]="soloNumeros"
+    [decimalsOnly]="soloDecimales"
+    [lettersOnly]="soloLetras"
+    [allCharacters]="todosLosCaracteres"
+    [datesOnly]="soloFechas"
+    [lettersNumbersOnly]="soloLetrasNumeros"
+    [attr.disabled]="desabilitado || null"
+    [attr.maxlength]="maxlength"
+    [ngClass]="{'is-invalid' : hayErrores && control.touched,
+                'rounded-start': nombreIcono != ''}"
+  />
+  <span *ngIf='nombreIcono != ""' class="input-group-text cursor" (click)="onClickButton!()"><i class="bi" [class]="nombreIcono"></i> </span>
 
 <textarea
   *ngIf="tipo == 'area'"
@@ -36,8 +39,8 @@
   [ngClass]="{'is-invalid' : hayErrores && control.touched}"
 ></textarea>
 
-<span *ngIf='nombreIcono != ""' class="input-group-text" (click)="onClickButton!()"><i class="bi" [class]="nombreIcono"></i> </span>
 
 <div class="invalid-feedback" *ngIf="hayErrores && control.touched" >
     {{ mensajeError != null ? mensajeError : "" }}
+</div>
 </div>
