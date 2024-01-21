@@ -1,0 +1,103 @@
+<div class="fondo">
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="card bg-white shadow-lg">
+              <div class="card-body p-5">
+                <form class="mb-3 mt-md-4 row" [formGroup]="form!" (ngSubmit)="registrar()">
+                  <h2 class="fw-bold mb-2 text-uppercase ">AgroSistema</h2>
+                  <p class=" mb-4">Por favor ingrese su datos para poder registrarse</p>
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="usuario"
+                      label="Nombre de usuario:"
+                      [mensajeError]="mensajesError.usuario"
+                      tipo="text"
+                      id="usuario"
+                      class="mb-3 col-md-6"
+                      [maxlength]="50"
+                      (focusout)="validarNombreUsuario()"
+                    ></app-general-input>
+                  
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="clave"
+                      label="Contraseña:"
+                      [mensajeError]="mensajesError.clave"
+                      id="clave"
+                      tipo="password"
+                      placeholder="*******"
+                      class="mb-3 col-md-6"
+                      (input)="validarRepetirClave()"
+                    ></app-general-input>
+
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="repetirClave"
+                      label="Repita la contraseña:"
+                      [mensajeError]="mensajesError.repetirClave"
+                      id="repetirClave"
+                      tipo="password"
+                      placeholder="*******"
+                      class="mb-3 col-md-6"
+                      (input)="validarRepetirClave()"
+                    ></app-general-input>
+                  
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="correo"
+                      label="Correo electrónico:"
+                      [mensajeError]="mensajesError.correo"
+                      tipo="text"
+                      id="correo"
+                      class="mb-3 col-md-6"
+                    ></app-general-input>
+
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="nombre"
+                      label="Nombre:"
+                      [mensajeError]="mensajesError.nombre"
+                      tipo="text"
+                      id="nombre"
+                      class="mb-3 col-md-6"
+                    ></app-general-input>
+                  
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="apellidoPaterno"
+                      label="Apellido paterno:"
+                      [mensajeError]="mensajesError.apellidoPaterno"
+                      tipo="text"
+                      id="apellidoPaterno"
+                      class="mb-3 col-md-6"
+                    ></app-general-input>
+
+                    <app-general-input
+                      [fGroup]="form"
+                      nombreControl="apellidoMaterno"
+                      label="Apellido materno:"
+                      [mensajeError]="mensajesError.apellidoMaterno"
+                      tipo="text"
+                      id="apellidoMaterno"
+                      class="mb-3 col-md-6"
+                    ></app-general-input>
+
+                  <div class="d-grid">
+                    <app-general-button
+                      claseBoton="primary anchoBoton"
+                      label="Registrar"
+                      tipo="submit"
+                    ></app-general-button>
+                  </div>
+                </form>
+                <span>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión aquí</a> </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
