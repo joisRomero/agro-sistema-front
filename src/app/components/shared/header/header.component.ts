@@ -27,6 +27,10 @@ export class HeaderComponent implements OnInit {
     this.sidebarVars.mostrarSidebar = !this.sidebarVars.mostrarSidebar;
   }
 
+  editarPerfil() {
+    this.route.navigate(["intranet/perfil"]);
+  }
+
   cerrarSesion() {
     this.route.navigate(['']);
     sessionStorage.clear();

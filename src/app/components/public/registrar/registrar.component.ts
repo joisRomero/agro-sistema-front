@@ -45,7 +45,6 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciarControles();
-    const inputClave = this.form.get('clave');
   }
 
   private iniciarControles() {

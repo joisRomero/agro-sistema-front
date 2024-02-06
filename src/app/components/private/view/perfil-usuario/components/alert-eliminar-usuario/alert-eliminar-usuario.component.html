@@ -1,0 +1,21 @@
+<app-general-alert titulo="Perfil de usuario" [cerrarAlert]="onClick.cerrarAlert">
+    <p class="fw-normal mb-0">¿Está seguro de querer eliminar su cuenta?</p>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSmall]="true"
+        [esSecundario]="true"
+        class="m-1"
+        (click)="onClick.cerrarAlert()"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="danger"
+        label="Eliminar"
+        [esSmall]="true"
+        class="m-1"
+        (click)="onClick.cambiarEstado()"
+      ></app-general-button>
+    </div>
+  </app-general-alert>
+  

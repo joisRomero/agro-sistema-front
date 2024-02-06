@@ -6,6 +6,13 @@ import { ValidarNombreUsuarioRequest } from '../models/requests/validarNombreUsu
 import { ValidarNombreUsuarioResponse } from '../models/responses/validarNombreUsuarioResponse';
 import { CrearUsuarioRequest } from '../models/requests/crearUsuarioRequest';
 import { CrearUsuarioResponse } from '../models/responses/crearUsuarioResponse';
+import { ObtenerDatosUsuarioRequest } from '../models/requests/obtenerDatosUsuarioRequest';
+import { ObtenerDatosUsuarioResponse } from '../models/responses/obtenerDatosUsuarioResponse';
+import { EliminarCuentaUsuarioRequest } from '../models/requests/eliminarCuentaUsuarioRequest';
+import { ActualizarDatosUsuarioRequest } from '../models/requests/actualizarDatosUsuarioRequest';
+import { ActualizarDatosUsuarioResponse } from '../models/responses/actualizarDatosUsuarioResponse';
+import { ActualizarClavesUsuarioRequest } from '../models/requests/actualizarClavesUsuarioRequest';
+import { ActualizarClavesUsuarioResponse } from '../models/responses/actualizarClavesUsuarioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +27,27 @@ export class UsuarioService {
   }
 
   public validarNombreUsuario(params: ValidarNombreUsuarioRequest): Observable<HttpResponse<ValidarNombreUsuarioResponse>> {
-    return this.http.post<ValidarNombreUsuarioResponse>(`${this.url}/validarNombreUsuario`, params, {observe: 'response'});
+    return this.http.post<ValidarNombreUsuarioResponse>(`${this.url}/validarNombre`, params, {observe: 'response'});
   }
 
   public crearUsuario(params: CrearUsuarioRequest): Observable<HttpResponse<CrearUsuarioResponse>> {
     return this.http.post<CrearUsuarioResponse>(`${this.url}/crear`, params, {observe: 'response'});
+  }
+
+  public obtenerDatosUsuario(params: ObtenerDatosUsuarioRequest): Observable<HttpResponse<ObtenerDatosUsuarioResponse>> {
+    return this.http.get<ObtenerDatosUsuarioResponse>(`${this.url}/obtenerDatos`, {observe: 'response', params: params as {}});
+  }
+
+  public actualizarUsuario(params: ActualizarDatosUsuarioRequest): Observable<HttpResponse<ActualizarDatosUsuarioResponse>> {
+    return this.http.post<ActualizarDatosUsuarioResponse>(`${this.url}/actualizarDatos`, params, {observe: 'response'});
+  }
+
+  public actualizarClavesUsuario(params: ActualizarClavesUsuarioRequest): Observable<HttpResponse<ActualizarClavesUsuarioResponse>> {
+    return this.http.post<ActualizarClavesUsuarioResponse>(`${this.url}/actualizarClaves`, params, {observe: 'response'});
+  }
+
+  public eliminarCuentaUsuario(params: EliminarCuentaUsuarioRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/eliminarCuenta`, params, {observe: 'response'});
   }
 
 }

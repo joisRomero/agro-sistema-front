@@ -13,6 +13,7 @@ import { SociedadesComponent } from './view/sociedades/sociedades.component';
 import { TipoAgroquimicoComponent } from './view/tipo-agroquimico/tipo-agroquimico.component';
 import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
 import { VerDetalleCampaniaComponent } from './view/ver-detalle-campania/ver-detalle-campania.component';
+import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
 
 export const privateModuleRoutes: Routes = [
   {
@@ -91,6 +92,12 @@ export const privateModuleRoutes: Routes = [
         component: CultivoComponent,
         canActivate: [LoginGuard]
       },
+      {
+        path: 'perfil',
+        title: 'Perfil',
+        component: PerfilUsuarioComponent,
+        canActivate: [LoginGuard]
+      }
     ]
   }
 ];

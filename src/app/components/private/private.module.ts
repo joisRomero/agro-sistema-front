@@ -22,6 +22,8 @@ import { VerDetalleCosechaComponent } from './view/ver-detalle-campania/componen
 import { NuevoCosechaComponent } from './view/ver-detalle-campania/components/nuevo-cosecha/nuevo-cosecha.component';
 import { NuevoDetalleCosechaComponent } from './view/ver-detalle-campania/components/nuevo-detalle-cosecha/nuevo-detalle-cosecha.component';
 import { EliminarCosechaComponent } from './view/ver-detalle-campania/components/eliminar-cosecha/eliminar-cosecha.component';
+import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
+import { AlertEliminarUsuarioComponent } from './view/perfil-usuario/components/alert-eliminar-usuario/alert-eliminar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,9 @@ import { EliminarCosechaComponent } from './view/ver-detalle-campania/components
     NuevoCosechaComponent,
     NuevoDetalleCosechaComponent,
     EliminarCosechaComponent,
+    PerfilUsuarioComponent,
+    AlertEliminarComponent,
+    AlertEliminarUsuarioComponent
   ],
   imports: [
     CommonModule,
