@@ -1,0 +1,20 @@
+<app-general-alert titulo="Sociedad" [cerrarAlert]="onClick.cerrarAlert">
+    <p class="fw-normal mb-0">¿Está seguro de querer eliminar la sociedad?</p>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSmall]="true"
+        [esSecundario]="true"
+        class="m-1"
+        (click)="onClick.cerrarAlert()"
+        ></app-general-button>
+        <app-general-button
+        claseBoton="primary"
+        label="Eliminar"
+        [esSmall]="true"
+        class="m-1"
+        (click)="onClick.eliminar()"
+      ></app-general-button>
+    </div>
+  </app-general-alert>
