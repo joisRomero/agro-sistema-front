@@ -10,6 +10,7 @@
         tipo="text"
       ></app-general-input>
 
+      <!--
       <app-general-checkbox
         class="px-2 py-1 col-12 col-md-6 col-sm-6"
         [fGroup]="form"
@@ -18,6 +19,7 @@
         texto="Activo"
       ></app-general-checkbox>
 
+
       <app-general-select
         class="px-2 py-1 col-12 col-md-6 col-sm-6"
         [fGroup]="form"
@@ -25,6 +27,7 @@
         label="Prueba: "
         [mensajeError]="mensajesError.nombre"
       ></app-general-select>
+      -->
 
     </div>
   </form>
@@ -38,7 +41,8 @@
       [onClickButton]="onClick.cerrarModal"
     ></app-general-button>
     <app-general-button
-      claseBoton="primary"
+      [claseBoton]="claseBoton"
+      [label]="labelBoton"
       label="Guardar"
       [esSmall]="true"
       class="m-1"

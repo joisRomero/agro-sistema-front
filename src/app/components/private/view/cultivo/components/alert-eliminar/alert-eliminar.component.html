@@ -1,5 +1,5 @@
 <app-general-alert titulo="Cultivo" [cerrarAlert]="onClick.cerrarAlert">
-  <p class="fw-normal mb-0">¿Está seguro de querer cambiar el estado?</p>
+  <p class="fw-normal mb-0">¿Está seguro de querer eliminar el cultivo?</p>
   <div footer>
     <app-general-button
       claseBoton="secondary"
@@ -10,11 +10,11 @@
       (click)="onClick.cerrarAlert()"
     ></app-general-button>
     <app-general-button
-      claseBoton="primary"
-      label="Cambiar"
+      claseBoton="danger"
+      label="Eliminar"
       [esSmall]="true"
       class="m-1"
-      (click)="onClick.cambiarEstado()"
+      (click)="onClick.eliminarCultivo()"
     ></app-general-button>
   </div>
 </app-general-alert>
