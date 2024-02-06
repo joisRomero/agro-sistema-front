@@ -7,6 +7,10 @@ import { ListaPaginadaSociedadesRequest } from 'src/app/models/requests/listaPag
 import { ListaPaginadaSociedadesResponse, ListaPaginadaSociedadesResponseItem } from 'src/app/models/responses/listaPaginadaSociedadesResponse';
 import { Usuario } from 'src/app/models/usuario';
 import { SociedadService } from 'src/app/services/sociedad.service';
+import { DarDeBajaSociedadVars } from './components/dar-de-baja-sociedad/dar-de-baja-sociedad.vars';
+import { IdSociedad } from 'src/app/models/id-sociedad';
+import { ListaPaginadaSociedadResponse, ListaPaginadaSociedadResponseItem } from 'src/app/models/responses/listaPaginadaSociedadResponse';
+import { NuevoEditarSociedadVars } from './components/nuevo-editar-sociedad/nuevo-editar-sociedad-vars';
 
 @Component({
   selector: 'app-sociedades',
@@ -16,9 +20,13 @@ import { SociedadService } from 'src/app/services/sociedad.service';
 export class SociedadesComponent implements OnInit {
 
   public form!: FormGroup;
-  public itemsTabla: ListaPaginadaSociedadesResponse = new ListaPaginadaSociedadesResponse();
+  public nombre: string = '';
+  //public itemsTabla: ListaPaginadaSociedadesResponse = new ListaPaginadaSociedadesResponse();
+  public itemsTabla: ListaPaginadaSociedadResponse = new ListaPaginadaSociedadResponse();
   public isEditar: boolean = false;
-  public sociedadItem!: ListaPaginadaSociedadesResponseItem;
+  public idSociedad!: number;
+  //public sociedadItem!: ListaPaginadaSociedadesResponseItem;
+  public sociedadItem!: ListaPaginadaSociedadResponseItem;
   public listaSociedades!: ListaPaginadaSociedadesRequest;
   private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
   public verMensajeSinDatos: boolean = false;
@@ -26,7 +34,9 @@ export class SociedadesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public sociedadService: SociedadService,
-    private router: Router
+    private router: Router,
+    public modalEliminarSociedad: DarDeBajaSociedadVars,
+    public modalNuevoEditarSociedad: NuevoEditarSociedadVars
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +63,7 @@ export class SociedadesComponent implements OnInit {
   }
 
   public async buscar() {
-    this.itemsTabla = new ListaPaginadaSociedadesResponse();
+    this.itemsTabla = new ListaPaginadaSociedadResponse();
     let response = await this.service.obtenerListaPaginadaSociedades();
     this.itemsTabla = response.body!;
     this.verMensajeSinDatos = this.itemsTabla.data.length == 0;
@@ -73,13 +83,22 @@ export class SociedadesComponent implements OnInit {
   private service = {
     obtenerListaPaginadaSociedades: () => {
       this.setDatosBusqueda();
-      return lastValueFrom(this.sociedadService.obtenerListaPaginadaSociedades(this.listaSociedades));
+      // return lastValueFrom(this.sociedadService.obtenerListaPaginadaSociedades(this.listaSociedades));
+      return lastValueFrom(this.sociedadService.obtenerListaSociedades(this.listaSociedades));
+    },
+    obtenerSociedadPorId: () => {
+      let params: IdSociedad = {
+        id: this.idSociedad
+      }
+      return lastValueFrom(this.sociedadService.obtenerPorId(params));
     }
   }
 
   public onClick = {
-    nuevo: () => {
-
+    nuevaSociedad: () => {
+      this.isEditar = false;
+      this.nombre = 'nuevo'
+      this.modalNuevoEditarSociedad.mostrarModal = true;
     },
     verMas: (item: ListaPaginadaSociedadesResponseItem) => {
       this.router.navigate(["intranet/sociedades/ver-detalle-sociedad",
@@ -88,7 +107,21 @@ export class SociedadesComponent implements OnInit {
     },
     buscar: () => {
       this.buscar();
-    }
+    },
+    editarSociedad: async (editItem: ListaPaginadaSociedadResponseItem) => {
+      this.sociedadItem = editItem
+      this.isEditar = true;
+      this.nombre = 'editar'
+      this.modalNuevoEditarSociedad.mostrarModal = true;
+    },
+    eliminarSociedad: async (idSociedad: number) => {
+      this.idSociedad = idSociedad;
+      this.modalEliminarSociedad.mostrarModal = true;
+    },
+  }
+
+  actualizarTabla(){
+    this.buscar();
   }
 
   onSubmitActualizarTabla() {

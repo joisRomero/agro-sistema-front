@@ -1,4 +1,4 @@
-<div class="d-flex flex-column h-100" >
+<div class="d-flex flex-column h-100">
 
   <div class="d-flex justify-content-between align-items-center">
     <h4 class="m-0">Cultivos</h4>
@@ -6,13 +6,20 @@
     <app-general-button
     claseBoton="primary"
     label="Nuevo"
+    [esSmall]="true"
     (click) = "onClick.nuevoCultivo()"
     ></app-general-button>
   </div>
 
-  <div class="input-group mt-3">
-    <input type="text" class="form-control" style="width: 60%;" placeholder="Buscar por nombre" aria-label="Recipient's username"
-    aria-describedby="button-addon2">
+  <!--<div class="input-group mt-3">
+    <input
+    type="text"
+    class="form-control"
+    style="width: 60%;"
+    placeholder="Buscar por nombre"
+    aria-label="Recipient's username"
+    aria-describedby="button-addon2"
+    >
 
     <select class="form-select "  aria-label=".form-select-sm example" id="button-addon2">
       <option selected>Open this select menu</option>
@@ -27,6 +34,19 @@
       id="button-addon2"
     ></app-general-button>
 
+  </div>-->
+
+  <div class="row p-0 m-0">
+    <app-general-input
+    [fGroup]="form"
+    nombreControl="nombre"
+    class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
+    tipo="text"
+    placeholder="Buscar por nombre"
+    nombreIcono="bi-search"
+    [onClickButton]="onClick.buscar"
+    (keyup.enter)="onClick.buscar()"
+    ></app-general-input>
   </div>
 
   <div class="card mt-4">
@@ -41,7 +61,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of itemsTabla; let i = index">
+          <tr *ngFor="let item of itemsTabla.data; let i = index">
+            <td class="ps-2" scope="row">{{ item.correlativo }}</td>
+            <td scope="row">{{ item.nombreCultivo }}</td>
+            <td scope="row">{{ item.estado }}</td>
+            <!--<td scope="row">
+              <div class="gap-2 d-flex">
+                <app-general-button
+                  claseBoton="success px-3"
+                  [esSmall]="true"
+                  label="Editar"
+                ></app-general-button>
+                <app-general-button
+                  claseBoton="danger px-3"
+                  [esSmall]="true"
+                  label="Eliminar"
+                ></app-general-button>
+              </div>
+            </td>
             <th scope="row">{{ i+1 }}</th>
             <td>{{ item.nombre }}</td>
             <td>
@@ -49,23 +86,38 @@
               <ng-template #inactivo>
                 <span class="badge bg-danger">Inactivo</span>
               </ng-template>
-            </td>
+            </td>-->
             <td>
               <div class="gap-2 d-flex">
-                <app-general-button claseBoton="info px-3" [esSmall]="true" (click)="onClick.editarCultivo(item.id)"
-                  nombreIcono="bi-pencil-square"></app-general-button>
+                <app-general-button
+                  claseBoton="success px-3"
+                  (click)="onClick.editarCultivo(item)"
+                  [esSmall]="true"
+                  nombreIcono="bi-pencil-square"
+                  title="Editar"
+                ></app-general-button>
 
-                <app-general-button *ngIf="item.estado; else inactivar" claseBoton="info px-3" [esSmall]="true"
-                  nombreIcono="bi-x-lg" (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
-                <ng-template #inactivar>
-                  <app-general-button claseBoton="info px-3" [esSmall]="true" nombreIcono="bi-check-lg"
-                    (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
-                </ng-template>
+                <app-general-button
+                  claseBoton="danger px-3"
+                  (click)="onClick.eliminarCultivo(item.idCultivo)"
+                  [esSmall]="true"
+                  nombreIcono="bi-x-lg"
+                  title="Eliminar"
+                ></app-general-button>
+
               </div>
             </td>
           </tr>
         </tbody>
       </table>
+      <app-general-pagination
+        [paginaActual]="paginacionVars.paginaActual"
+        [totalPaginas]="paginacionVars.totalPaginas"
+        [totalFilas]="paginacionVars.totalFilas"
+        (eventChangePage)="paginacionVars.onChangePage($event)"
+        *ngIf="itemsTabla.data.length > 0"
+      ></app-general-pagination>
+      <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
     </div>
   </div>
 
@@ -74,7 +126,9 @@
   *ngIf="modalNuevoEditarCultivoService.mostrarModal"
   [isEditar]="isEditar"
   [cultivoItem]="cultivoItem"
+  (actualizo)="actualizarTabla()"
 ></app-modal-nuevo-editar-cultivo>
+
 <app-alert-eliminar
   *ngIf="alertEliminarService.mostrar"
   [idCultivo]="idCultivo"

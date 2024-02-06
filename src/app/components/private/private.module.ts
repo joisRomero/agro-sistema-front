@@ -22,6 +22,8 @@ import { VerDetalleCosechaComponent } from './view/ver-detalle-campania/componen
 import { NuevoCosechaComponent } from './view/ver-detalle-campania/components/nuevo-cosecha/nuevo-cosecha.component';
 import { NuevoDetalleCosechaComponent } from './view/ver-detalle-campania/components/nuevo-detalle-cosecha/nuevo-detalle-cosecha.component';
 import { EliminarCosechaComponent } from './view/ver-detalle-campania/components/eliminar-cosecha/eliminar-cosecha.component';
+import { DarDeBajaSociedadComponent } from './view/sociedades/components/dar-de-baja-sociedad/dar-de-baja-sociedad.component';
+import { NuevoEditarSociedadComponent } from './view/sociedades/components/nuevo-editar-sociedad/nuevo-editar-sociedad.component';
 import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
 import { AlertEliminarUsuarioComponent } from './view/perfil-usuario/components/alert-eliminar-usuario/alert-eliminar-usuario.component';
 
@@ -45,6 +47,8 @@ import { AlertEliminarUsuarioComponent } from './view/perfil-usuario/components/
     NuevoCosechaComponent,
     NuevoDetalleCosechaComponent,
     EliminarCosechaComponent,
+    DarDeBajaSociedadComponent,
+    NuevoEditarSociedadComponent,
     PerfilUsuarioComponent,
     AlertEliminarComponent,
     AlertEliminarUsuarioComponent
