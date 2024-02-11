@@ -10,7 +10,7 @@ export class ValidarLoginGuard implements CanActivate {
   constructor(private router: Router){}
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let user: Usuario = JSON.parse(sessionStorage.getItem('usuario')!);
+    let user: Usuario = JSON.parse(localStorage.getItem('usuario')!);
     if (user) {
       return false;
     }

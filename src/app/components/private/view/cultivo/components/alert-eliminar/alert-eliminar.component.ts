@@ -17,7 +17,7 @@ export class AlertEliminarComponent implements OnInit {
   @Input() idCultivo!: number;
   @Output() elimino = new EventEmitter();
 
-  private nombreUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+  private nombreUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
 
   constructor(
     public servicioAlert: AlertEliminarService,

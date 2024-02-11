@@ -47,10 +47,10 @@
           <td scope="row">{{ item.fin || "-" }}</td>
           <td>
             <span *ngIf="item.estado; else inactivo" class="badge bg-success"
-              >Activo</span
+              >En proceso</span
             >
             <ng-template #inactivo>
-              <span class="badge bg-danger">Inactivo</span>
+              <span class="badge bg-danger">Finalizado</span>
             </ng-template>
           </td>
           <td>
@@ -76,12 +76,14 @@
                       claseBoton="dropdown-item"
                       label="Editar"
                       [sinClasesDeBoton]="true"
+                      *ngIf="esAdministrador"
                     >
                     </app-general-button>
                     <app-general-button
                       claseBoton="dropdown-item"
                       label="Eliminar"
                       [sinClasesDeBoton]="true"
+                      *ngIf="esAdministrador"
                     >
                     </app-general-button>
                   </li>

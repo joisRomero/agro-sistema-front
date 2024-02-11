@@ -104,7 +104,7 @@ export class RegistrarComponent implements OnInit {
   }
 
   public async registrar(){
-    sessionStorage.clear();
+    localStorage.clear();
     localStorage.clear();
 
     this.form.markAllAsTouched();
@@ -124,7 +124,7 @@ export class RegistrarComponent implements OnInit {
       if (responseToken.status != 200){
         return 
       }
-      sessionStorage.setItem('token', responseToken.body!.access_token);
+      localStorage.setItem('token', responseToken.body!.access_token);
       let responseLogin = await this.services.login();
 
       if (responseLogin.status != 200) {
@@ -137,7 +137,7 @@ export class RegistrarComponent implements OnInit {
         idUsuario: this.loginResponse.idUsuario,
         nombreCompleto: this.loginResponse.nombreCompleto
       }
-      sessionStorage.setItem("usuario", JSON.stringify(usuario));
+      localStorage.setItem("usuario", JSON.stringify(usuario));
       this.router.navigate(["intranet"]);
     }
   }

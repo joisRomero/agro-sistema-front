@@ -28,7 +28,7 @@ export class SociedadesComponent implements OnInit {
   public sociedadItem!: ListaPaginadaSociedadesResponseItem;
   // public sociedadItem!: ListaPaginadaSociedadResponseItem;
   public listaSociedades!: ListaPaginadaSociedadesRequest;
-  private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
+  private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   public verMensajeSinDatos: boolean = false;
 
   constructor(

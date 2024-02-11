@@ -10,6 +10,7 @@ import { LoginRequest } from 'src/app/models/requests/loginRequest';
 import { LoginService } from 'src/app/services/login.service';
 import { LoginResponse } from 'src/app/models/responses/loginResponse';
 import { Usuario } from 'src/app/models/usuario';
+import { PerfilUsuarioVars } from '../../private/view/perfil-usuario/perfil-usuario-vars';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private tokenService: TokenService,
     private loginService: LoginService,
+    public perfilUsuarioVars: PerfilUsuarioVars
   ) { }
 
   ngOnInit(): void {
@@ -44,14 +46,13 @@ export class LoginComponent implements OnInit {
   }
 
   public async iniciarSesion(){
-    sessionStorage.clear();
     localStorage.clear();
 
     this.form.markAllAsTouched();
     if(this.form.valid){
       let responseToken = await this.services.crearToken();
       if (responseToken.status == 200){
-        sessionStorage.setItem('token', responseToken.body!.access_token);
+        localStorage.setItem('token', responseToken.body!.access_token);
         let responseLogin = await this.services.login();
         if (responseLogin.status == 200) {
           this.loginResponse = responseLogin.body!;
@@ -60,7 +61,8 @@ export class LoginComponent implements OnInit {
             idUsuario: this.loginResponse.idUsuario,
             nombreCompleto: this.loginResponse.nombreCompleto
           }
-          sessionStorage.setItem("usuario", JSON.stringify(usuario));
+          localStorage.setItem("usuario", JSON.stringify(usuario));
+          this.perfilUsuarioVars.actualizarNombre();
           this.router.navigate(["intranet"]);
         }
       }

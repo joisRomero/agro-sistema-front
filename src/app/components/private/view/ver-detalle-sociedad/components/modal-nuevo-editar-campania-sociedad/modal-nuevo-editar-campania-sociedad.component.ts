@@ -19,7 +19,7 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
   @Output() actualizo = new EventEmitter();
   public valoresUnidad: GeneralSelectItem[] = [];
   public valoresCultivos: GeneralSelectItem[] = [];
-  private idUsuario: number = parseInt((JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario);
+  private idUsuario: number = parseInt((JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario);
 
   public tituloModal: string = '';
   public form!: FormGroup;

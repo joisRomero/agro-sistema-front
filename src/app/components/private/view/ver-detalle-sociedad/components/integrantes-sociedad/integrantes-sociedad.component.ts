@@ -16,7 +16,7 @@ export class IntegrantesSociedadComponent implements OnInit {
 
   @Input() idSociedad: string = "";
   @Input() esAdministrador: boolean = false;
-  public idUsuario: number = parseInt((JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario);
+  public idUsuario: number = parseInt((JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario);
   public form!: FormGroup;
   public listaIntegrantes!: ObtenerIntegrantesSociedadRequest;
   public integranteItem!: ObtenerIntegrantesSociedadResponseItem;

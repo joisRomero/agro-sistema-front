@@ -1,12 +1,52 @@
 <div class="d-flex flex-column h-100">
-  <div class="d-flex align-items-center">
+  <!-- <div class="d-flex align-items-center">
     <app-general-button
       claseBoton="light"
       nombreIcono="bi bi-arrow-left"
       (click) = "onClick.irAtras()"
     ></app-general-button>
     <h4 class="m-0 ps-2">Sociedad: {{nombreSociedad}}</h4>
+  </div> -->
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <app-general-button
+        claseBoton="light"
+        nombreIcono="bi bi-arrow-left"
+        (click) = "onClick.irAtras()"
+      ></app-general-button>
+      <h4 class="m-0 ps-2">Sociedad: {{nombreSociedad}}</h4>
+    </div>
+    <div class="gap-2 d-flex" *ngIf="esAdministrador">
+      <div class="dropdown">
+        <button
+          class="btn btn-info dropdown-toggle btn-sm px-3"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-gear-fill"></i> 
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <app-general-button
+              claseBoton="dropdown-item"
+              label="Editar"
+              [sinClasesDeBoton]="true"
+            >
+            </app-general-button>
+            <app-general-button
+              claseBoton="dropdown-item"
+              label="Eliminar"
+              [sinClasesDeBoton]="true"
+            >
+            </app-general-button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+  
 
   <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">

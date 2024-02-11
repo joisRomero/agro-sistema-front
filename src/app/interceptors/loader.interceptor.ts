@@ -40,7 +40,7 @@ export class LoaderInterceptor implements HttpInterceptor {
             }
             this.hideLoader();
             this.showErrorModal("Su sesión a expirado.");
-            sessionStorage.clear();
+            localStorage.clear();
             this.router.navigate(['login']);
           }
           else{

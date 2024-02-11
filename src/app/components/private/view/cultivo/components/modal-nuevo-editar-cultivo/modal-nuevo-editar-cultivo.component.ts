@@ -28,8 +28,8 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
   public labelBoton: string = '';
   public claseBoton: string = '';
   public form!: FormGroup;
-  private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
-  private nombreUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+  private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
+  private nombreUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
 
   public mensajesError = {
     nombre: "El campo es obligatorio.",

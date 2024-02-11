@@ -42,7 +42,7 @@ export class AlertEliminarUsuarioComponent implements OnInit {
         return;
       }
       this.route.navigate(['']);
-      sessionStorage.clear();
+      localStorage.clear();
 
     },
   };

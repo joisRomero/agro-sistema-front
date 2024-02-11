@@ -41,7 +41,7 @@ export class CultivoComponent implements OnInit {
   ]*/
   public form!: FormGroup;
   public listaCultivos!: ListaPaginadaCultivosRequest;
-  private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
+  private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   public verMensajeSinDatos: boolean = false;
 
   constructor(

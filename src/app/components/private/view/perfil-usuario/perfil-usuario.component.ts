@@ -10,6 +10,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { SpaceValidator } from 'src/app/validators/white-space.validator';
 import { AlertEliminarUsuarioService } from './components/alert-eliminar-usuario/alert-eliminar-usuario.service';
+import { PerfilUsuarioVars } from './perfil-usuario-vars';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -21,7 +22,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   public formPerfil!: FormGroup;
   public formClaves!: FormGroup;
-  public usuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
+  public usuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   public idUsuario: number = Number.parseInt(this.usuario);
 
   public mensajesError = {
@@ -41,6 +42,7 @@ export class PerfilUsuarioComponent implements OnInit {
     private usuarioService: UsuarioService,
     public alertInformationService: GeneralAlertInformationVars,
     public alertEliminarService: AlertEliminarUsuarioService,
+    public perfilUsuarioVars: PerfilUsuarioVars
   ) { }
 
   ngOnInit(): void {
@@ -102,8 +104,13 @@ export class PerfilUsuarioComponent implements OnInit {
     if(response.status != 200){
       return
     }
+
+    let usuario = JSON.parse(localStorage.getItem("usuario")!) as Usuario;
+    usuario.nombreCompleto = `${this.formPerfil.controls["nombre"]!.value} ${this.formPerfil.controls["apellidoPaterno"]!.value} ${this.formPerfil.controls["apellidoMaterno"]!.value}`;
+    localStorage.removeItem("usuario");
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    this.perfilUsuarioVars.actualizarNombre();
     this.cargarDatos();
-    
   }
 
   public async actualizarClaves() {
@@ -149,7 +156,6 @@ export class PerfilUsuarioComponent implements OnInit {
 
   eliminar() {
     this.alertEliminarService.mostrar = true;
-    console.log('asdfasdf')
   }
 
 }

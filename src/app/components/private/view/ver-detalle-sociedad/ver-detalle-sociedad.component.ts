@@ -21,7 +21,7 @@ export class VerDetalleSociedadComponent implements OnInit {
   public idSociedad: string = "";
   public nombreSociedad: string = "";
   public esAdministrador: boolean = false;
-  private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
+  private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
    
   constructor(
     private activatedRoute: ActivatedRoute,

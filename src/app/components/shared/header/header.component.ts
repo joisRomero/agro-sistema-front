@@ -4,6 +4,7 @@ import { Router, Routes } from '@angular/router';
 import { privateModuleRoutes } from '../../private/private-routing.module';
 import { SidebarVars } from '../sidebar/sidebar.component.vars';
 import { Usuario } from 'src/app/models/usuario';
+import { PerfilUsuarioVars } from '../../private/view/perfil-usuario/perfil-usuario-vars';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,13 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class HeaderComponent implements OnInit {
 
-  public usuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).nombreUsuario;
-  public nombreCompleto: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).nombreCompleto;
+  public usuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+  public nombreCompleto: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
 
   constructor(
     public sidebarVars: SidebarVars,
-    public route: Router
+    public route: Router,
+    public perfilUsuarioVars: PerfilUsuarioVars
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,6 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion() {
     this.route.navigate(['']);
-    sessionStorage.clear();
+    localStorage.clear();
   }
 }

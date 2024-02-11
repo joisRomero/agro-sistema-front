@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
   private ls = window.localStorage;
-  private ss = window.sessionStorage;
+  private ss = window.localStorage;
   private JWT_TOKEN = 'JWT_TOKEN';
 
   constructor(
@@ -30,7 +30,7 @@ export class LocalStorageService {
   }
   public signout() {
     // this.setUserAndToken(null, null, false);
-    sessionStorage.clear();
+    localStorage.clear();
     localStorage.clear();
     // this.router.navigateByUrl('signin');
   }

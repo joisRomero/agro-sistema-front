@@ -14,7 +14,7 @@ import { CampaniaService } from 'src/app/services/campania.service';
 export class VerDetalleCampaniaComponent implements OnInit {
   public nombreCampania: string = '';
   public idCampania: string = '';
-  private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
+  private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   public mostrarMensaje: boolean = false;
   public mostrarInformacion: boolean = false;
 
