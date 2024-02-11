@@ -8,244 +8,59 @@
     <h4 class="m-0 ps-2">Campaña: {{ nombreCampania }}</h4>
   </div>
 
-  <div class="mt-3 alert alert-danger" role="alert" *ngIf="mostrarMensaje">
-    Información no disponible
+  <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button 
+        class="nav-link active" 
+        id="actividades-tab" 
+        data-bs-toggle="tab" 
+        data-bs-target="#actividades" 
+        type="button" 
+        role="tab" 
+        aria-controls="actividades" 
+        aria-selected="true"
+      >Actividades</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button 
+        class="nav-link" 
+        id="gastos-tab" 
+        data-bs-toggle="tab" 
+        data-bs-target="#gastos" 
+        type="button" 
+        role="tab" 
+        aria-controls="gastos" 
+        aria-selected="false"
+      >Gastos</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button 
+        class="nav-link" 
+        id="cosechas-tab" 
+        data-bs-toggle="tab" 
+        data-bs-target="#cosechas" 
+        type="button" 
+        role="tab" 
+        aria-controls="cosechas" 
+        aria-selected="false"
+      >Cosechas</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane  show active" id="actividades" role="tabpanel" aria-labelledby="actividades-tab">
+     <app-actividades-campania></app-actividades-campania>
+
+    </div>
+    <div class="tab-pane " id="gastos" role="tabpanel" aria-labelledby="gastos-tab">
+      <app-gastos-campania></app-gastos-campania>
+    </div>
+    <div class="tab-pane " id="cosechas" role="tabpanel" aria-labelledby="cosechas-tab">
+      <app-cosechas-campania
+      [idCampania]="idCampania"
+      ></app-cosechas-campania>
+    </div>
   </div>
-
-  <div *ngIf="mostrarInformacion">
-    <div class="d-flex justify-content-between mt-3 align-items-center">
-      <h5 class="m-0">Actividades</h5>
-      <app-general-button
-        claseBoton="primary"
-        label="Nuevo"
-        [esSmall]="true"
-      ></app-general-button>
-    </div>
-
-    <!-- <div class="row p-0 m-0">
-        <app-general-input
-        [fGroup]="form"
-        nombreControl="nombre"
-        class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
-        tipo="text"
-        placeholder="Buscar por nombre"
-        nombreIcono="bi-search"
-        ></app-general-input>
-      </div> -->
-
-    <div class="card mt-2">
-      <div class="card-body p-0 table-responsive">
-        <table class="table table-sm mb-0 table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Nro.</th>
-              <th scope="col">Tipo</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- <tr *ngFor="let item of itemsTabla.data">
-                <td class="ps-2" scope="row">{{ item.numero }}</td>
-                <td scope="row">{{ item.fecha }}</td>
-                <td scope="row">{{ item.descripcion }}</td>
-                <td>
-                  <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
-                  <ng-template #inactivo>
-                    <span class="badge bg-danger">Inactivo</span>
-                  </ng-template>
-                </td>
-                <td>
-                  <div class="gap-2 d-flex">
-                    <app-general-button
-                      claseBoton="info px-3"
-                      [esSmall]="true"
-                      label="Ver más"
-                      (click)="onClick.verMas(item)"
-                    ></app-general-button>
-                  </div>
-                </td>
-              </tr> -->
-          </tbody>
-        </table>
-        <!-- <app-general-pagination
-            [paginaActual]="paginacionVars.paginaActual"
-            [totalPaginas]="paginacionVars.totalPaginas"
-            [totalFilas]="paginacionVars.totalFilas"
-            (eventChangePage)="paginacionVars.onChangePage($event)"
-            *ngIf="itemsTabla.data.length > 0"
-          ></app-general-pagination>
-          <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos> -->
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between mt-3 align-items-center">
-      <h5 class="m-0">Gastos</h5>
-
-      <app-general-button
-        claseBoton="primary"
-        label="Nuevo"
-        [esSmall]="true"
-      ></app-general-button>
-    </div>
-
-    <!-- <div class="row p-0 m-0">
-        <app-general-input
-        [fGroup]="form"
-        nombreControl="nombre"
-        class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
-        tipo="text"
-        placeholder="Buscar por nombre"
-        nombreIcono="bi-search"
-        ></app-general-input>
-      </div> -->
-
-    <div class="card mt-2">
-      <div class="card-body p-0 table-responsive">
-        <table class="table table-sm mb-0 table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Nro.</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- <tr *ngFor="let item of itemsTabla.data">
-                <td class="ps-2" scope="row">{{ item.numero }}</td>
-                <td scope="row">{{ item.fecha }}</td>
-                <td scope="row">{{ item.descripcion }}</td>
-                <td>
-                  <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
-                  <ng-template #inactivo>
-                    <span class="badge bg-danger">Inactivo</span>
-                  </ng-template>
-                </td>
-                <td>
-                  <div class="gap-2 d-flex">
-                    <app-general-button
-                      claseBoton="info px-3"
-                      [esSmall]="true"
-                      label="Ver más"
-                      (click)="onClick.verMas(item)"
-                    ></app-general-button>
-                  </div>
-                </td>
-              </tr> -->
-          </tbody>
-        </table>
-        <!-- <app-general-pagination
-            [paginaActual]="paginacionVars.paginaActual"
-            [totalPaginas]="paginacionVars.totalPaginas"
-            [totalFilas]="paginacionVars.totalFilas"
-            (eventChangePage)="paginacionVars.onChangePage($event)"
-            *ngIf="itemsTabla.data.length > 0"
-          ></app-general-pagination>
-          <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos> -->
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between mt-3 align-items-center">
-      <h5 class="m-0">Cosechas</h5>
-      <app-general-button
-        claseBoton="primary"
-        label="Agregar"
-        [esSmall]="true"
-        (click)="onClick.nuevaCosecha()"
-      ></app-general-button>
-    </div>
-
-    <div class="card mt-2">
-      <div class="card-body p-0 table-responsive">
-        <table class="table table-sm mb-0 table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Nro.</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of itemsTablaCosecha.data">
-              <td class="ps-2" scope="row">{{ item.numero }}</td>
-              <td scope="row">{{ item.fecha }}</td>
-              <td scope="row">{{ item.descripcion }}</td>
-              <td>
-                <div class="gap-2 d-flex">
-                  <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Agregar detalle"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.nuevoDetalleCosecha()"
-                        ></app-general-button>
-                      </li>
-                      <li>
-                        <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Ver detalle"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.verDetalleCosecha()"
-                          ></app-general-button>
-                        </li>
-                        <li>
-                          <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Editar"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.editarCosecha()"
-                          ></app-general-button>
-                        </li>
-                        <li>
-                          <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Eliminar"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.eliminarCosecha()"
-                        ></app-general-button>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <app-general-pagination
-          [paginaActual]="paginacionVarsCosechas.paginaActual"
-          [totalPaginas]="paginacionVarsCosechas.totalPaginas"
-          [totalFilas]="paginacionVarsCosechas.totalFilas"
-          (eventChangePage)="paginacionVarsCosechas.onChangePage($event)"
-          *ngIf="itemsTablaCosecha.data.length > 0"
-        ></app-general-pagination>
-        <app-general-sin-datos *ngIf="verMensajeSinDatosCosecha"></app-general-sin-datos>
-      </div>
-    </div>
-
-  </div>
-
 </div>
 
-<app-nuevo-cosecha
-  *ngIf="modalNuevoCosecha.mostrarModal"
-  [esEditar]="esEditarNuevoCosecha"
-></app-nuevo-cosecha>
-<app-nuevo-detalle-cosecha
-  *ngIf="modalNuevoDetalleCosecha.mostrarModal"
-></app-nuevo-detalle-cosecha>
-<app-ver-detalle-cosecha
-  *ngIf="modalVerDetalleCosecha.mostrarModal"
-></app-ver-detalle-cosecha>
-<app-eliminar-cosecha
-  *ngIf="modalEliminarCosecha.mostrarModal"
-></app-eliminar-cosecha>
+

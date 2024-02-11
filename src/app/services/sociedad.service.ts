@@ -14,6 +14,8 @@ import { EliminarSociedadRequest } from '../models/requests/eliminarSociedadRequ
 import { EditarSociedadRequest } from '../models/requests/editarSociedadRequest';
 import { AgregarSociedadRequest } from '../models/requests/agregarSociedadRequest';
 import { ListaPaginadaSociedadResponse } from '../models/responses/listaPaginadaSociedadResponse';
+import { ValidarPertenenciaSociedadResponse } from '../models/responses/validarPertenenciaSociedadResponse';
+import { ValidarPertenenciaSociedadRequest } from '../models/requests/validarPertenenciaSociedadRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +34,8 @@ export class SociedadService {
     return this.http.post<ListaPaginadaSociedadesResponse>(`${this.url}/obtenerListaPaginadaSociedades`, params, {observe: 'response'});
   }
 
-  public obtenerIntegrantesSociedad(params: ObtenerIntegrantesSociedadRequest): Observable<HttpResponse<ObtenerIntegrantesSociedadResponse[]>> {
-    return this.http.post<ObtenerIntegrantesSociedadResponse[]>(`${this.url}/obtenerIntegrantesSociedad`, params, {observe: 'response'});
+  public obtenerIntegrantesSociedad(params: ObtenerIntegrantesSociedadRequest): Observable<HttpResponse<ObtenerIntegrantesSociedadResponse>> {
+    return this.http.post<ObtenerIntegrantesSociedadResponse>(`${this.url}/obtenerIntegrantesSociedad`, params, {observe: 'response'});
   }
 
   public obtenerListaPaginaCampaniasSocidad(params: ListaPaginaCampaniasSocidadRequest): Observable<HttpResponse<ListaPaginaCampaniasSocidadResponse>> {
@@ -48,7 +50,6 @@ export class SociedadService {
     return this.http.get<Sociedad>(`${this.url}/ObtenerPorId`, { observe: 'response', params: params as {} });
   }
   
-  //CON FEEEEEE
   public obtenerListaSociedades(params: ListaPaginadaSociedadesRequest): Observable<HttpResponse<ListaPaginadaSociedadResponse>> {
     return this.http.get<ListaPaginadaSociedadResponse>(`${this.url}/listarSociedad?NombreSociedad=${params.nombre}&IdUsuario=${params.idUsuario}&PageSize=${params.pageSize}&PageNumber=${params.pageNumber}`, { observe: 'response' });
   }
@@ -65,7 +66,9 @@ export class SociedadService {
     return this.http.post<any>(`${this.url}/eliminarSociedad`, params, { observe: 'response' })
   }
 
-
+  public validarPertenenciaSociedad(params: ValidarPertenenciaSociedadRequest): Observable<HttpResponse<ValidarPertenenciaSociedadResponse>> {
+    return this.http.post<ValidarPertenenciaSociedadResponse>(`${this.url}/validarPertenenciaSociedad`, params, { observe: 'response' })
+  }
 
 
 }

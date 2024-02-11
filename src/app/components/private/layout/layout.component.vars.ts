@@ -12,7 +12,7 @@ export class LayoutVars {
       icono: "bi bi-house-fill"
     },
     {
-      nombre: "Campañas",
+      nombre: "Mis campañas",
       path: "campanias",
       icono: "bi bi-house-fill"
     },

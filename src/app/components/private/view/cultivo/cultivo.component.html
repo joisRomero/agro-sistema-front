@@ -11,31 +11,6 @@
     ></app-general-button>
   </div>
 
-  <!--<div class="input-group mt-3">
-    <input
-    type="text"
-    class="form-control"
-    style="width: 60%;"
-    placeholder="Buscar por nombre"
-    aria-label="Recipient's username"
-    aria-describedby="button-addon2"
-    >
-
-    <select class="form-select "  aria-label=".form-select-sm example" id="button-addon2">
-      <option selected>Open this select menu</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-    <app-general-button
-      claseBoton="secondary"
-      nombreIcono="bi-search"
-      [esSecundario]="true"
-      id="button-addon2"
-    ></app-general-button>
-
-  </div>-->
-
   <div class="row p-0 m-0">
     <app-general-input
     [fGroup]="form"
@@ -49,62 +24,44 @@
     ></app-general-input>
   </div>
 
-  <div class="card mt-4">
+  <div class="card mt-2">
     <div class="card-body p-0">
-      <table class="table mb-0 table-hover">
+      <table class="table table-sm mb-0 table-hover">
         <thead>
           <tr>
             <th scope="col">Nro.</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Operaciones</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of itemsTabla.data; let i = index">
             <td class="ps-2" scope="row">{{ item.correlativo }}</td>
             <td scope="row">{{ item.nombreCultivo }}</td>
-            <td scope="row">{{ item.estado }}</td>
-            <!--<td scope="row">
-              <div class="gap-2 d-flex">
-                <app-general-button
-                  claseBoton="success px-3"
-                  [esSmall]="true"
-                  label="Editar"
-                ></app-general-button>
-                <app-general-button
-                  claseBoton="danger px-3"
-                  [esSmall]="true"
-                  label="Eliminar"
-                ></app-general-button>
-              </div>
-            </td>
-            <th scope="row">{{ i+1 }}</th>
-            <td>{{ item.nombre }}</td>
-            <td>
-              <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
-              <ng-template #inactivo>
-                <span class="badge bg-danger">Inactivo</span>
-              </ng-template>
-            </td>-->
             <td>
               <div class="gap-2 d-flex">
-                <app-general-button
-                  claseBoton="success px-3"
-                  (click)="onClick.editarCultivo(item)"
-                  [esSmall]="true"
-                  nombreIcono="bi-pencil-square"
-                  title="Editar"
-                ></app-general-button>
-
-                <app-general-button
-                  claseBoton="danger px-3"
-                  (click)="onClick.eliminarCultivo(item.idCultivo)"
-                  [esSmall]="true"
-                  nombreIcono="bi-x-lg"
-                  title="Eliminar"
-                ></app-general-button>
-
+                <div class="dropdown">
+                  <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Editar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.editarCultivo(item)">
+                        </app-general-button>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Eliminar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.eliminarCultivo(item.idCultivo)">
+                        </app-general-button>
+                      </li>
+                  </ul>
+                </div>
               </div>
             </td>
           </tr>

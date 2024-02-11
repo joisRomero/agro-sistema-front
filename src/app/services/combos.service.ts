@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ObtenerUnidadesCosechaResponse } from '../models/responses/obtenerUnidadesCosechaResponse';
 import { ObtenerCalidadesCosechaResponse } from '../models/responses/obtenerCalidadesCosechaResponse';
+import { ObtenerUnidadesCampaniaResponse } from '../models/responses/obtenerUnidadesCampaniaResponse';
+import { ObtenerCultivosUsuarioRequest } from '../models/requests/obtenerCultivosUsuarioRequest';
+import { ObtenerCultivosUsuarioResponse } from '../models/responses/obtenerCultivosUsuarioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +24,13 @@ export class CombosService {
 
   public obtenerCalidadesCosecha(): Observable<HttpResponse<ObtenerCalidadesCosechaResponse[]>> {
     return this.http.get<ObtenerCalidadesCosechaResponse[]>(`${this.url}/obtenerCalidadesCosecha`,  {observe: 'response'});
+  }
+
+  public obtenerCultivosUsuario(params: ObtenerCultivosUsuarioRequest): Observable<HttpResponse<ObtenerCultivosUsuarioResponse[]>> {
+    return this.http.get<ObtenerCultivosUsuarioResponse[]>(`${this.url}/obtenerCultivos`,  {observe: 'response', params: params as {}});
+  }
+
+  public obtenerUnidadesCampania(): Observable<HttpResponse<ObtenerUnidadesCampaniaResponse[]>> {
+    return this.http.get<ObtenerUnidadesCampaniaResponse[]>(`${this.url}/obtenerUnidadesCampania`,  {observe: 'response'});
   }
 }

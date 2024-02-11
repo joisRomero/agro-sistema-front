@@ -1,0 +1,75 @@
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
+    <form class="w-100" [formGroup]="form!">
+      <div class="d-flex flex-wrap">
+        <app-general-input
+          [fGroup]="form"
+          nombreControl="nombre"
+          label="Nombre: "
+          [mensajeError]="mensajesError.nombre"
+          class="px-2 py-1 col-12 col-md-6 col-sm-6"
+          tipo="text"
+        ></app-general-input>
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="fechaInicio"
+            label="Fecha Inicio: "
+            [mensajeError]="mensajesError.fechaInicio"
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            tipo="date"
+        ></app-general-input>
+            <app-general-select
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [fGroup]="form"
+            nombreControl="cultivo"
+            label="Cultivo: "
+            [mensajeError]="mensajesError.cultivo"
+            [values]="valoresCultivos"
+            [esSmall] = "true"
+        ></app-general-select>
+        <app-general-input
+          [fGroup]="form"
+          nombreControl="nombreTerreno"
+          label="Nombre del terreno: "
+          [mensajeError]="mensajesError.nombre"
+          class="px-2 py-1 col-12 col-md-6 col-sm-6"
+          tipo="text"
+        ></app-general-input>
+        <app-general-input
+          [fGroup]="form"
+          nombreControl="areaSembrar"
+          label="Área a sembrar: "
+          [mensajeError]="mensajesError.nombre"
+          class="px-2 py-1 col-12 col-md-6 col-sm-6"
+          tipo="text"
+          [soloNumeros]="true"
+        ></app-general-input>
+        <app-general-select
+        class="px-2 py-1 col-12 col-md-6 col-sm-6"
+        [fGroup]="form"
+        nombreControl="unidad"
+        label="Unidad: "
+        [mensajeError]="mensajesError.nombre"
+        [values]="valoresUnidad"
+        [esSmall] = "true"
+      ></app-general-select>
+      </div>
+    </form>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSmall]="true"
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cerrarModal"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        [esSmall]="true"
+        class="m-1"
+        (click)="guardar()"
+      ></app-general-button>
+    </div>
+  </app-modal>
+  

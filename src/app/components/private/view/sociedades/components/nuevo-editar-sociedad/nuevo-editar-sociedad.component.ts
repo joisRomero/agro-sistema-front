@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ListaPaginadaSociedadResponseItem } from 'src/app/models/responses/listaPaginadaSociedadResponse';
 import { Usuario } from 'src/app/models/usuario';
 import { NuevoEditarSociedadVars } from './nuevo-editar-sociedad-vars';
 import { SociedadService } from 'src/app/services/sociedad.service';
@@ -8,6 +7,7 @@ import { GeneralAlertInformationVars } from 'src/app/components/shared/general-a
 import { AgregarSociedadRequest } from 'src/app/models/requests/agregarSociedadRequest';
 import { lastValueFrom } from 'rxjs';
 import { EditarSociedadRequest } from 'src/app/models/requests/editarSociedadRequest';
+import { ListaPaginadaSociedadesResponseItem } from 'src/app/models/responses/listaPaginadaSociedadesResponse';
 
 @Component({
   selector: 'app-nuevo-editar-sociedad',
@@ -17,7 +17,7 @@ import { EditarSociedadRequest } from 'src/app/models/requests/editarSociedadReq
 export class NuevoEditarSociedadComponent implements OnInit {
   
   @Input() isEditar: boolean = false;
-  @Input() sociedadItem!: ListaPaginadaSociedadResponseItem;
+  @Input() sociedadItem!: ListaPaginadaSociedadesResponseItem;
   @Output() actualizo = new EventEmitter();
 
   public tituloModal: string = '';
@@ -42,14 +42,9 @@ export class NuevoEditarSociedadComponent implements OnInit {
     this.iniciarControles();
     if(this.isEditar) {
       this.tituloModal = "Editar Sociedad";
-      this.labelBoton = "Editar";
-      this.claseBoton = "success"
-      this.form.controls["nombre"].setValue(this.sociedadItem.nombreSociedad);
-      //this.form.controls["estado"].setValue(this.cultivoItem.estado);
+      this.form.controls["nombre"].setValue(this.sociedadItem.nombre);
     } else {
       this.tituloModal = "Nueva Sociedad";
-      this.labelBoton = "Guardar";
-      this.claseBoton = "primary"
     }
   }
 
@@ -63,16 +58,14 @@ export class NuevoEditarSociedadComponent implements OnInit {
       this.servicioModal.mostrarModal = false;
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Sociedad";
-      //this.alertInformationService.texto = response.body.mensaje;
-      this.alertInformationService.texto = "Sociedad Editada";
+      this.alertInformationService.texto = "Sociedad Editada.";
       this.actualizo.emit()
     } else {
       let response = await this.service.agregarSociedad();
       this.servicioModal.mostrarModal = false;
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Sociedad";
-      //this.alertInformationService.texto = response.body.mensaje;
-      this.alertInformationService.texto = "Sociedad Agregado";
+      this.alertInformationService.texto = "Sociedad agregada.";
       this.actualizo.emit()
     }
 
@@ -81,8 +74,6 @@ export class NuevoEditarSociedadComponent implements OnInit {
   private iniciarControles() {
     this.form = this.fb.nonNullable.group({
       nombre: ["", [Validators.required]],
-      /*estado: [true],
-      prueba: ["", [Validators.required]]*/
     });
   }
 

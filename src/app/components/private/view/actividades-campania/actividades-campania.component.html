@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between mt-3 align-items-center">
+    <h5 class="m-0">Actividades</h5>
+    <app-general-button
+      claseBoton="primary"
+      label="Nuevo"
+      [esSmall]="true"
+    ></app-general-button>
+  </div>
+
+  <!-- <div class="row p-0 m-0">
+      <app-general-input
+      [fGroup]="form"
+      nombreControl="nombre"
+      class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
+      tipo="text"
+      placeholder="Buscar por nombre"
+      nombreIcono="bi-search"
+      ></app-general-input>
+    </div> -->
+
+  <div class="card mt-2">
+    <div class="card-body p-0 table-responsive">
+      <table class="table table-sm mb-0 table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of itemsTabla.data">
+              <td class="ps-2" scope="row">{{ item.numero }}</td>
+              <td scope="row">{{ item.fecha }}</td>
+              <td scope="row">{{ item.descripcion }}</td>
+              <td>
+                <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
+                <ng-template #inactivo>
+                  <span class="badge bg-danger">Inactivo</span>
+                </ng-template>
+              </td>
+              <td>
+                <div class="gap-2 d-flex">
+                  <app-general-button
+                    claseBoton="info px-3"
+                    [esSmall]="true"
+                    label="Ver más"
+                    (click)="onClick.verMas(item)"
+                  ></app-general-button>
+                </div>
+              </td>
+            </tr> -->
+        </tbody>
+      </table>
+      <!-- <app-general-pagination
+          [paginaActual]="paginacionVars.paginaActual"
+          [totalPaginas]="paginacionVars.totalPaginas"
+          [totalFilas]="paginacionVars.totalFilas"
+          (eventChangePage)="paginacionVars.onChangePage($event)"
+          *ngIf="itemsTabla.data.length > 0"
+        ></app-general-pagination>
+        <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos> -->
+    </div>
+  </div>

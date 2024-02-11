@@ -46,14 +46,11 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     this.iniciarControles();
     if(this.isEditar) {
       this.tituloModal = "Editar cultivo";
-      this.labelBoton = "Editar";
-      this.claseBoton = "success"
       this.form.controls["nombre"].setValue(this.cultivoItem.nombreCultivo);
       //this.form.controls["estado"].setValue(this.cultivoItem.estado);
     } else {
       this.tituloModal = "Nuevo cultivo";
       this.labelBoton = "Guardar";
-      this.claseBoton = "primary"
     }
   }
 

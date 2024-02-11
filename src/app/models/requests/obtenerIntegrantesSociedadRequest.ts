@@ -1,4 +1,6 @@
 export interface ObtenerIntegrantesSociedadRequest {
-  idUsuario : number
   idSociedad : number
+  nombre: string
+  pageNumber: number
+  pageSize: number
 }

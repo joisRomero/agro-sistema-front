@@ -31,44 +31,15 @@
           <tr>
             <th scope="col">Nro.</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Operaciones</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of itemsTabla.data; let i = index">
-            <td class="ps-2" scope="row">{{ item.correlativo }}</td>
-            <td scope="row">{{ item.nombreSociedad }}</td>
-            <td scope="row">{{ item.estado }}</td>
-            <td>
+            <td scope="row">{{ item.numero }}</td>
+            <td scope="row">{{ item.nombre }}</td>
+            <td scope="row">
               <div class="gap-2 d-flex">
-                <app-general-button
-                  claseBoton="success px-3"
-                  (click)="onClick.editarSociedad(item)"
-                  [esSmall]="true"
-                  nombreIcono="bi-pencil-square"
-                  title="Editar"
-                ></app-general-button>
-
-                <app-general-button
-                  claseBoton="danger px-3"
-                  (click)="onClick.eliminarSociedad(item.idSociedad)"
-                  [esSmall]="true"
-                  nombreIcono="bi-x-lg"
-                  title="Eliminar"
-                ></app-general-button>
-
-              </div>
-            </td>
-            <!-- <td scope="row">
-              <div class="gap-2 d-flex">
-                <app-general-button
-                  claseBoton="info px-3"
-                  [esSmall]="true"
-                  label="Ver más"
-                  (click)="onClick.verMas(item)"
-                ></app-general-button>
-
                 <div class="dropdown">
                   <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -77,43 +48,28 @@
                   <ul class="dropdown-menu dropdown-menu-end">
                       <li>
                         <app-general-button
-                        claseBoton="dropdown-item"
-                        label="Editar"
-                        [sinClasesDeBoton]="true"
-                        (click)="onClick.editarSociedad()">
-                        </app-general-button>
-                      </li>
-                      <li>
+                          claseBoton="dropdown-item"
+                          label="Ver más"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.verMas(item)"
+                        ></app-general-button>
                         <app-general-button
-                        claseBoton="dropdown-item"
-                        label="Dar de Baja"
-                        [sinClasesDeBoton]="true"
-                        (click)="onClick.eliminarSociedad(item.idSociedad)">
+                          claseBoton="dropdown-item"
+                          label="Editar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.editarSociedad(item)">
+                        </app-general-button>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Eliminar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.eliminarSociedad(item.idSociedad)">
                         </app-general-button>
                       </li>
                   </ul>
                 </div>
               </div>
-            </td> -->
-            <!-- <td>
-              <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>
-              <ng-template #inactivo>
-                <span class="badge bg-danger">Inactivo</span>
-              </ng-template>
             </td>
-            <td>
-              <div class="gap-2 d-flex">
-                <app-general-button claseBoton="info px-3" [esSmall]="true" (click)="onClick.editarCultivo(item.id)"
-                  nombreIcono="bi-pencil-square"></app-general-button>
-
-                <app-general-button *ngIf="item.estado; else inactivar" claseBoton="info px-3" [esSmall]="true"
-                  nombreIcono="bi-x-lg" (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
-                <ng-template #inactivar>
-                  <app-general-button claseBoton="info px-3" [esSmall]="true" nombreIcono="bi-check-lg"
-                    (click)="onClick.cambiarEstadoCultivo(item.id)"></app-general-button>
-                </ng-template>
-              </div>
-            </td> -->
           </tr>
         </tbody>
       </table>

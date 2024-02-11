@@ -45,7 +45,7 @@ export const privateModuleRoutes: Routes = [
         canActivate: [LoginGuard]
       },
       {
-        path: 'sociedades/ver-detalle-sociedad/:id/:nombre',
+        path: 'sociedades/ver-detalle-sociedad/:id',
         title: 'Detalle sociedad',
         component: VerDetalleSociedadComponent,
         canActivate: [LoginGuard]

@@ -21,12 +21,12 @@ export class SociedadesComponent implements OnInit {
 
   public form!: FormGroup;
   public nombre: string = '';
-  //public itemsTabla: ListaPaginadaSociedadesResponse = new ListaPaginadaSociedadesResponse();
-  public itemsTabla: ListaPaginadaSociedadResponse = new ListaPaginadaSociedadResponse();
+  public itemsTabla: ListaPaginadaSociedadesResponse = new ListaPaginadaSociedadesResponse();
+  // public itemsTabla: ListaPaginadaSociedadResponse = new ListaPaginadaSociedadResponse();
   public isEditar: boolean = false;
   public idSociedad!: number;
-  //public sociedadItem!: ListaPaginadaSociedadesResponseItem;
-  public sociedadItem!: ListaPaginadaSociedadResponseItem;
+  public sociedadItem!: ListaPaginadaSociedadesResponseItem;
+  // public sociedadItem!: ListaPaginadaSociedadResponseItem;
   public listaSociedades!: ListaPaginadaSociedadesRequest;
   private idUsuario: string = (JSON.parse(sessionStorage.getItem("usuario")!) as Usuario).idUsuario;
   public verMensajeSinDatos: boolean = false;
@@ -63,7 +63,7 @@ export class SociedadesComponent implements OnInit {
   }
 
   public async buscar() {
-    this.itemsTabla = new ListaPaginadaSociedadResponse();
+    this.itemsTabla = new ListaPaginadaSociedadesResponse();
     let response = await this.service.obtenerListaPaginadaSociedades();
     this.itemsTabla = response.body!;
     this.verMensajeSinDatos = this.itemsTabla.data.length == 0;
@@ -83,8 +83,8 @@ export class SociedadesComponent implements OnInit {
   private service = {
     obtenerListaPaginadaSociedades: () => {
       this.setDatosBusqueda();
-      // return lastValueFrom(this.sociedadService.obtenerListaPaginadaSociedades(this.listaSociedades));
-      return lastValueFrom(this.sociedadService.obtenerListaSociedades(this.listaSociedades));
+      return lastValueFrom(this.sociedadService.obtenerListaPaginadaSociedades(this.listaSociedades));
+      // return lastValueFrom(this.sociedadService.obtenerListaSociedades(this.listaSociedades));
     },
     obtenerSociedadPorId: () => {
       let params: IdSociedad = {
@@ -102,13 +102,12 @@ export class SociedadesComponent implements OnInit {
     },
     verMas: (item: ListaPaginadaSociedadesResponseItem) => {
       this.router.navigate(["intranet/sociedades/ver-detalle-sociedad",
-                            item.idSociedad.toString(),
-                            item.nombre]);
+                            item.idSociedad.toString()]);
     },
     buscar: () => {
       this.buscar();
     },
-    editarSociedad: async (editItem: ListaPaginadaSociedadResponseItem) => {
+    editarSociedad: async (editItem: ListaPaginadaSociedadesResponseItem) => {
       this.sociedadItem = editItem
       this.isEditar = true;
       this.nombre = 'editar'

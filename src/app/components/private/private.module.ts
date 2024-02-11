@@ -26,6 +26,12 @@ import { DarDeBajaSociedadComponent } from './view/sociedades/components/dar-de-
 import { NuevoEditarSociedadComponent } from './view/sociedades/components/nuevo-editar-sociedad/nuevo-editar-sociedad.component';
 import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
 import { AlertEliminarUsuarioComponent } from './view/perfil-usuario/components/alert-eliminar-usuario/alert-eliminar-usuario.component';
+import { CampaniaSociedadComponent } from './view/ver-detalle-sociedad/components/campania-sociedad/campania-sociedad.component';
+import { IntegrantesSociedadComponent } from './view/ver-detalle-sociedad/components/integrantes-sociedad/integrantes-sociedad.component';
+import { ModalNuevoEditarCampaniaSociedadComponent } from './view/ver-detalle-sociedad/components/modal-nuevo-editar-campania-sociedad/modal-nuevo-editar-campania-sociedad.component';
+import { ActividadesCampaniaComponent } from './view/actividades-campania/actividades-campania.component';
+import { GastosCampaniaComponent } from './view/gastos-campania/gastos-campania.component';
+import { CosechasCampaniaComponent } from './view/cosechas-campania/cosechas-campania.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +57,13 @@ import { AlertEliminarUsuarioComponent } from './view/perfil-usuario/components/
     NuevoEditarSociedadComponent,
     PerfilUsuarioComponent,
     AlertEliminarComponent,
-    AlertEliminarUsuarioComponent
+    AlertEliminarUsuarioComponent,
+    CampaniaSociedadComponent,
+    IntegrantesSociedadComponent,
+    ModalNuevoEditarCampaniaSociedadComponent,
+    ActividadesCampaniaComponent,
+    GastosCampaniaComponent,
+    CosechasCampaniaComponent,
   ],
   imports: [
     CommonModule,

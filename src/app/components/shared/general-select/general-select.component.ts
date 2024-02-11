@@ -12,7 +12,7 @@ export class GeneralSelectComponent implements OnInit {
   @Input() public values?: any[];
   @Input() public fGroup?: FormGroup;
   @Input() public nombreControl?: string;
-  @Input() esSmall: boolean = false;
+  @Input() public esSmall: boolean = false;
   @Input() public desabilitado?: boolean;
   @Input() public maxlength?: number;
   @Input() public soloNumeros?: boolean;
