@@ -16,6 +16,8 @@ import { AgregarSociedadRequest } from '../models/requests/agregarSociedadReques
 import { ListaPaginadaSociedadResponse } from '../models/responses/listaPaginadaSociedadResponse';
 import { ValidarPertenenciaSociedadResponse } from '../models/responses/validarPertenenciaSociedadResponse';
 import { ValidarPertenenciaSociedadRequest } from '../models/requests/validarPertenenciaSociedadRequest';
+import { BusquedaIntegranteRequest } from '../models/requests/busquedaIntegranteRequest';
+import { BusquedaIntegranteResponse } from '../models/responses/busquedaIntegranteResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +70,10 @@ export class SociedadService {
 
   public validarPertenenciaSociedad(params: ValidarPertenenciaSociedadRequest): Observable<HttpResponse<ValidarPertenenciaSociedadResponse>> {
     return this.http.post<ValidarPertenenciaSociedadResponse>(`${this.url}/validarPertenenciaSociedad`, params, { observe: 'response' })
+  }
+
+  public busquedaIntegrante(params: BusquedaIntegranteRequest): Observable<HttpResponse<BusquedaIntegranteResponse[]>> {
+    return this.http.post<BusquedaIntegranteResponse[]>(`${this.url}/busquedaIntegrante`, params, { observe: 'response' })
   }
 
 

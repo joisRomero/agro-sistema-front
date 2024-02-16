@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { lastValueFrom } from 'rxjs';
+import { last, lastValueFrom } from 'rxjs';
 import { Paginacion } from 'src/app/models/paginacion';
 import { ObtenerIntegrantesSociedadRequest } from 'src/app/models/requests/obtenerIntegrantesSociedadRequest';
 import { ObtenerIntegrantesSociedadResponse, ObtenerIntegrantesSociedadResponseItem } from 'src/app/models/responses/obtenerIntegrantesSociedadResponse';
 import { Usuario } from 'src/app/models/usuario';
 import { SociedadService } from 'src/app/services/sociedad.service';
+import { NuevoEditarIntegrantesSociedadVars } from '../modal-nuevo-editar-integrantes-sociedad/nuevo-editar-integrantes-sociedad-vars';
+import { BusquedaIntegranteRequest } from 'src/app/models/requests/busquedaIntegranteRequest';
 
 @Component({
   selector: 'app-integrantes-sociedad',
@@ -26,6 +28,7 @@ export class IntegrantesSociedadComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private sociedadService: SociedadService,
+    public modalIntegrantesSociedadVars: NuevoEditarIntegrantesSociedadVars
   ) { }
 
   ngOnInit(): void {
@@ -47,8 +50,6 @@ export class IntegrantesSociedadComponent implements OnInit {
       nombre: this.form.controls["nombre"].value.trim(),
     }
   }
-
-  
 
   public paginacionVars: Paginacion = {
     paginaActual: 1,
@@ -73,6 +74,9 @@ export class IntegrantesSociedadComponent implements OnInit {
   public onClick = {
     buscar: () => {
       this.buscar();
+    },
+    nuevo: () => {
+      this.modalIntegrantesSociedadVars.mostrarModal = true;
     }
   }
 

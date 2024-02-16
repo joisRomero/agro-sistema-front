@@ -1,43 +1,144 @@
-<nav class="navbar navbar-dark bg-primary sticky-top p-0 shadow-sm">
+<nav
+  class="navbar navbar-dark bg-primary sticky-top p-0 shadow-sm"
+>
   <div class="container-fluid">
     <div>
-      <button class="boton boton-desplegable" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuDesplegable"
-        aria-controls="menuDesplegable">
+      <button
+        class="boton boton-desplegable"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#menuDesplegable"
+        aria-controls="menuDesplegable"
+      >
         <i class="icono bi bi-list"></i>
       </button>
-      <a class="navbar-brand ps-1">
-        AgroSistema
-      </a>
+      <a class="navbar-brand ps-1"> AgroSistema </a>
     </div>
     <div class="d-flex align-items-center">
       <span class="fs-6 text-light pe-1 d-none d-md-block">
         {{ perfilUsuarioVars.nombreCompleto }}
       </span>
 
-      <div class="btn-group" >
-        <button class="boton" type="button" id="dropdownUsuario" data-bs-toggle="dropdown" data-bs-display="static"
-          aria-expanded="false">
+      <div class="btn-group">
+        <!-- notificaciones -->
+        <button
+          class="boton position-relative mx-3"
+          type="button"
+          id="dropdownInvitacionesSociedad"
+          data-bs-toggle="dropdown"
+          data-bs-display="static"
+          aria-expanded="false"
+        >
+          <i class="icono bi bi-person-add"></i>
+          <span 
+            class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger"
+            style="top: 25%!important;"
+          >
+            99+
+          </span>
+        </button>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          style="width: 300px"
+          aria-labelledby="dropdownInvitacionesSociedad"
+        >
+          <li class="dropdown-item-text fw-normal">
+            <p>
+              <span class="fw-bold">Juan Sebastian Céspedes Rueda</span> te ha
+              invitado a unirte a la sociedad
+              <span class="fw-bold">Chulillos</span>
+            </p>
+            <div class="row">
+              <app-general-button
+                claseBoton="secondary anchoBoton"
+                label="Rechazar"
+                tipo="submit"
+                [esSmall]="true"
+                class="col-md-6"
+              ></app-general-button>
+
+              <app-general-button
+                claseBoton="primary anchoBoton"
+                label="Aceptar"
+                tipo="submit"
+                [esSmall]="true"
+                class="col-md-6"
+              ></app-general-button>
+            </div>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li class="dropdown-item-text fw-normal">
+            <p>
+              <span class="fw-bold">Juan Sebastian Céspedes Rueda</span> te ha
+              invitado a unirte a la sociedad
+              <span class="fw-bold">Chulillos</span>
+            </p>
+            <div class="row">
+              <app-general-button
+                claseBoton="secondary anchoBoton"
+                label="Rechazar"
+                tipo="submit"
+                [esSmall]="true"
+                class="col-md-6"
+              ></app-general-button>
+
+              <app-general-button
+                claseBoton="primary anchoBoton"
+                label="Aceptar"
+                tipo="submit"
+                [esSmall]="true"
+                class="col-md-6"
+              ></app-general-button>
+            </div>
+          </li>
+        </ul>
+        <!-- informacion perfil -->
+        <button
+          class="boton position-relative"
+          type="button"
+          id="dropdownUsuario"
+          data-bs-toggle="dropdown"
+          data-bs-display="static"
+          aria-expanded="false"
+        >
           <i class="icono bi bi-person"></i>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;" aria-labelledby="dropdownUsuario">
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          style="width: 300px"
+          aria-labelledby="dropdownUsuario"
+        >
           <li>
             <span class="dropdown-item-text fw-normal">
-              {{ perfilUsuarioVars.nombreCompleto }} <br><span class="text-muted">{{ perfilUsuarioVars.usuario }}</span>
+              {{ perfilUsuarioVars.nombreCompleto }} <br /><span
+                class="text-muted"
+                >{{ perfilUsuarioVars.usuario }}</span
+              >
             </span>
           </li>
           <li>
-            <hr class="dropdown-divider">
+            <hr class="dropdown-divider" />
           </li>
           <li>
-            <button class="dropdown-item" type="button" (click)="editarPerfil()">
+            <button
+              class="dropdown-item"
+              type="button"
+              (click)="editarPerfil()"
+            >
               Editar perfil
             </button>
           </li>
-          <li>
+          <!-- <li>
             <hr class="dropdown-divider">
-          </li>
+          </li> -->
           <li>
-            <button class="dropdown-item" type="button" (click)="cerrarSesion()">
+            <button
+              class="dropdown-item"
+              type="button"
+              (click)="cerrarSesion()"
+            >
               Cerrar sesión
             </button>
           </li>

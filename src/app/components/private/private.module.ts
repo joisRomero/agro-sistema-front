@@ -32,6 +32,7 @@ import { ModalNuevoEditarCampaniaSociedadComponent } from './view/ver-detalle-so
 import { ActividadesCampaniaComponent } from './view/actividades-campania/actividades-campania.component';
 import { GastosCampaniaComponent } from './view/gastos-campania/gastos-campania.component';
 import { CosechasCampaniaComponent } from './view/cosechas-campania/cosechas-campania.component';
+import { ModalNuevoEditarIntegrantesSociedadComponent } from './view/ver-detalle-sociedad/components/modal-nuevo-editar-integrantes-sociedad/modal-nuevo-editar-integrantes-sociedad.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { CosechasCampaniaComponent } from './view/cosechas-campania/cosechas-cam
     ActividadesCampaniaComponent,
     GastosCampaniaComponent,
     CosechasCampaniaComponent,
+    ModalNuevoEditarIntegrantesSociedadComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,70 @@
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
+  <form [formGroup]="form!">
+    <app-general-input
+      [fGroup]="form"
+      nombreControl="nombre"
+      class="col-12"
+      tipo="text"
+      placeholder="Buscar por nombre o nombre de usuario"
+      nombreIcono="bi-search"
+      [onClickButton]="onClick.buscar"
+      (keyup.enter)="onClick.buscar()"
+      *ngIf="!haySeleccionado"
+    ></app-general-input>
+  </form>
+
+  <div class="alert alert-secondary my-2" *ngIf="mostrarModalDeNoEncontrados">
+    No se encontró usuarios con ese nombre.
+  </div>
+
+  <div
+    class="list-group my-2 overflow-auto ab border"
+    style="max-height: 249px"
+    *ngIf="listaBuscado.length > 0 && !haySeleccionado"
+  >
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      *ngFor="let item of listaBuscado"
+      (click)="onClick.seleccionar(item)"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ item.nombreCompleto }}</div>
+        {{ item.nombreUsuario }}
+      </div>
+    </button>
+  </div>
+  <div class="rounded"></div>
+
+  <div
+    class="alert alert-primary alert-dismissible fade show"
+    *ngIf="haySeleccionado"
+  >
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{ seleccionado.nombreCompleto }}</div>
+      {{ seleccionado.nombreUsuario }}
+    </div>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="onClick.seleccionarNuevo()"
+    ></button>
+  </div>
+
+  <div footer>
+    <app-general-button
+      claseBoton="secondary"
+      label="Cancelar"
+      [esSmall]="true"
+      [esSecundario]="true"
+      class="m-1"
+      [onClickButton]="onClick.cerrarModal"
+    ></app-general-button>
+    <app-general-button
+      claseBoton="primary"
+      label="Invitar"
+      [esSmall]="true"
+      class="m-1"
+    ></app-general-button>
+  </div>
+</app-modal>

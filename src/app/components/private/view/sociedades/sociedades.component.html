@@ -25,19 +25,25 @@
   </div>
 
   <div class="card mt-2">
-    <div class="card-body p-0 ">
+    <div class="card-body p-0">
       <table class="table table-sm mb-0 table-hover">
         <thead>
           <tr>
             <th scope="col">Nro.</th>
             <th scope="col">Nombre</th>
+            <th scope="col"></th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of itemsTabla.data; let i = index">
-            <td scope="row">{{ item.numero }}</td>
+          <tr *ngFor="let item of itemsTabla.data">
+            <td class="ps-2" scope="row">{{ item.numero }}</td>
             <td scope="row">{{ item.nombre }}</td>
+            <td>
+            <span *ngIf="item.esAdministrador" class="badge bg-success"
+              >Administrador</span
+            >
+          </td>
             <td scope="row">
               <div class="gap-2 d-flex">
                 <div class="dropdown">
@@ -54,12 +60,14 @@
                           (click)="onClick.verMas(item)"
                         ></app-general-button>
                         <app-general-button
+                          *ngIf="item.esAdministrador"
                           claseBoton="dropdown-item"
                           label="Editar"
                           [sinClasesDeBoton]="true"
                           (click)="onClick.editarSociedad(item)">
                         </app-general-button>
                         <app-general-button
+                          *ngIf="item.esAdministrador"
                           claseBoton="dropdown-item"
                           label="Eliminar"
                           [sinClasesDeBoton]="true"

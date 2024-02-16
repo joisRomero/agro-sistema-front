@@ -9,6 +9,30 @@
   ></app-general-button>
 </div>
 
+<!-- <div class="accordion my-3" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Búsqueda
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <app-general-input
+          [fGroup]="form"
+          nombreControl="nombre"
+          class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
+          tipo="text"
+          placeholder="Buscar por nombre"
+          nombreIcono="bi-search"
+          [onClickButton]="onClick.buscar"
+          (keyup.enter)="onClick.buscar()"
+        ></app-general-input>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 <div class="row p-0 m-0">
   <app-general-input
     [fGroup]="form"
@@ -22,6 +46,14 @@
   ></app-general-input>
 </div>
 
+<!-- <app-general-button
+    claseBoton="primary"
+    label="Nuevo"
+    *ngIf="esAdministrador"
+    [esSmall]="true"
+    (click)="onClick.nuevaCampania()"
+  ></app-general-button> -->
+
 <div class="card mt-2">
   <div class="card-body p-0 table-responsive">
     <table class="table table-sm mb-0 table-hover">
@@ -33,7 +65,7 @@
           <th scope="col">Cultivo</th>
           <th scope="col">Inicio</th>
           <th scope="col">Fin</th>
-          <th scope="col">Estado</th>
+          <!-- <th scope="col">Estado</th> -->
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -45,14 +77,14 @@
           <td scope="row">{{ item.cultivo }}</td>
           <td scope="row">{{ item.inicio }}</td>
           <td scope="row">{{ item.fin || "-" }}</td>
-          <td>
+          <!-- <td>
             <span *ngIf="item.estado; else inactivo" class="badge bg-success"
               >En proceso</span
             >
             <ng-template #inactivo>
               <span class="badge bg-danger">Finalizado</span>
             </ng-template>
-          </td>
+          </td> -->
           <td>
             <div class="gap-2 d-flex">
               <div class="dropdown">

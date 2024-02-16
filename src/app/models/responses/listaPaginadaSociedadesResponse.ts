@@ -8,5 +8,6 @@ export class ListaPaginadaSociedadesResponse {
 export interface ListaPaginadaSociedadesResponseItem {
   idSociedad: number,
   nombre: string,
-  numero: number
+  numero: number,
+  esAdministrador: boolean
 }

@@ -6,14 +6,19 @@ import { Usuario } from 'src/app/models/usuario';
 })
 
 export class PerfilUsuarioVars {
-  public usuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
-  public nombreCompleto: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
+  public usuario: string = "";
+  public nombreCompleto: string = "";
 
-  constructor() { }
-
-  public actualizarNombre(){
-     this.usuario = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
-     this.nombreCompleto = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
+  constructor() { 
+    let user: Usuario = JSON.parse(localStorage.getItem('usuario')!);
+    if (user) {
+      this.usuario = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+      this.nombreCompleto = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
+    }
   }
 
+  public actualizarNombre(){
+    this.usuario = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+    this.nombreCompleto = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
+  }
 }

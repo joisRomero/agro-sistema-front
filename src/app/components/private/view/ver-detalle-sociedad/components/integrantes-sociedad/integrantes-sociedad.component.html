@@ -1,45 +1,113 @@
 <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="m-0">Integrantes</h5>
-    <app-general-button claseBoton="primary" label="Nuevo" *ngIf="esAdministrador" [esSmall]="true"></app-general-button>
-  </div>
+  <h5 class="m-0">Integrantes</h5>
+  <app-general-button
+    claseBoton="primary"
+    label="Nuevo"
+    *ngIf="esAdministrador"
+    [esSmall]="true"
+    [onClickButton]="onClick.nuevo"
+  ></app-general-button>
+</div>
 
-  <div class="row p-0 m-0">
-    <app-general-input [fGroup]="form" nombreControl="nombre" class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2" tipo="text"
-      placeholder="Buscar por nombre" nombreIcono="bi-search" [onClickButton]="onClick.buscar"
-      (keyup.enter)="onClick.buscar()"></app-general-input>
-  </div>
-  <div class="card mt-2">
-    <div class="card-body p-0 table-responsive">
-      <table class="table table-sm mb-0 table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Nro.</th>
-            <th scope="col">Nombre</th>
-            <th scope="col"></th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of itemsTabla.data">
-            <td class="ps-2" scope="row">{{ item.numero }}</td>
-            <td scope="row">{{ item.nombreCompleto }}</td>
-            <td>
-                <span *ngIf="item.esAdmin" class="badge bg-success">Administrador</span>
-            </td>
-            <td>
+<div class="row p-0 m-0">
+  <app-general-input
+    [fGroup]="form"
+    nombreControl="nombre"
+    class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
+    tipo="text"
+    placeholder="Buscar por nombre"
+    nombreIcono="bi-search"
+    [onClickButton]="onClick.buscar"
+    (keyup.enter)="onClick.buscar()"
+  ></app-general-input>
+</div>
+<div class="card mt-2">
+  <div class="card-body p-0">
+    <table class="table table-sm mb-0 table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nro.</th>
+          <th scope="col">Nombre</th>
+          <th scope="col"></th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itemsTabla.data">
+          <td class="ps-2" scope="row">{{ item.numero }}</td>
+          <td scope="row">{{ item.nombreCompleto }}</td>
+          <td>
+            <span *ngIf="item.esAdmin" class="badge bg-success"
+              >Administrador</span
+            >
+          </td>
+          <td>
+            <div
+              class="gap-2 d-flex"
+              *ngIf="
+                esAdministrador && item.idIntegrante != idUsuario;
+                else botonRetirarse
+              "
+            >
               <div class="gap-2 d-flex">
-                <app-general-button claseBoton="danger px-3" [esSmall]="true" *ngIf="esAdministrador && item.idIntegrante != idUsuario; else botonRetirarse" label="Retirar"></app-general-button>
-                <ng-template #botonRetirarse>
-                    <app-general-button claseBoton="danger px-3" [esSmall]="true" *ngIf="item.idIntegrante == idUsuario" label="Retirarse"></app-general-button>
-                </ng-template>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-info dropdown-toggle btn-sm px-3"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        [sinClasesDeBoton]="true"
+                        label="Retirar"
+                      ></app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Descartar como admin."
+                        [sinClasesDeBoton]="true"
+                        *ngIf="item.esAdmin"
+                      >
+                      </app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Hacer admin."
+                        [sinClasesDeBoton]="true"
+                        *ngIf="!item.esAdmin"
+                      >
+                      </app-general-button>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <app-general-pagination [paginaActual]="paginacionVars.paginaActual" [totalPaginas]="paginacionVars.totalPaginas"
-        [totalFilas]="paginacionVars.totalFilas" (eventChangePage)="paginacionVars.onChangePage($event)"
-        *ngIf="itemsTabla.data.length > 0"></app-general-pagination>
-      <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
-    </div>
+            </div>
+            <ng-template #botonRetirarse>
+              <app-general-button
+                claseBoton="info px-3"
+                [esSmall]="true"
+                *ngIf="item.idIntegrante == idUsuario"
+                label="Retirarse"
+              ></app-general-button>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-general-pagination
+      [paginaActual]="paginacionVars.paginaActual"
+      [totalPaginas]="paginacionVars.totalPaginas"
+      [totalFilas]="paginacionVars.totalFilas"
+      (eventChangePage)="paginacionVars.onChangePage($event)"
+      *ngIf="itemsTabla.data.length > 0"
+    ></app-general-pagination>
+    <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
   </div>
+</div>
+
+<app-modal-nuevo-editar-integrantes-sociedad
+  *ngIf="modalIntegrantesSociedadVars.mostrarModal"
+></app-modal-nuevo-editar-integrantes-sociedad>
