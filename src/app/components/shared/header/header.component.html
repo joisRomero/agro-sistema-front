@@ -33,20 +33,24 @@
           <span 
             class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger"
             style="top: 25%!important;"
+            *ngIf="listaInvitaciones.length > 0"
           >
-            99+
+            {{ listaInvitaciones.length }}
           </span>
         </button>
         <ul
-          class="dropdown-menu dropdown-menu-end"
-          style="width: 300px"
+          class="dropdown-menu dropdown-menu-end overflow-auto "
+          style="width: 300px; max-height: 90vh;"
           aria-labelledby="dropdownInvitacionesSociedad"
         >
-          <li class="dropdown-item-text fw-normal">
+          <li class="dropdown-item-text fw-normal" *ngIf="listaInvitaciones.length == 0">
+            <p>Actualmente no cuenta con invitaciones.</p>
+          </li>
+          <li class="dropdown-item-text fw-normal" *ngFor="let item of listaInvitaciones">
             <p>
-              <span class="fw-bold">Juan Sebastian Céspedes Rueda</span> te ha
+              <span class="fw-bold">{{ item.nombreEmisor }}</span> te ha
               invitado a unirte a la sociedad
-              <span class="fw-bold">Chulillos</span>
+              <span class="fw-bold">{{ item.nombreSociedad }}</span>
             </p>
             <div class="row">
               <app-general-button
@@ -54,7 +58,8 @@
                 label="Rechazar"
                 tipo="submit"
                 [esSmall]="true"
-                class="col-md-6"
+                class="col-6"
+                (click)="onClick.rechazar(item)"
               ></app-general-button>
 
               <app-general-button
@@ -62,37 +67,15 @@
                 label="Aceptar"
                 tipo="submit"
                 [esSmall]="true"
-                class="col-md-6"
+                class="col-6"
+                (click)="onClick.aceptar(item)"
               ></app-general-button>
             </div>
+            
           </li>
-          <li>
+          <!-- <li>
             <hr class="dropdown-divider" />
-          </li>
-          <li class="dropdown-item-text fw-normal">
-            <p>
-              <span class="fw-bold">Juan Sebastian Céspedes Rueda</span> te ha
-              invitado a unirte a la sociedad
-              <span class="fw-bold">Chulillos</span>
-            </p>
-            <div class="row">
-              <app-general-button
-                claseBoton="secondary anchoBoton"
-                label="Rechazar"
-                tipo="submit"
-                [esSmall]="true"
-                class="col-md-6"
-              ></app-general-button>
-
-              <app-general-button
-                claseBoton="primary anchoBoton"
-                label="Aceptar"
-                tipo="submit"
-                [esSmall]="true"
-                class="col-md-6"
-              ></app-general-button>
-            </div>
-          </li>
+          </li> -->
         </ul>
         <!-- informacion perfil -->
         <button

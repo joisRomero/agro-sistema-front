@@ -27,3 +27,32 @@
     display: none;
   }
 }
+
+.ab::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.ab::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.ab::-webkit-scrollbar-button:increment,
+.ab::-webkit-scrollbar-button {
+  display: none;
+}
+
+.ab::-webkit-scrollbar:horizontal {
+  height: 10px;
+  
+}
+
+.ab::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.ab::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: white;
+}

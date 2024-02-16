@@ -65,7 +65,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Cultivo";
       //this.alertInformationService.texto = response.body.mensaje;
-      this.alertInformationService.texto = "Cultivo editado";
+      this.alertInformationService.texto = "Cultivo editado.";
       this.actualizo.emit()
     } else {
       let response = await this.service.agregarCultivo();
@@ -73,7 +73,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Cultivo";
       //this.alertInformationService.texto = response.body.mensaje;
-      this.alertInformationService.texto = "Cultivo agregado";
+      this.alertInformationService.texto = "Cultivo agregado.";
       this.actualizo.emit()
     }
 
