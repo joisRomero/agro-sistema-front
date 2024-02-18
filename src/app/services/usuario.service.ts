@@ -13,6 +13,10 @@ import { ActualizarDatosUsuarioRequest } from '../models/requests/actualizarDato
 import { ActualizarDatosUsuarioResponse } from '../models/responses/actualizarDatosUsuarioResponse';
 import { ActualizarClavesUsuarioRequest } from '../models/requests/actualizarClavesUsuarioRequest';
 import { ActualizarClavesUsuarioResponse } from '../models/responses/actualizarClavesUsuarioResponse';
+import { GenerarCodigoRecuperacionCuentaRequest } from '../models/requests/generarCodigoRecuperacionCuentaRequest';
+import { CambiarClaveRecuperacionCuentaRequest } from '../models/requests/cambiarClaveRecuperacionCuentaRequest';
+import { CambiarClaveRecuperacionCuentaResponse } from '../models/responses/cambiarClaveRecuperacionCuentaResponse';
+import { ValidarCodigoRecuperacionCuentaRequest } from '../models/requests/validarCodigoRecuperacionCuentaRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +52,18 @@ export class UsuarioService {
 
   public eliminarCuentaUsuario(params: EliminarCuentaUsuarioRequest): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.url}/eliminarCuenta`, params, {observe: 'response'});
+  }
+
+  public generarCodigoRecuperacionCuenta(params: GenerarCodigoRecuperacionCuentaRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/generarCodigoRecuperacionCuenta`, params, {observe: 'response'});
+  }
+
+  public validarCodigoRecuperacionCuenta(params: ValidarCodigoRecuperacionCuentaRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/validarCodigoRecuperacionCuenta`, params, {observe: 'response'});
+  }
+
+  public cambiarClaveRecuperacionCuenta(params: CambiarClaveRecuperacionCuentaRequest): Observable<HttpResponse<CambiarClaveRecuperacionCuentaResponse>> {
+    return this.http.post<CambiarClaveRecuperacionCuentaResponse>(`${this.url}/cambiarClaveRecuperacionCuenta`, params, {observe: 'response'});
   }
 
 }

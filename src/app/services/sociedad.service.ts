@@ -18,6 +18,7 @@ import { ValidarPertenenciaSociedadResponse } from '../models/responses/validarP
 import { ValidarPertenenciaSociedadRequest } from '../models/requests/validarPertenenciaSociedadRequest';
 import { BusquedaIntegranteRequest } from '../models/requests/busquedaIntegranteRequest';
 import { BusquedaIntegranteResponse } from '../models/responses/busquedaIntegranteResponse';
+import { AsignarAdministradorSociedadRequest } from '../models/requests/asignarAdministradorSociedadRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,9 @@ export class SociedadService {
     return this.http.post<BusquedaIntegranteResponse[]>(`${this.url}/busquedaIntegrante`, params, { observe: 'response' })
   }
 
+  public asignarAdministradorSociedad(params: AsignarAdministradorSociedadRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/asignarAdministrador`, params, { observe: 'response' })
+  }
+  
 
 }

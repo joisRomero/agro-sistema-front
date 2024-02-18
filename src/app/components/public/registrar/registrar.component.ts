@@ -155,9 +155,13 @@ export class RegistrarComponent implements OnInit {
       return lastValueFrom(this.tokenService.crearToken(params));
     },
     login: () => {
+      const encodedWordUsuario = CryptoJS.enc.Utf8.parse(this.form!.controls['usuario']!.value.trim());
+      const encodedUsuario = CryptoJS.enc.Base64.stringify(encodedWordUsuario);
+      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.form!.controls['clave']!.value.trim());
+      const encodedClave = CryptoJS.enc.Base64.stringify(encodedWordClave);
       let params: LoginRequest = {
-        usuario: this.form.controls["usuario"]!.value,
-        clave: this.form.controls["clave"]!.value
+        usuario: encodedUsuario,
+        clave: encodedClave,
       }
       return lastValueFrom(this.loginService.obtenerUsuario(params));
     },

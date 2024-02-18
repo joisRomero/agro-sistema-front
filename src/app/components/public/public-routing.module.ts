@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ValidarLoginGuard } from 'src/app/guards/validar-login.guard';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { OlvidadoClaveComponent } from './olvidado-clave/olvidado-clave.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,12 @@ const routes: Routes = [
     path: 'registrar',
     title: "Registrar",
     component: RegistrarComponent,
+    canActivate: [ValidarLoginGuard]
+  },
+  {
+    path: 'recuperar-cuenta',
+    title: "Recuperar cuenta",
+    component: OlvidadoClaveComponent,
     canActivate: [ValidarLoginGuard]
   },
   {

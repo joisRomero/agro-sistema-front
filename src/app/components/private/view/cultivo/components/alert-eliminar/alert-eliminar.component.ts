@@ -26,9 +26,7 @@ export class AlertEliminarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-
-
-
+  
   onClick = {
     cerrarAlert: () => {
       this.servicioAlert.mostrar = false;

@@ -8,6 +8,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { SociedadService } from 'src/app/services/sociedad.service';
 import { NuevoEditarIntegrantesSociedadVars } from '../modal-nuevo-editar-integrantes-sociedad/nuevo-editar-integrantes-sociedad-vars';
 import { BusquedaIntegranteRequest } from 'src/app/models/requests/busquedaIntegranteRequest';
+import { AlertAsignarDesasignarAdministradorService } from '../alert-asignar-desasignar-administrador/alert-asignar-desasignar-administrador.service';
 
 @Component({
   selector: 'app-integrantes-sociedad',
@@ -24,11 +25,15 @@ export class IntegrantesSociedadComponent implements OnInit {
   public integranteItem!: ObtenerIntegrantesSociedadResponseItem;
   public itemsTabla: ObtenerIntegrantesSociedadResponse = new ObtenerIntegrantesSociedadResponse();
   public verMensajeSinDatos: boolean = false;
+  public esAsignarAdministrador: boolean = false;
+  public esDesasignarAdministrador: boolean = false;
+  public usuarioElegidoAdministrador!: ObtenerIntegrantesSociedadResponseItem;
 
   constructor(
     private fb: FormBuilder,
     private sociedadService: SociedadService,
-    public modalIntegrantesSociedadVars: NuevoEditarIntegrantesSociedadVars
+    public modalIntegrantesSociedadVars: NuevoEditarIntegrantesSociedadVars,
+    public alertAsignarDesasignarAdministradorService: AlertAsignarDesasignarAdministradorService
   ) { }
 
   ngOnInit(): void {
@@ -77,7 +82,23 @@ export class IntegrantesSociedadComponent implements OnInit {
     },
     nuevo: () => {
       this.modalIntegrantesSociedadVars.mostrarModal = true;
-    }
+    },
+    asignarUsuario: (item: ObtenerIntegrantesSociedadResponseItem)  => {
+      this.esAsignarAdministrador = true;
+      this.alertAsignarDesasignarAdministradorService.mostrar = true;
+      this.usuarioElegidoAdministrador = item;
+    },
+    desasignarUsuario: (item: ObtenerIntegrantesSociedadResponseItem)  => {
+      this.esDesasignarAdministrador = true;
+      this.alertAsignarDesasignarAdministradorService.mostrar = true;
+      this.usuarioElegidoAdministrador = item;
+    },
+  }
+
+  public realizarRecarga() {
+    this.buscar();
+    this.esAsignarAdministrador = false;
+    this.esDesasignarAdministrador = false;
   }
 
   private service = {

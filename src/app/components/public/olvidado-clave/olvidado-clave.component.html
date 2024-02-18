@@ -1,0 +1,142 @@
+<div class="fondo">
+  <div id="main-wrapper" class="container vh-100">
+    <div class="row justify-content-center align-items-center d-flex-row h-100">
+      <div class="col-xl-7">
+        <div class="card border-0">
+          <div class="card-body p-0">
+            <div class="row no-gutters">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <h3 class="h4 font-weight-bold text-theme">
+                    Recuperar tu cuenta
+                  </h3>
+                  <!-- PASO 1 -->
+                  <div *ngIf="habilitarAlPaso1">
+                    <p class="text-muted mt-2 mb-4">
+                      Introduce tu correo electrónico para buscar tu cuenta.
+                    </p>
+                    <form
+                      class="row"
+                      [formGroup]="formPaso1!"
+                      (ngSubmit)="enviarCodigoRecuperacion()"
+                    >
+                      <app-general-input
+                        [fGroup]="formPaso1"
+                        nombreControl="correo"
+                        label="Correo electrónico:"
+                        [mensajeError]="mensajesError.correo"
+                        tipo="text"
+                        id="correo"
+                        class="mb-3"
+                      ></app-general-input>
+                      <div class="modal-footer px-3 mt-4">
+                        <app-general-button
+                          claseBoton="secondary"
+                          label="Cancelar"
+                          (click)="cancelar()"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="primary"
+                          label="Buscar cuenta"
+                          tipo="submit"
+                          class="ms-2"
+                        ></app-general-button>
+                      </div>
+                    </form>
+                  </div>
+                  <div *ngIf="habilitarAlPaso2">
+                  <!-- <div> -->
+                    <!-- PASO 2 -->
+                    <p class="text-muted mt-2 mb-4">
+                      Introduce el código que hemos enviado a tu correo
+                      electrónico.
+                    </p>
+                    <form
+                      class="row"
+                      [formGroup]="formPaso2!"
+                      (ngSubmit)="verificarCodigoRecuperacion()"
+                    >
+                      <app-general-input
+                        [fGroup]="formPaso2"
+                        nombreControl="codigo"
+                        label="Código:"
+                        [mensajeError]="mensajesError.codigo"
+                        tipo="text"
+                        id="codigo"
+                        class="mb-3"
+                        [soloNumeros]="true"
+                      ></app-general-input>
+                      <div class="modal-footer px-3 mt-4">
+                        <app-general-button
+                          claseBoton="secondary"
+                          label="Cancelar"
+                          (click)="cancelar()"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="primary"
+                          label="Verificar código"
+                          tipo="submit"
+                          class="ms-2"
+                        ></app-general-button>
+                      </div>
+                      <p class="mt-2">
+                        <span>Reenviar código en: {{tiempo}}</span> <span *ngIf="activarReenvioCorreo"> - </span> <a (click)="reenviarCodigo()" class="link" style="cursor: pointer;" *ngIf="activarReenvioCorreo">Reenviar código </a> 
+                      </p>
+                    </form>
+                  </div>
+                  <div *ngIf="habilitarAlPaso3">
+                    <!-- PASO 3 -->
+                    <p class="text-muted mt-2 mb-4">
+                      Introduce una nueva contraseña para tu cuenta.
+                    </p>
+                    <form
+                      class="row"
+                      [formGroup]="formPaso3!"
+                      (ngSubmit)="cambioNuevaClave()"
+                    >
+                      <app-general-input
+                        [fGroup]="formPaso3"
+                        nombreControl="clave"
+                        label="Contraseña:"
+                        [mensajeError]="mensajesError.clave"
+                        id="clave"
+                        tipo="password"
+                        class="mb-3"
+                        (input)="validarRepetirClave()"
+                      ></app-general-input>
+
+                      <app-general-input
+                        [fGroup]="formPaso3"
+                        nombreControl="repetirClave"
+                        label="Repita la contraseña:"
+                        [mensajeError]="mensajesError.repetirClave"
+                        id="repetirClave"
+                        tipo="password"
+                        class="mb-3"
+                        (input)="validarRepetirClave()"
+                      ></app-general-input>
+
+                      <div class="modal-footer px-3 mt-4">
+                        <app-general-button
+                          claseBoton="secondary"
+                          label="Cancelar"
+                          (click)="cancelar()"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="primary"
+                          label="Crear nueva contraseña"
+                          tipo="submit"
+                          class="ms-2"
+                        ></app-general-button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

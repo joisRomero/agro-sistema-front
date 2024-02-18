@@ -113,6 +113,13 @@
                     </app-general-button>
                     <app-general-button
                       claseBoton="dropdown-item"
+                      label="Finalizar campaña"
+                      [sinClasesDeBoton]="true"
+                      *ngIf="esAdministrador"
+                    >
+                    </app-general-button>
+                    <app-general-button
+                      claseBoton="dropdown-item"
                       label="Eliminar"
                       [sinClasesDeBoton]="true"
                       *ngIf="esAdministrador"
