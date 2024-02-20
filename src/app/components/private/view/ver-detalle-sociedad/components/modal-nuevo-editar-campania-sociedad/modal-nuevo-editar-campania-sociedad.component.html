@@ -1,4 +1,4 @@
-<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal" [large]="true">
     <form class="w-100" [formGroup]="form!">
       <div class="d-flex flex-wrap">
         <app-general-input
@@ -8,23 +8,25 @@
           [mensajeError]="mensajesError.nombre"
           class="px-2 py-1 col-12 col-md-6 col-sm-6"
           tipo="text"
+          [maxlength]="100"
         ></app-general-input>
         <app-general-input
-            [fGroup]="form"
-            nombreControl="fechaInicio"
-            label="Fecha Inicio: "
-            [mensajeError]="mensajesError.fechaInicio"
-            class="px-2 py-1 col-12 col-md-6 col-sm-6"
-            tipo="date"
+          [fGroup]="form"
+          nombreControl="fechaInicio"
+          label="Fecha de inicio: "
+          [mensajeError]="mensajesError.fechaInicio"
+          class="px-2 py-1 col-12 col-md-6 col-sm-6"
+          tipo="date"
+          [max]="fechaLimite"
         ></app-general-input>
-            <app-general-select
-            class="px-2 py-1 col-12 col-md-6 col-sm-6"
-            [fGroup]="form"
-            nombreControl="cultivo"
-            label="Cultivo: "
-            [mensajeError]="mensajesError.cultivo"
-            [values]="valoresCultivos"
-            [esSmall] = "true"
+        <app-general-select
+          class="px-2 py-1 col-12 col-md-6 col-sm-6"
+          [fGroup]="form"
+          nombreControl="cultivo"
+          label="Cultivo: "
+          [mensajeError]="mensajesError.cultivo"
+          [values]="valoresCultivos"
+          [esSmall] = "true"
         ></app-general-select>
         <app-general-input
           [fGroup]="form"
@@ -33,6 +35,7 @@
           [mensajeError]="mensajesError.nombre"
           class="px-2 py-1 col-12 col-md-6 col-sm-6"
           tipo="text"
+          [maxlength]="100"
         ></app-general-input>
         <app-general-input
           [fGroup]="form"
@@ -44,14 +47,25 @@
           [soloDecimales]="true"
         ></app-general-input>
         <app-general-select
-        class="px-2 py-1 col-12 col-md-6 col-sm-6"
-        [fGroup]="form"
-        nombreControl="unidad"
-        label="Unidad: "
-        [mensajeError]="mensajesError.nombre"
-        [values]="valoresUnidad"
-        [esSmall] = "true"
-      ></app-general-select>
+          class="px-2 py-1 col-12 col-md-6 col-sm-6"
+          [fGroup]="form"
+          nombreControl="unidad"
+          label="Unidad: "
+          [mensajeError]="mensajesError.nombre"
+          [values]="valoresUnidad"
+          [esSmall] = "true"
+        ></app-general-select>
+        <app-general-input
+          [fGroup]="form"
+          nombreControl="descripcion"
+          label="Descripción: "
+          [mensajeError]="mensajesError.nombre"
+          class="px-2 py-1 col-12 col-md-12 col-sm-12"
+          tipo="text"
+          tipo="area"
+          [filas]="3"
+          [maxlength]="250"
+        ></app-general-input>
       </div>
     </form>
     <div footer>

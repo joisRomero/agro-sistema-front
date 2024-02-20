@@ -7,6 +7,8 @@ import { ListaPaginaCampaniasSocidadRequest } from 'src/app/models/requests/list
 import { ListaPaginaCampaniasSocidadResponse, ListaPaginaCampaniasSocidadResponseItem } from 'src/app/models/responses/listaPaginaCampaniasSocidadResponse';
 import { SociedadService } from 'src/app/services/sociedad.service';
 import { NuevoEditarCampaniaSociedadVars } from '../modal-nuevo-editar-campania-sociedad/nuevo-editar-campania-sociedad-vars';
+import { FinalizarCampaniaVars } from '../finalizar-campania/finalizar-campania-vars';
+import { AlerEliminarCampaniaVars } from '../aler-eliminar-campania/aler-eliminar-campania-vars';
 
 @Component({
   selector: 'app-campania-sociedad',
@@ -21,12 +23,15 @@ export class CampaniaSociedadComponent implements OnInit {
   public itemsTabla: ListaPaginaCampaniasSocidadResponse = new ListaPaginaCampaniasSocidadResponse();
   public verMensajeSinDatos: boolean = false;
   public isEditar: boolean = false;
+  public idCampaniaEditar!: number;
   
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private sociedadService: SociedadService,
-    public modalNuevoEditarCampaniaSociedad: NuevoEditarCampaniaSociedadVars
+    public modalNuevoEditarCampaniaSociedad: NuevoEditarCampaniaSociedadVars,
+    public modalFinalizarCampania: FinalizarCampaniaVars,
+    public modalEliminarCampania: AlerEliminarCampaniaVars
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +40,7 @@ export class CampaniaSociedadComponent implements OnInit {
     this.buscar();
   }
 
+  
   private inicarControles() {
     this.form = this.fb.nonNullable.group({
       nombre: [""]
@@ -82,6 +88,19 @@ export class CampaniaSociedadComponent implements OnInit {
     nuevaCampania: () => {
       this.isEditar = false;
       this.modalNuevoEditarCampaniaSociedad.mostrarModal = true;
+    },
+    editarCampania: (item: ListaPaginaCampaniasSocidadResponseItem) => {
+      this.isEditar = true;
+      this.modalNuevoEditarCampaniaSociedad.mostrarModal = true;
+      this.idCampaniaEditar = item.idCampania;
+    },
+    finalizarCampania: (item: ListaPaginaCampaniasSocidadResponseItem) => {
+      this.modalFinalizarCampania.mostrarModal = true;
+      this.idCampaniaEditar = item.idCampania;
+    },
+    eliminarCampania: (item: ListaPaginaCampaniasSocidadResponseItem) => {
+      this.modalEliminarCampania.mostrar = true;
+      this.idCampaniaEditar = item.idCampania;
     }
   }
 

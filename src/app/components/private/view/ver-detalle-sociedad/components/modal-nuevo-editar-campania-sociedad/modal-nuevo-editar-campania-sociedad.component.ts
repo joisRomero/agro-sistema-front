@@ -7,6 +7,11 @@ import { CombosService } from 'src/app/services/combos.service';
 import { GeneralSelectItem } from 'src/app/models/general-select';
 import { Usuario } from 'src/app/models/usuario';
 import { ObtenerCultivosUsuarioRequest } from 'src/app/models/requests/obtenerCultivosUsuarioRequest';
+import { CampaniaService } from 'src/app/services/campania.service';
+import { RegistrarCampaniaRequest } from 'src/app/models/requests/registrarCampaniaRequest';
+import { EditarCampaniaRequest } from 'src/app/models/requests/editarCampaniaRequest';
+import { ObtenerCampaniaRequest } from 'src/app/models/requests/obtenerCampaniaRequest';
+import { Convert } from 'src/app/utils/convert';
 
 @Component({
   selector: 'app-modal-nuevo-editar-campania-sociedad',
@@ -16,13 +21,17 @@ import { ObtenerCultivosUsuarioRequest } from 'src/app/models/requests/obtenerCu
 export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
 
   @Input() isEditar: boolean = false;
+  @Input() idSociendad: string = "";
+  @Input() idUsuario: string = "";
+  @Input() idCampania!: number;
   @Output() actualizo = new EventEmitter();
   public valoresUnidad: GeneralSelectItem[] = [];
   public valoresCultivos: GeneralSelectItem[] = [];
-  private idUsuario: number = parseInt((JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario);
-
+  private idUsuarioStorage: number = parseInt((JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario);
+  private nombreUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
   public tituloModal: string = '';
   public form!: FormGroup;
+  public fechaLimite: string = "";
   
   public mensajesError = {
     nombre: "El campo es obligatorio.",
@@ -37,21 +46,17 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
     public servicioModal: NuevoEditarCampaniaSociedadVars,
     private fb: FormBuilder,
     private alertInformationService: GeneralAlertInformationVars,
-    private combosServices: CombosService
+    private combosServices: CombosService,
+    private campaniaService: CampaniaService
   ) { }
 
   ngOnInit(): void {
+    this.fechaLimite = Convert.dateToDateInput(new Date());
     this.iniciarControles();
     this.inicarCombos();
-    if(this.isEditar) {
-      this.tituloModal = "Editar Campaña";
-      // this.form.controls["nombre"].setValue(this.sociedadItem.nombre);
-    } else {
-      this.tituloModal = "Nueva Campaña";
-    }
   }
 
-  private iniciarControles() {
+  private async iniciarControles() {
     this.form = this.fb.nonNullable.group({
       nombre: ["", [Validators.required]],
       fechaInicio: ["", [Validators.required]],
@@ -59,8 +64,22 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
       nombreTerreno: ["", [Validators.required]],
       areaSembrar: ["", [Validators.required]],
       unidad: ["", [Validators.required]],
-
+      descripcion: [""],
     });
+    if(this.isEditar) {
+      this.tituloModal = "Editar Campaña";
+      let respnse = await this.service.obtenerCampania();
+
+      this.form.controls["nombreTerreno"].setValue(respnse.body?.nombreTerreno);
+      this.form.controls["areaSembrar"].setValue(respnse.body?.areaSembrar);
+      this.form.controls["unidad"].setValue(respnse.body?.unidadTerreno);
+      this.form.controls["nombre"].setValue(respnse.body?.nombreCampania);
+      this.form.controls["descripcion"].setValue(respnse.body?.descripcionCampania);
+      this.form.controls["fechaInicio"].setValue(Convert.dateToDateInput(respnse.body!.fechaInicio));
+      this.form.controls["cultivo"].setValue(respnse.body?.idCultivo);
+    } else {
+      this.tituloModal = "Nueva Campaña";
+    }
   }
 
   public async guardar() {
@@ -69,14 +88,14 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
       return;
     }
     if (this.isEditar) {
-      // let response = await this.service.editarSociedad();
+      let response = await this.service.editarCampania();
       this.servicioModal.mostrarModal = false;
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Campaña";
       this.alertInformationService.texto = "Campaña editada.";
       this.actualizo.emit()
     } else {
-      // let response = await this.service.agregarSociedad();
+      let response = await this.service.registrarCampania();
       this.servicioModal.mostrarModal = false;
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Campaña";
@@ -109,30 +128,51 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
   }
 
   private service = {
-    // agregarSociedad: () => {
-    //   let params: AgregarSociedadRequest = {
-    //     NombreSociedad: this.form.controls["nombre"].value,
-    //     IdUsuario: parseInt(this.idUsuario),
-    //     UsuarioInserta: this.nombreUsuario,
-    //   }
-    //   return lastValueFrom(this.sociedadService.agregarSociedad(params));
-    // },
-    // editarSociedad: () => {
-    //   let params: EditarSociedadRequest = {
-    //     IdSociedad: this.sociedadItem.idSociedad,
-    //     NombreSociedad: this.form.controls["nombre"].value,
-    //     UsuarioModifica: this.nombreUsuario,
-    //   }
-    //   return lastValueFrom(this.sociedadService.editarSociedad(params));
-    // }
+    registrarCampania: () => {
+      let params: RegistrarCampaniaRequest = {
+        nombreTerreno: this.form.controls["nombreTerreno"].value.trim(),
+        areaSembrar : this.form.controls["areaSembrar"].value,
+        unidadTerreno : this.form.controls["unidad"].value,
+        nombreCampania : this.form.controls["nombre"].value.trim(),
+        descripcionCampania : this.form.controls["descripcion"].value.trim(),
+        fechaInicio : this.form.controls["fechaInicio"].value.trim(),
+        idCultivo : this.form.controls["cultivo"].value, 
+        idSociedad : parseInt(this.idSociendad),
+        idUsuario : parseInt(this.idUsuario),
+        usuarioInserta : this.nombreUsuario,
+      }
+      return lastValueFrom(this.campaniaService.registrarCampania(params));
+    },
+    editarCampania: () => {
+      let params: EditarCampaniaRequest = {
+        idCampania: this.idCampania,
+        nombreTerreno: this.form.controls["nombreTerreno"].value.trim(),
+        areaSembrar : this.form.controls["areaSembrar"].value,
+        unidadTerreno : this.form.controls["unidad"].value,
+        nombreCampania : this.form.controls["nombre"].value.trim(),
+        descripcionCampania : this.form.controls["descripcion"].value.trim(),
+        fechaInicio : this.form.controls["fechaInicio"].value.trim(),
+        idCultivo : this.form.controls["cultivo"].value, 
+        idSociedad : parseInt(this.idSociendad),
+        idUsuario : parseInt(this.idUsuario),
+        usuarioModifica: this.nombreUsuario,
+      }
+      return lastValueFrom(this.campaniaService.editarCampania(params));
+    },
     obtenerUnidades: () => {
       return lastValueFrom(this.combosServices.obtenerUnidadesCampania());
     },
     obtenerCultivos: () => {
       let params : ObtenerCultivosUsuarioRequest = {
-        idUsuario : this.idUsuario
+        idUsuario : this.idUsuarioStorage
       };
       return lastValueFrom(this.combosServices.obtenerCultivosUsuario(params));
+    },
+    obtenerCampania: () => {
+      let params: ObtenerCampaniaRequest = {
+        idCampania: this.idCampania
+      };
+      return lastValueFrom(this.campaniaService.obtenerCampania(params));
     }
   }
 
