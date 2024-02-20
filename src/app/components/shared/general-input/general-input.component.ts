@@ -24,6 +24,7 @@ export class GeneralInputComponent implements OnInit {
   @Input() public nombreIcono: string = "";
   @Input() public mensajeError?: string;
   @Input() public filas: number = 1;
+  @Input() public max?: string;
 
   @Input() onClickButton?: () => void;
 

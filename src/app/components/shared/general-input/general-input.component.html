@@ -18,6 +18,7 @@
     [attr.maxlength]="maxlength"
     [ngClass]="{'is-invalid' : hayErrores && control.touched,
                 'rounded-start': nombreIcono != ''}"
+    [attr.max]="max"
   />
   <span *ngIf='nombreIcono != ""' class="input-group-text cursor" (click)="onClickButton!()"><i class="bi" [class]="nombreIcono"></i> </span>
 

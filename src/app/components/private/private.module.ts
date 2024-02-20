@@ -34,6 +34,8 @@ import { GastosCampaniaComponent } from './view/gastos-campania/gastos-campania.
 import { CosechasCampaniaComponent } from './view/cosechas-campania/cosechas-campania.component';
 import { ModalNuevoEditarIntegrantesSociedadComponent } from './view/ver-detalle-sociedad/components/modal-nuevo-editar-integrantes-sociedad/modal-nuevo-editar-integrantes-sociedad.component';
 import { AlertAsignarDesasignarAdministradorComponent } from './view/ver-detalle-sociedad/components/alert-asignar-desasignar-administrador/alert-asignar-desasignar-administrador.component';
+import { FinalizarCampaniaComponent } from './view/ver-detalle-sociedad/components/finalizar-campania/finalizar-campania.component';
+import { AlerEliminarCampaniaComponent } from './view/ver-detalle-sociedad/components/aler-eliminar-campania/aler-eliminar-campania.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { AlertAsignarDesasignarAdministradorComponent } from './view/ver-detalle
     CosechasCampaniaComponent,
     ModalNuevoEditarIntegrantesSociedadComponent,
     AlertAsignarDesasignarAdministradorComponent,
+    FinalizarCampaniaComponent,
+    AlerEliminarCampaniaComponent,
   ],
   imports: [
     CommonModule,

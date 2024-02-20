@@ -13,5 +13,7 @@ export interface ListaPaginaCampaniasUsuarioResponseItem {
   cultivo : string,
   inicio : string,
   fin : string,
-  estado : boolean
+  estado : boolean,
+  areaSembrar : number,
+  unidad: string
 }

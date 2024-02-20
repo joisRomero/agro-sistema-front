@@ -86,7 +86,7 @@ export class NuevoEditarSociedadComponent implements OnInit {
   private service = {
     agregarSociedad: () => {
       let params: AgregarSociedadRequest = {
-        NombreSociedad: this.form.controls["nombre"].value,
+        NombreSociedad: this.form.controls["nombre"].value.trim(),
         IdUsuario: parseInt(this.idUsuario),
         UsuarioInserta: this.nombreUsuario,
       }
@@ -95,7 +95,7 @@ export class NuevoEditarSociedadComponent implements OnInit {
     editarSociedad: () => {
       let params: EditarSociedadRequest = {
         IdSociedad: this.sociedadItem.idSociedad,
-        NombreSociedad: this.form.controls["nombre"].value,
+        NombreSociedad: this.form.controls["nombre"].value.trim(),
         UsuarioModifica: this.nombreUsuario,
       }
       return lastValueFrom(this.sociedadService.editarSociedad(params));

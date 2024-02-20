@@ -19,9 +19,7 @@ import { EditarCultivoRequest } from 'src/app/models/requests/editarCultivoReque
 export class ModalNuevoEditarCultivoComponent implements OnInit {
 
   @Input() isEditar: boolean = false;
-  //@Input() cultivoItem!: Cultivo;
   @Input() cultivoItem!: ListaPaginadaCultivosResponseItem;
-  //@Input() cultivoItem!: number;
   @Output() actualizo = new EventEmitter();
 
   public tituloModal: string = '';
@@ -47,7 +45,6 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     if(this.isEditar) {
       this.tituloModal = "Editar cultivo";
       this.form.controls["nombre"].setValue(this.cultivoItem.nombreCultivo);
-      //this.form.controls["estado"].setValue(this.cultivoItem.estado);
     } else {
       this.tituloModal = "Nuevo cultivo";
       this.labelBoton = "Guardar";
@@ -64,7 +61,6 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
       this.servicioModal.mostrarModal = false;
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Cultivo";
-      //this.alertInformationService.texto = response.body.mensaje;
       this.alertInformationService.texto = "Cultivo editado.";
       this.actualizo.emit()
     } else {
@@ -72,7 +68,6 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
       this.servicioModal.mostrarModal = false;
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Cultivo";
-      //this.alertInformationService.texto = response.body.mensaje;
       this.alertInformationService.texto = "Cultivo agregado.";
       this.actualizo.emit()
     }
@@ -96,7 +91,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
   private service = {
     agregarCultivo: () => {
       let params: AgregarCultivoRequest = {
-        NombreCultivo: this.form.controls["nombre"].value,
+        NombreCultivo: this.form.controls["nombre"].value.trim(),
         IdUsuario: parseInt(this.idUsuario),
         UsuarioInserta: this.nombreUsuario,
       }
@@ -105,7 +100,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     editarCultivo: () => {
       let params: EditarCultivoRequest = {
         IdCultivo: this.cultivoItem.idCultivo,
-        NombreCultivo: this.form.controls["nombre"].value,
+        NombreCultivo: this.form.controls["nombre"].value.trim(),
         IdUsuario: parseInt(this.idUsuario),
         UsuarioModifica: this.nombreUsuario,
       }

@@ -8,12 +8,27 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   @Input() titulo: string = "";
+  @Input() small: boolean = false;
+  @Input() large: boolean = false;
+  @Input() estraLarge: boolean = false;
   @Input() public cerrarModal?: () => void;
+  public tamanio: number = 500;
 
   constructor(
   ) { }
 
   ngOnInit(): void {
+    if(this.small){
+      this.tamanio = 300;
+    }
+
+    if(this.large) {
+      this.tamanio = 800;
+    }
+
+    if(this.estraLarge) {
+      this.tamanio = 1140;
+    }
   }
 
 }

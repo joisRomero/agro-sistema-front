@@ -7,6 +7,9 @@ import { ListaPaginaCampaniasUsuarioRequest } from 'src/app/models/requests/list
 import { ListaPaginaCampaniasUsuarioResponse, ListaPaginaCampaniasUsuarioResponseItem } from 'src/app/models/responses/listaPaginaCampaniasUsuarioResponse';
 import { Usuario } from 'src/app/models/usuario';
 import { CampaniaService } from 'src/app/services/campania.service';
+import { NuevoEditarCampaniaSociedadVars } from '../ver-detalle-sociedad/components/modal-nuevo-editar-campania-sociedad/nuevo-editar-campania-sociedad-vars';
+import { FinalizarCampaniaVars } from '../ver-detalle-sociedad/components/finalizar-campania/finalizar-campania-vars';
+import { AlerEliminarCampaniaVars } from '../ver-detalle-sociedad/components/aler-eliminar-campania/aler-eliminar-campania-vars';
 
 @Component({
   selector: 'app-campanias',
@@ -19,12 +22,16 @@ export class CampaniasComponent implements OnInit {
   public itemsTabla: ListaPaginaCampaniasUsuarioResponse = new ListaPaginaCampaniasUsuarioResponse();
   public verMensajeSinDatos: boolean = false;
   public isEditar: boolean = false;
-  private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
+  public idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
+  public idCampaniaEditar!: number;
   
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private campaniaService: CampaniaService
+    private campaniaService: CampaniaService,
+    public modalNuevoEditarCampaniaSociedad: NuevoEditarCampaniaSociedadVars,
+    public modalFinalizarCampania: FinalizarCampaniaVars,
+    public modalEliminarCampania: AlerEliminarCampaniaVars
   ) { }
 
   ngOnInit(): void {
@@ -77,10 +84,23 @@ export class CampaniasComponent implements OnInit {
                             item.idCampania.toString(),
                             item.nombre]);
     },
-    // nuevaCampania: () => {
-    //   this.isEditar = false;
-    //   this.modalNuevoEditarCampaniaSociedad.mostrarModal = true;
-    // }
+    nuevaCampania: () => {
+      this.isEditar = false;
+      this.modalNuevoEditarCampaniaSociedad.mostrarModal = true;
+    },
+    editarCampania: (item: ListaPaginaCampaniasUsuarioResponseItem) => {
+      this.isEditar = true;
+      this.modalNuevoEditarCampaniaSociedad.mostrarModal = true;
+      this.idCampaniaEditar = item.idCampania;
+    },
+    finalizarCampania: (item: ListaPaginaCampaniasUsuarioResponseItem) => {
+      this.modalFinalizarCampania.mostrarModal = true;
+      this.idCampaniaEditar = item.idCampania;
+    },
+    eliminarCampania: (item: ListaPaginaCampaniasUsuarioResponseItem) => {
+      this.modalEliminarCampania.mostrar = true;
+      this.idCampaniaEditar = item.idCampania;
+    }
   }
 
   private service = {

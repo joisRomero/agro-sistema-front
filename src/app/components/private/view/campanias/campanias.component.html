@@ -1,9 +1,10 @@
 <div class="d-flex justify-content-between align-items-center">
-    <h4 class="m-0">Campañas</h4>
+    <h4 class="m-0">Mis campañas</h4>
     <app-general-button
       claseBoton="primary"
       label="Nuevo"
       [esSmall]="true"
+      (click)="onClick.nuevaCampania()"
     ></app-general-button>
   </div>
   
@@ -53,13 +54,15 @@
     ></app-general-button> -->
   
   <div class="card mt-2">
-    <div class="card-body p-0 table-responsive">
+    <div class="card-body p-0">
       <table class="table table-sm mb-0 table-hover">
         <thead>
           <tr>
             <th scope="col">Nro.</th>
             <th scope="col">Nombre</th>
             <th scope="col">Terreno</th>
+            <th scope="col">Área</th>
+            <th scope="col">Unidad</th>
             <th scope="col">Cultivo</th>
             <th scope="col">Inicio</th>
             <th scope="col">Fin</th>
@@ -72,6 +75,8 @@
             <td class="ps-2" scope="row">{{ item.numero }}</td>
             <td scope="row">{{ item.nombre }}</td>
             <td scope="row">{{ item.terreno }}</td>
+            <td scope="row">{{ item.areaSembrar }}</td>
+            <td scope="row">{{ item.unidad }}</td>
             <td scope="row">{{ item.cultivo }}</td>
             <td scope="row">{{ item.inicio }}</td>
             <td scope="row">{{ item.fin || "-" }}</td>
@@ -106,12 +111,21 @@
                         claseBoton="dropdown-item"
                         label="Editar"
                         [sinClasesDeBoton]="true"
+                        (click)="onClick.editarCampania(item)"
+                      >
+                      </app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Finalizar campaña"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.finalizarCampania(item)"
                       >
                       </app-general-button>
                       <app-general-button
                         claseBoton="dropdown-item"
                         label="Eliminar"
                         [sinClasesDeBoton]="true"
+                        (click)="onClick.eliminarCampania(item)"
                       >
                       </app-general-button>
                     </li>
@@ -133,4 +147,20 @@
     </div>
   </div>
   
-  
+  <app-modal-nuevo-editar-campania-sociedad
+  *ngIf="modalNuevoEditarCampaniaSociedad.mostrarModal"
+  [isEditar]="isEditar"
+  (actualizo)="actualizarTabla()"
+  [idUsuario]="idUsuario"
+  [idCampania]="idCampaniaEditar"
+></app-modal-nuevo-editar-campania-sociedad>
+<app-finalizar-campania
+  *ngIf="modalFinalizarCampania.mostrarModal"
+  [idCampania]="idCampaniaEditar"
+  (actualizo)="actualizarTabla()"
+></app-finalizar-campania>
+<app-aler-eliminar-campania
+  *ngIf="modalEliminarCampania.mostrar"
+  [idCampania]="idCampaniaEditar"
+  (recargar)="actualizarTabla()"
+></app-aler-eliminar-campania>
