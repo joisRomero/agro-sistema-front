@@ -21,24 +21,25 @@ export class VerDetalleCampaniaComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private campaniaService: CampaniaService,
-    private location: Location
+    private location: Location,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((routeParams: any) => {
       this.idCampania = routeParams.id;
-      this.nombreCampania = routeParams.nombre;
     });
     this.cargarDatos();
   }
 
   private async cargarDatos() {
     try {
-      await this.service.validarPertenenciaCampaniaSociedad();
+      let response = await this.service.validarPertenenciaCampaniaSociedad();
+      this.nombreCampania = response.body!.nombreCampania;
       this.mostrarInformacion = true;
       // this.buscarCosechas();
     } catch (error) {
-      this.mostrarMensaje = true;
+      this.router.navigate(["intranet/mis-campanias"]);
     }
   }
 

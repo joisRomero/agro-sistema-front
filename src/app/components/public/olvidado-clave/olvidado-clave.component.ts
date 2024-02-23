@@ -199,9 +199,13 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
       return lastValueFrom(this.usuarioService.cambiarClaveRecuperacionCuenta(params))
     },
     login: () => {
+      const encodedWordUsuario = CryptoJS.enc.Utf8.parse(this.usuario);
+      const encodedUsuario = CryptoJS.enc.Base64.stringify(encodedWordUsuario);
+      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!.value.trim());
+      const encodedClave = CryptoJS.enc.Base64.stringify(encodedWordClave);
       let params: LoginRequest = {
-        usuario: this.usuario,
-        clave: this.formPaso3.controls["clave"]!.value,
+        usuario: encodedUsuario,
+        clave: encodedClave
       }
       return lastValueFrom(this.loginService.obtenerUsuario(params));
     },

@@ -26,19 +26,6 @@ export class CultivoComponent implements OnInit {
   public itemsTabla: ListaPaginadaCultivosResponse = new ListaPaginadaCultivosResponse();
   public idCultivo!: number;
   public cultivoItem!: ListaPaginadaCultivosResponseItem;
-  //public cultivoItem!: number;
-  /*public cultivoItem: ListaPaginadaCultivosResponseItem[] = [
-    {
-      idCultivo: 1,
-      nombre: 'primer cultivo',
-      numero: 1
-    },
-    {
-      idCultivo: 2,
-      nombre: 'segundo cultivo',
-      numero: 2
-    }
-  ]*/
   public form!: FormGroup;
   public listaCultivos!: ListaPaginadaCultivosRequest;
   private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
@@ -52,9 +39,6 @@ export class CultivoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.itemsTabla = new ListaPaginadaCultivosResponse();
-    //console.log(this.itemsTabla);
-    //console.log(this.itemsTabla.data);
     this.initialControls();
     this.setDatosBusqueda();
     this.buscar();

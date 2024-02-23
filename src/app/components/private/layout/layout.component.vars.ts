@@ -13,7 +13,7 @@ export class LayoutVars {
     },
     {
       nombre: "Mis campañas",
-      path: "campanias",
+      path: "mis-campanias",
       icono: "bi bi-house-fill"
     },
     {

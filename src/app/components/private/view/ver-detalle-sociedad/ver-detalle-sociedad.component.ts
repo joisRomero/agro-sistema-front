@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { Paginacion } from 'src/app/models/paginacion';
-import { ListaPaginaCampaniasSocidadRequest } from 'src/app/models/requests/listaPaginaCampaniasSocidadRequest';
-import { ObtenerIntegrantesSociedadRequest } from 'src/app/models/requests/obtenerIntegrantesSociedadRequest';
 import { ValidarPertenenciaSociedadRequest } from 'src/app/models/requests/validarPertenenciaSociedadRequest';
-import { ListaPaginaCampaniasSocidadResponse, ListaPaginaCampaniasSocidadResponseItem } from 'src/app/models/responses/listaPaginaCampaniasSocidadResponse';
-import { ObtenerIntegrantesSociedadResponse, ObtenerIntegrantesSociedadResponseItem } from 'src/app/models/responses/obtenerIntegrantesSociedadResponse';
 import { Usuario } from 'src/app/models/usuario';
 import { SociedadService } from 'src/app/services/sociedad.service';
 

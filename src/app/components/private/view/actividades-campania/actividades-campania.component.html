@@ -1,9 +1,11 @@
-<div class="d-flex justify-content-between mt-3 align-items-center">
+<div *ngIf="!nuevoEditarTrabajador.mostrar">
+  <div class="d-flex justify-content-between mt-3 align-items-center">
     <h5 class="m-0">Actividades</h5>
     <app-general-button
       claseBoton="primary"
       label="Nuevo"
       [esSmall]="true"
+      [onClickButton]="click.nuevo"
     ></app-general-button>
   </div>
 
@@ -64,3 +66,8 @@
         <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos> -->
     </div>
   </div>
+</div>
+
+<app-nuevo-editar-actividades
+  *ngIf="nuevoEditarTrabajador.mostrar"
+></app-nuevo-editar-actividades>

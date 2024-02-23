@@ -27,15 +27,21 @@ import { NuevoEditarSociedadComponent } from './view/sociedades/components/nuevo
 import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
 import { AlertEliminarUsuarioComponent } from './view/perfil-usuario/components/alert-eliminar-usuario/alert-eliminar-usuario.component';
 import { CampaniaSociedadComponent } from './view/ver-detalle-sociedad/components/campania-sociedad/campania-sociedad.component';
-import { IntegrantesSociedadComponent } from './view/ver-detalle-sociedad/components/integrantes-sociedad/integrantes-sociedad.component';
+import { IntegrantesSociedadComponent } from './view/integrantes-sociedad/integrantes-sociedad.component';
 import { ModalNuevoEditarCampaniaSociedadComponent } from './view/ver-detalle-sociedad/components/modal-nuevo-editar-campania-sociedad/modal-nuevo-editar-campania-sociedad.component';
 import { ActividadesCampaniaComponent } from './view/actividades-campania/actividades-campania.component';
 import { GastosCampaniaComponent } from './view/gastos-campania/gastos-campania.component';
 import { CosechasCampaniaComponent } from './view/cosechas-campania/cosechas-campania.component';
-import { ModalNuevoEditarIntegrantesSociedadComponent } from './view/ver-detalle-sociedad/components/modal-nuevo-editar-integrantes-sociedad/modal-nuevo-editar-integrantes-sociedad.component';
-import { AlertAsignarDesasignarAdministradorComponent } from './view/ver-detalle-sociedad/components/alert-asignar-desasignar-administrador/alert-asignar-desasignar-administrador.component';
+import { ModalNuevoEditarIntegrantesSociedadComponent } from './view/integrantes-sociedad/components/modal-nuevo-editar-integrantes-sociedad/modal-nuevo-editar-integrantes-sociedad.component';
+import { AlertAsignarDesasignarAdministradorComponent } from './view/integrantes-sociedad/components/alert-asignar-desasignar-administrador/alert-asignar-desasignar-administrador.component';
 import { FinalizarCampaniaComponent } from './view/ver-detalle-sociedad/components/finalizar-campania/finalizar-campania.component';
 import { AlerEliminarCampaniaComponent } from './view/ver-detalle-sociedad/components/aler-eliminar-campania/aler-eliminar-campania.component';
+import { AlerEliminarActividadComponent } from './view/actividades-campania/components/aler-eliminar-actividad/aler-eliminar-actividad.component';
+import { NuevoEditarActividadesComponent } from './view/actividades-campania/components/nuevo-editar-actividades/nuevo-editar-actividades.component';
+import { NuevoEditarTrbajadorComponent } from './view/actividades-campania/components/nuevo-editar-trbajador/nuevo-editar-trbajador.component';
+import { NuevoEditarGastosComponent } from './view/actividades-campania/components/nuevo-editar-gastos/nuevo-editar-gastos.component';
+import { AlertEliminarGastosComponent } from './view/actividades-campania/components/alert-eliminar-gastos/alert-eliminar-gastos.component';
+import { AlertEliminarTrbajadorComponent } from './view/actividades-campania/components/alert-eliminar-trbajador/alert-eliminar-trbajador.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +78,12 @@ import { AlerEliminarCampaniaComponent } from './view/ver-detalle-sociedad/compo
     AlertAsignarDesasignarAdministradorComponent,
     FinalizarCampaniaComponent,
     AlerEliminarCampaniaComponent,
+    AlerEliminarActividadComponent,
+    NuevoEditarActividadesComponent,
+    NuevoEditarTrbajadorComponent,
+    NuevoEditarGastosComponent,
+    AlertEliminarGastosComponent,
+    AlertEliminarTrbajadorComponent,
   ],
   imports: [
     CommonModule,

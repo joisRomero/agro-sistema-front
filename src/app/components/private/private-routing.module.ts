@@ -33,9 +33,15 @@ export const privateModuleRoutes: Routes = [
         canActivate: [LoginGuard]
       },
       {
-        path: 'campanias',
+        path: 'mis-campanias',
         title: 'Campañas',
         component: CampaniasComponent,
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'mis-campanias/ver-detalle-campania/:id',
+        title: 'Detalle campañas',
+        component: VerDetalleCampaniaComponent,
         canActivate: [LoginGuard]
       },
       {
@@ -51,7 +57,7 @@ export const privateModuleRoutes: Routes = [
         canActivate: [LoginGuard]
       },
       {
-        path: 'sociedades/ver-detalle-campania/:id/:nombre',
+        path: 'sociedades/ver-detalle-campania/:id',
         title: 'Detalle campaña',
         component: VerDetalleCampaniaComponent,
         canActivate: [LoginGuard]

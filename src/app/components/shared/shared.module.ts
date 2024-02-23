@@ -42,7 +42,7 @@ import { LoaderComponent } from './loader/loader.component';
     GeneralPaginationComponent,
     GeneralSinDatosComponent,
     GeneralAlertErrorComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +65,7 @@ import { LoaderComponent } from './loader/loader.component';
     GeneralSinDatosComponent,
     LoaderComponent,
     GeneralAlertErrorComponent,
-    GeneralPaginationComponent
+    GeneralPaginationComponent,
   ]
 })
 export class SharedModule { }

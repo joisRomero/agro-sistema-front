@@ -1,0 +1,45 @@
+<h5 class="m-0 my-3">Nueva Actividad</h5>
+<hr>
+
+<form class="w-100" [formGroup]="form!">
+  <div class="d-flex flex-wrap">
+    <app-general-select
+      class="px-2 py-1 col-12 col-md-4 col-sm-4"
+      [fGroup]="form"
+      nombreControl="actividad"
+      label="Actividad: "
+      [mensajeError]="mensajesError.actividad"
+      [esSmall]="true"
+    ></app-general-select>
+    <app-general-input
+      [fGroup]="form"
+      nombreControl="fecha"
+      label="Fecha: "
+      [mensajeError]="mensajesError.fecha"
+      class="px-2 py-1 col-12 col-md-4 col-sm-4"
+      tipo="date"
+    ></app-general-input>
+  </div>
+
+  
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h5 class="m-0">Trabajadores</h5>
+    <app-general-button
+      claseBoton="primary"
+      label="Agregar"
+      [esSmall]="true"
+    ></app-general-button>
+  </div>
+  <hr>
+
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h5 class="m-0">Trabajadores</h5>
+    <app-general-button
+      claseBoton="primary"
+      label="Agregar"
+      [esSmall]="true"
+    ></app-general-button>
+  </div>
+  <hr>
+
+</form>

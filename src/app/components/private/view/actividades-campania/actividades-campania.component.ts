@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NuevoEditarTrabajadorVars } from './components/nuevo-editar-trbajador/nuevo-editar-trabajador-vars';
 
 @Component({
   selector: 'app-actividades-campania',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActividadesCampaniaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public nuevoEditarTrabajador: NuevoEditarTrabajadorVars
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public click = {
+    nuevo: () => {
+      this.nuevoEditarTrabajador.mostrar = true;
+    }
   }
 
 }

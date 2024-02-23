@@ -82,8 +82,7 @@ export class CampaniaSociedadComponent implements OnInit {
     },
     verMas: (item: ListaPaginaCampaniasSocidadResponseItem) => {
       this.router.navigate(["intranet/sociedades/ver-detalle-campania",
-                            item.idCampania.toString(),
-                            item.nombre]);
+                            item.idCampania.toString()]);
     },
     nuevaCampania: () => {
       this.isEditar = false;

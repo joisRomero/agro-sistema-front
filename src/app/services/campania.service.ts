@@ -11,6 +11,7 @@ import { ObtenerCampaniaRequest } from '../models/requests/obtenerCampaniaReques
 import { ObtenerCampaniaResponse } from '../models/responses/obtenerCampaniaResponse';
 import { FinalizarCampaniaRequest } from '../models/requests/finalizarCampaniaRequest';
 import { EliminarCampaniaRequest } from '../models/requests/eliminarCampaniaRequest';
+import { ValidarPertenenciaCampaniaSociedadResponse } from '../models/responses/validarPertenenciaCampaniaSociedadResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class CampaniaService {
     this.url = `${environment.apiUrl}/api/v1/campania`
   }
 
-  public validar(params: ValidarPertenenciaCampaniaSociedadRequest): Observable<HttpResponse<any>> {
-    return this.http.post<any>(`${this.url}/validar`, params, {observe: 'response'});
+  public validar(params: ValidarPertenenciaCampaniaSociedadRequest): Observable<HttpResponse<ValidarPertenenciaCampaniaSociedadResponse>> {
+    return this.http.post<ValidarPertenenciaCampaniaSociedadResponse>(`${this.url}/validar`, params, {observe: 'response'});
   }
 
   public obtenerListaPaginaCampaniasUsuario(params: ListaPaginaCampaniasUsuarioRequest): Observable<HttpResponse<ListaPaginaCampaniasUsuarioResponse>> {
