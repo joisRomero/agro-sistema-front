@@ -49,11 +49,15 @@
 
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane  show active" id="actividades" role="tabpanel" aria-labelledby="actividades-tab">
-     <app-actividades-campania></app-actividades-campania>
+     <app-actividades-campania
+     [idCampania]="idCampania"
+     ></app-actividades-campania>
 
     </div>
     <div class="tab-pane " id="gastos" role="tabpanel" aria-labelledby="gastos-tab">
-      <app-gastos-campania></app-gastos-campania>
+      <app-gastos-campania
+      [idCampania]="idCampania"
+      ></app-gastos-campania>
     </div>
     <div class="tab-pane " id="cosechas" role="tabpanel" aria-labelledby="cosechas-tab">
       <app-cosechas-campania

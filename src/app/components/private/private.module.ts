@@ -38,10 +38,19 @@ import { FinalizarCampaniaComponent } from './view/ver-detalle-sociedad/componen
 import { AlerEliminarCampaniaComponent } from './view/ver-detalle-sociedad/components/aler-eliminar-campania/aler-eliminar-campania.component';
 import { AlerEliminarActividadComponent } from './view/actividades-campania/components/aler-eliminar-actividad/aler-eliminar-actividad.component';
 import { NuevoEditarActividadesComponent } from './view/actividades-campania/components/nuevo-editar-actividades/nuevo-editar-actividades.component';
-import { NuevoEditarTrbajadorComponent } from './view/actividades-campania/components/nuevo-editar-trbajador/nuevo-editar-trbajador.component';
-import { NuevoEditarGastosComponent } from './view/actividades-campania/components/nuevo-editar-gastos/nuevo-editar-gastos.component';
-import { AlertEliminarGastosComponent } from './view/actividades-campania/components/alert-eliminar-gastos/alert-eliminar-gastos.component';
-import { AlertEliminarTrbajadorComponent } from './view/actividades-campania/components/alert-eliminar-trbajador/alert-eliminar-trbajador.component';
+import { NuevoEditarTrbajadorComponent } from './view/trabajador/components/nuevo-editar-trbajador/nuevo-editar-trbajador.component';
+import { NuevoEditarGastosComponent } from './view/gastos/components/nuevo-editar-gastos/nuevo-editar-gastos.component';
+import { AlertEliminarGastosComponent } from './view/gastos/components/alert-eliminar-gastos/alert-eliminar-gastos.component';
+import { AlertEliminarTrbajadorComponent } from './view/trabajador/components/alert-eliminar-trbajador/alert-eliminar-trbajador.component';
+import { TrabajadorComponent } from './view/trabajador/trabajador.component';
+import { GastosComponent } from './view/gastos/gastos.component';
+import { TipoTrabajadorComponent } from './view/tipo-trabajador/tipo-trabajador.component';
+import { TipoActividadComponent } from './view/tipo-actividad/tipo-actividad.component';
+import { TipoGastoComponent } from './view/tipo-gasto/tipo-gasto.component';
+import { ModalNuevoEditarTipoActividadComponent } from './view/tipo-actividad/components/modal-nuevo-editar-tipo-actividad/modal-nuevo-editar-tipo-actividad.component';
+import { AlertEliminarTipoActividadComponent } from './view/tipo-actividad/components/alert-eliminar-tipo-actividad/alert-eliminar-tipo-actividad.component';
+import { AlertEliminarGastosCampaniaComponent } from './view/gastos-campania/components/alert-eliminar-gastos-campania/alert-eliminar-gastos-campania.component';
+import { NuevoEditarGastosCampaniaComponent } from './view/gastos-campania/components/nuevo-editar-gastos-campania/nuevo-editar-gastos-campania.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +93,15 @@ import { AlertEliminarTrbajadorComponent } from './view/actividades-campania/com
     NuevoEditarGastosComponent,
     AlertEliminarGastosComponent,
     AlertEliminarTrbajadorComponent,
+    TrabajadorComponent,
+    GastosComponent,
+    TipoTrabajadorComponent,
+    TipoActividadComponent,
+    TipoGastoComponent,
+    ModalNuevoEditarTipoActividadComponent,
+    AlertEliminarTipoActividadComponent,
+    AlertEliminarGastosCampaniaComponent,
+    NuevoEditarGastosCampaniaComponent,
   ],
   imports: [
     CommonModule,

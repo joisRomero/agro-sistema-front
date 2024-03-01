@@ -69,6 +69,10 @@ export class LayoutVars {
           nombre: "Tipo trabajador",
           path: 'tipo-trabajador',
         },
+        {
+          nombre: "Tipo gasto",
+          path: 'tipo-gasto',
+        },
       ]
     }
   ]

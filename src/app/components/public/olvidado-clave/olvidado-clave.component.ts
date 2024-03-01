@@ -57,6 +57,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
+    this.subscription = this.source.subscribe(()=>this.disminuirNumero());
     this.subscription.unsubscribe();
   }
 
@@ -172,7 +173,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
   }
 
   public cancelar() {
-    this.router.navigate(["login"]);
+    this.router.navigate(["/login"]);
   }
 
   public service = {

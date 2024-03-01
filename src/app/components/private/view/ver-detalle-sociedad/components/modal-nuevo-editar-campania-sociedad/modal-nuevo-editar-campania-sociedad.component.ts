@@ -113,7 +113,7 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
       })
     })();
     (async () => {
-      this.valoresUnidad = [];
+      this.valoresCultivos = [];
       let response = await this.service.obtenerCultivos();
       response.body!.forEach(el => {
         this.valoresCultivos.push(new GeneralSelectItem(el.codigoCultivosUsuario, el.descripcion))

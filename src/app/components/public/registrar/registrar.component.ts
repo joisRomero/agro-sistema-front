@@ -29,7 +29,7 @@ export class RegistrarComponent implements OnInit {
     nombre: "El campo es obligatorio.",
     apellidoPaterno: "El campo es obligatorio.",
     apellidoMaterno: "El campo es obligatorio.",
-    correo: "El campo es obligatorio. Ingrese un correo electrónico válido.",
+    correo: "El campo es obligatorio.",
   }
   public loginResponse!: LoginResponse;
   public respuestaValidarUsuario: boolean = false;
@@ -45,6 +45,7 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciarControles();
+    this.onChange.correoElectronico();
   }
 
   private iniciarControles() {
@@ -101,6 +102,20 @@ export class RegistrarComponent implements OnInit {
     }
 
     this.form.controls["usuario"]!.updateValueAndValidity();
+  }
+
+  public onChange = {
+    correoElectronico: () => {
+      this.form.controls["correo"].valueChanges.subscribe(
+        () => {
+          if(this.form.controls["correo"].errors?.['email']){
+            this.mensajesError.correo = "Ingrese un correo electrónico válido."
+          } else {
+            this.mensajesError.correo = "El campo es obligatorio."
+          }
+        }
+      );
+    }
   }
 
   public async registrar(){

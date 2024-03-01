@@ -22,11 +22,9 @@ export class SociedadesComponent implements OnInit {
   public form!: FormGroup;
   public nombre: string = '';
   public itemsTabla: ListaPaginadaSociedadesResponse = new ListaPaginadaSociedadesResponse();
-  // public itemsTabla: ListaPaginadaSociedadResponse = new ListaPaginadaSociedadResponse();
   public isEditar: boolean = false;
   public idSociedad!: number;
   public sociedadItem!: ListaPaginadaSociedadesResponseItem;
-  // public sociedadItem!: ListaPaginadaSociedadResponseItem;
   public listaSociedades!: ListaPaginadaSociedadesRequest;
   private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   public verMensajeSinDatos: boolean = false;

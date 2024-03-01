@@ -1,0 +1,67 @@
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal" [large]="true">
+    <form class="w-100" [formGroup]="form!">
+      <div class="d-flex flex-wrap">
+        <app-general-select
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [fGroup]="form"
+            nombreControl="tipoTrabajador"
+            label="Tipo de trabajador: "
+            [mensajeError]="mensajesError.tipoTrabajador"
+            [esSmall]="true"
+            [values]="valoresTipoTrabajador"
+        ></app-general-select>
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="cantidad"
+            label="Cantidad: "
+            [mensajeError]="mensajesError.cantidad"
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [soloNumeros]="true"
+        ></app-general-input>
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="costoUnitario"
+            label="Costo unitario: "
+            [mensajeError]="mensajesError.costoUnitario"
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [soloNumeros]="true"
+        ></app-general-input>
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="costoTotal"
+            label="Costo total: "
+            [mensajeError]="mensajesError.costoTotal"
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [soloNumeros]="true"
+            [desabilitado]="true"
+        ></app-general-input>  
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="descripcion"
+            label="Descripción: "
+            [mensajeError]="mensajesError.descripcion"
+            class="px-2 py-1 col-12 col-md-12 col-sm-12"
+            tipo="area"
+            [filas]="2"
+        ></app-general-input>  
+      </div>
+    </form>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSmall]="true"
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cerrarModal"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        [esSmall]="true"
+        class="m-1"
+        (click)="guardar()"
+      ></app-general-button>
+    </div>
+  </app-modal>
+  

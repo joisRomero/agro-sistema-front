@@ -14,6 +14,8 @@ import { TipoAgroquimicoComponent } from './view/tipo-agroquimico/tipo-agroquimi
 import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
 import { VerDetalleCampaniaComponent } from './view/ver-detalle-campania/ver-detalle-campania.component';
 import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
+import { TipoTrabajadorComponent } from './view/tipo-trabajador/tipo-trabajador.component';
+import { TipoGastoComponent } from './view/tipo-gasto/tipo-gasto.component';
 
 export const privateModuleRoutes: Routes = [
   {
@@ -102,6 +104,24 @@ export const privateModuleRoutes: Routes = [
         path: 'perfil',
         title: 'Perfil',
         component: PerfilUsuarioComponent,
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'tipo-trabajador',
+        title: 'Tipo trabajador',
+        component: TipoTrabajadorComponent,
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'tipo-actividad',
+        title: 'Tipo actividad',
+        component: TipoTrabajadorComponent,
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'tipo-gasto',
+        title: 'Tipo gasto',
+        component: TipoGastoComponent,
         canActivate: [LoginGuard]
       }
     ]

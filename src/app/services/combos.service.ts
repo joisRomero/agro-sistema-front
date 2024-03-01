@@ -7,6 +7,12 @@ import { ObtenerCalidadesCosechaResponse } from '../models/responses/obtenerCali
 import { ObtenerUnidadesCampaniaResponse } from '../models/responses/obtenerUnidadesCampaniaResponse';
 import { ObtenerCultivosUsuarioRequest } from '../models/requests/obtenerCultivosUsuarioRequest';
 import { ObtenerCultivosUsuarioResponse } from '../models/responses/obtenerCultivosUsuarioResponse';
+import { ObtenerTipoTrabajadorPorUsuarioRequest } from '../models/requests/obtenerTipoTrabajadorPorUsuarioRequest';
+import { ObtenerTipoTrabajadorPorUsuarioResponse } from '../models/responses/obtenerTipoTrabajadorPorUsuarioResponse';
+import { ObtenerTipoActividadPorUsuarioRequest } from '../models/requests/obtenerTipoActividadPorUsuarioRequest';
+import { ObtenerTipoActividadPorUsuarioResponse } from '../models/responses/obtenerTipoActividadPorUsuarioResponse';
+import { ObtenerTipoGastoPorUsuarioRequest } from '../models/requests/obtenerTipoGastoPorUsuarioRequest';
+import { ObtenerTipoGastoPorUsuarioResponse } from '../models/responses/obtenerTipoGastoPorUsuarioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +38,17 @@ export class CombosService {
 
   public obtenerUnidadesCampania(): Observable<HttpResponse<ObtenerUnidadesCampaniaResponse[]>> {
     return this.http.get<ObtenerUnidadesCampaniaResponse[]>(`${this.url}/obtenerUnidadesCampania`,  {observe: 'response'});
+  }
+
+  public obtenerTipoTrabajadorPorUsuario(params: ObtenerTipoTrabajadorPorUsuarioRequest): Observable<HttpResponse<ObtenerTipoTrabajadorPorUsuarioResponse[]>> {
+    return this.http.get<ObtenerTipoTrabajadorPorUsuarioResponse[]>(`${this.url}/obtenerTipoTrabajadorPorUsuario`,  {observe: 'response', params: params as {}});
+  }
+
+  public obtenerTipoActividadPorUsuario(params: ObtenerTipoActividadPorUsuarioRequest): Observable<HttpResponse<ObtenerTipoActividadPorUsuarioResponse[]>> {
+    return this.http.get<ObtenerTipoActividadPorUsuarioResponse[]>(`${this.url}/obtenerTipoActividadPorUsuario`,  {observe: 'response', params: params as {}});
+  }
+
+  public obtenerTipoGastoPorUsuario(params: ObtenerTipoGastoPorUsuarioRequest): Observable<HttpResponse<ObtenerTipoGastoPorUsuarioResponse[]>> {
+    return this.http.get<ObtenerTipoGastoPorUsuarioResponse[]>(`${this.url}/obtenerTipGastoPorUsuario`,  {observe: 'response', params: params as {}});
   }
 }

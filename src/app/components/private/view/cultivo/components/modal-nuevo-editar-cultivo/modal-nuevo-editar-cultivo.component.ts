@@ -23,7 +23,6 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
   @Output() actualizo = new EventEmitter();
 
   public tituloModal: string = '';
-  public labelBoton: string = '';
   public claseBoton: string = '';
   public form!: FormGroup;
   private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
@@ -47,7 +46,6 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
       this.form.controls["nombre"].setValue(this.cultivoItem.nombreCultivo);
     } else {
       this.tituloModal = "Nuevo cultivo";
-      this.labelBoton = "Guardar";
     }
   }
 

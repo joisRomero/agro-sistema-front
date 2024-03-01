@@ -10,6 +10,7 @@
       label="Actividad: "
       [mensajeError]="mensajesError.actividad"
       [esSmall]="true"
+      [values]="valoresTipoActividad"
     ></app-general-select>
     <app-general-input
       [fGroup]="form"
@@ -19,27 +20,204 @@
       class="px-2 py-1 col-12 col-md-4 col-sm-4"
       tipo="date"
     ></app-general-input>
+    <app-general-input
+      [fGroup]="form"
+      nombreControl="descripcion"
+      label="Descripción: "
+      [mensajeError]="mensajesError.fecha"
+      class="px-2 py-1 col-12 col-md-8 col-sm-8"
+      tipo="area"
+      [filas]="2"
+    ></app-general-input>
   </div>
 
   
   <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="m-0">Trabajadores</h5>
+    <h5 class="m-0">Información de trabajadores</h5>
     <app-general-button
       claseBoton="primary"
       label="Agregar"
       [esSmall]="true"
+      [onClickButton]="onClick.agregarTrabajador"
     ></app-general-button>
   </div>
   <hr>
+
+  <div class="card mt-2">
+    <div class="card-body p-0 table-responsive">
+      <table class="table table-sm mb-0 table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Costo unitario</th>
+            <th scope="col">Costo total</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of trabajadoresTabla, let i = index">
+              <td class="ps-2" scope="row">{{ item.numero }}</td>
+              <td scope="row">{{ item.descripcionTipoTrabajador }}</td>
+              <td scope="row">{{ item.cantidad }}</td>
+              <td scope="row">{{ item.costoUnitario }}</td>
+              <td scope="row">{{ item.costoTotal }}</td>
+              <td>
+                <div class="gap-2 d-flex">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-info dropdown-toggle btn-sm px-3"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Editar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.editarTrabajador(item)"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Eliminar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.eliminarTrabajador(item)"
+                        ></app-general-button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+      <app-general-pagination
+          [paginaActual]="paginacionTrabajadorVars.paginaActual"
+          [totalPaginas]="paginacionTrabajadorVars.totalPaginas"
+          [totalFilas]="paginacionTrabajadorVars.totalFilas"
+          (eventChangePage)="paginacionTrabajadorVars.onChangePage($event)"
+          *ngIf="trabajadores.length > 0"
+        ></app-general-pagination>
+        <app-general-sin-datos 
+          *ngIf="verMensajeSinDatosTrabajadores"
+          texto = "No ha agregado información de trabajadores"
+        ></app-general-sin-datos>
+    </div>
+  </div>
 
   <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="m-0">Trabajadores</h5>
+    <h5 class="m-0">Información de gastos</h5>
     <app-general-button
       claseBoton="primary"
       label="Agregar"
       [esSmall]="true"
+      [onClickButton]="onClick.agregarGasto"
     ></app-general-button>
   </div>
   <hr>
 
+  <div class="card mt-2">
+    <div class="card-body p-0 table-responsive">
+      <table class="table table-sm mb-0 table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Costo unitario</th>
+            <th scope="col">Costo total</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of gastosTabla, let i = index">
+              <td class="ps-2" scope="row">{{ item.numero }}</td>
+              <td scope="row">{{ item.descripcionTipoGasto }}</td>
+              <td scope="row">{{ item.cantidad }}</td>
+              <td scope="row">{{ item.costoUnitario }}</td>
+              <td scope="row">{{ item.costoTotal }}</td>
+              <td>
+                <div class="gap-2 d-flex">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-info dropdown-toggle btn-sm px-3"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Editar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.editarGasto(item)"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Eliminar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.eliminarGasto(item)"
+                        ></app-general-button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+      <app-general-pagination
+          [paginaActual]="paginacionGastosVars.paginaActual"
+          [totalPaginas]="paginacionGastosVars.totalPaginas"
+          [totalFilas]="paginacionGastosVars.totalFilas"
+          (eventChangePage)="paginacionGastosVars.onChangePage($event)"
+          *ngIf="gastos.length > 0"
+        ></app-general-pagination>
+        <app-general-sin-datos 
+          *ngIf="verMensajeSinDatosGastos"
+          texto = "No ha agregado información de gastos"
+        ></app-general-sin-datos>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mt-3">
+    <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSmall]="true"
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cancelar"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        [esSmall]="true"
+        class="m-1"
+        (click)="guardar()" 
+      ></app-general-button>
+  </div>
+
 </form>
+
+<app-nuevo-editar-trbajador
+  *ngIf="nuevoEditarTrabajadorVars.mostrarModal"
+  [isEditar]="isEditarTrabajador"
+  (enviarTrabajador)="obtenerTrabajador($event)"
+  [trabajadorItem]="trabajadorItem"
+></app-nuevo-editar-trbajador>
+
+<app-nuevo-editar-gastos
+  *ngIf="nuevoEditarGastosVars.mostrarModal" 
+  [isEditar]="isEditarGasto"
+  (enviarGasto)="obtenerGasto($event)"
+  [gastoItem]="gastoItem"
+></app-nuevo-editar-gastos>
