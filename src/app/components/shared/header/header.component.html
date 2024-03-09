@@ -20,9 +20,66 @@
       </span>
 
       <div class="btn-group">
-        <!-- notificaciones -->
+        <!-- Notificaciones -->
         <button
-          class="boton position-relative mx-3"
+          class="boton position-relative"
+          type="button"
+          id="dropdownInvitacionesSociedad"
+          data-bs-toggle="dropdown"
+          data-bs-display="static"
+          aria-expanded="false"
+        >
+          <i class="icono bi bi-bell"></i>
+          <span 
+            class="position-absolute top-100 start-10 translate-middle badge rounded-pill bg-danger"
+            style="top: 25%!important;"
+            *ngIf="listaInvitaciones.length > 0"
+          >
+            {{ listaInvitaciones.length }}
+          </span>
+        </button>
+        <ul
+          class="dropdown-menu dropdown-menu-end overflow-auto p-0 border-0"
+          style="width: 300px; max-height: 90vh;"
+          aria-labelledby="dropdownInvitacionesSociedad"
+        >
+          <ol class="list-group ">
+            <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let item of listaInvitaciones">
+              <div class="ms-2 me-auto">
+                <span class="fw-bold">{{ item.nombreEmisor }}</span> te ha
+              invitado a unirte a la sociedad
+              <span class="fw-bold">{{ item.nombreSociedad }}</span>
+              <div class="row">
+                <app-general-button
+                  claseBoton="secondary anchoBoton"
+                  label="Rechazar"
+                  tipo="submit"
+                  [esSmall]="true"
+                  class="col-6"
+                  (click)="onClick.rechazar(item)"
+                ></app-general-button>
+  
+                <app-general-button
+                  claseBoton="primary anchoBoton"
+                  label="Aceptar"
+                  tipo="submit"
+                  [esSmall]="true"
+                  class="col-6"
+                  (click)="onClick.aceptar(item)"
+                ></app-general-button>
+              </div>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start" *ngIf="listaInvitaciones.length == 0">
+              <div class="ms-2 me-auto">
+                Actualmente no cuenta con invitaciones.
+              </div>
+            </li>
+          </ol>
+        </ul>
+        <!-- Invitaciones -->
+        <button
+          class="boton position-relative mx-1"
           type="button"
           id="dropdownInvitacionesSociedad"
           data-bs-toggle="dropdown"
@@ -31,7 +88,7 @@
         >
           <i class="icono bi bi-person-add"></i>
           <span 
-            class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger"
+            class="position-absolute top-100 start-10 translate-middle badge rounded-pill bg-danger"
             style="top: 25%!important;"
             *ngIf="listaInvitaciones.length > 0"
           >
@@ -39,43 +96,43 @@
           </span>
         </button>
         <ul
-          class="dropdown-menu dropdown-menu-end overflow-auto "
+          class="dropdown-menu dropdown-menu-end overflow-auto p-0 border-0"
           style="width: 300px; max-height: 90vh;"
           aria-labelledby="dropdownInvitacionesSociedad"
         >
-          <li class="dropdown-item-text fw-normal" *ngIf="listaInvitaciones.length == 0">
-            <p>Actualmente no cuenta con invitaciones.</p>
-          </li>
-          <li class="dropdown-item-text fw-normal" *ngFor="let item of listaInvitaciones">
-            <p>
-              <span class="fw-bold">{{ item.nombreEmisor }}</span> te ha
+          <ol class="list-group ">
+            <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let item of listaInvitaciones">
+              <div class="ms-2 me-auto">
+                <span class="fw-bold">{{ item.nombreEmisor }}</span> te ha
               invitado a unirte a la sociedad
               <span class="fw-bold">{{ item.nombreSociedad }}</span>
-            </p>
-            <div class="row">
-              <app-general-button
-                claseBoton="secondary anchoBoton"
-                label="Rechazar"
-                tipo="submit"
-                [esSmall]="true"
-                class="col-6"
-                (click)="onClick.rechazar(item)"
-              ></app-general-button>
-
-              <app-general-button
-                claseBoton="primary anchoBoton"
-                label="Aceptar"
-                tipo="submit"
-                [esSmall]="true"
-                class="col-6"
-                (click)="onClick.aceptar(item)"
-              ></app-general-button>
-            </div>
-            
-          </li>
-          <!-- <li>
-            <hr class="dropdown-divider" />
-          </li> -->
+              <div class="row">
+                <app-general-button
+                  claseBoton="secondary anchoBoton"
+                  label="Rechazar"
+                  tipo="submit"
+                  [esSmall]="true"
+                  class="col-6"
+                  (click)="onClick.rechazar(item)"
+                ></app-general-button>
+  
+                <app-general-button
+                  claseBoton="primary anchoBoton"
+                  label="Aceptar"
+                  tipo="submit"
+                  [esSmall]="true"
+                  class="col-6"
+                  (click)="onClick.aceptar(item)"
+                ></app-general-button>
+              </div>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start" *ngIf="listaInvitaciones.length == 0">
+              <div class="ms-2 me-auto">
+                Actualmente no cuenta con invitaciones.
+              </div>
+            </li>
+          </ol>
         </ul>
         <!-- informacion perfil -->
         <button

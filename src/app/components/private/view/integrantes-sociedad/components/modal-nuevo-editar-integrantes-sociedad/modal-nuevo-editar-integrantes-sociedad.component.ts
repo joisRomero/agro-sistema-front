@@ -103,6 +103,7 @@ export class ModalNuevoEditarIntegrantesSociedadComponent implements OnInit {
       let params: RegistrarInvitacionSociedadRequest = {
         idEmisor: this.idUsuario,
         idReceptor: this.seleccionado.idUsuario, 
+        usuarioReceptor: this.seleccionado.nombreUsuario,
         idSociedad: parseInt(this.idSociedad),
         usuarioInserta: (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario
       }

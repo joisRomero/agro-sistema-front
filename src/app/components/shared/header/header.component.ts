@@ -11,6 +11,8 @@ import { ListarInvitacionesSociedadesRequest } from 'src/app/models/requests/lis
 import { ListarInvitacionesSociedadesResponse } from 'src/app/models/responses/listarInvitacionesSociedadesResponse';
 import { CambiarEstadoInvitacionRequest } from 'src/app/models/requests/cambiarEstadoInvitacionRequest';
 import { GeneralAlertInformationVars } from '../general-alert-information/general-alert-information.vars';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -22,18 +24,32 @@ export class HeaderComponent implements OnInit {
   public usuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
   public nombreCompleto: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
   public listaInvitaciones: ListarInvitacionesSociedadesResponse[] = [];
-
+  private connection: HubConnection;
+  
   constructor(
     public sidebarVars: SidebarVars,
     public route: Router,
     public perfilUsuarioVars: PerfilUsuarioVars,
     public invitacionService: InvitacionService,
-    private alertInformationService: GeneralAlertInformationVars
-  ) {}
+    private alertInformationService: GeneralAlertInformationVars,
+  ) {
+    this.connection = new HubConnectionBuilder()
+      .withUrl(`${environment.apiUrl}/hubs/invitaciones`)
+      .build();
 
+    this.connection.on("EnviarNotificacionInvitacion", listaInvitaciones => this.ObtenerInvitacionesHub(listaInvitaciones));
+
+  }
+  
   ngOnInit(): void {
     this.listaInvitaciones = [];
     this.obtenerInvitaciones();
+    this.connection.start()
+      .then(_ => {
+        this.connection.invoke('AgregarAGrupo', `${this.usuario}Invitacion`);
+      }).catch(error => {
+        return console.error(error);
+      });
   }
 
   onClickNavButton() {
@@ -45,6 +61,12 @@ export class HeaderComponent implements OnInit {
     if(respose.status == 200){
       this.listaInvitaciones = respose.body!;
     }
+  }
+
+  ObtenerInvitacionesHub(listaInvitaciones: ListarInvitacionesSociedadesResponse[]) {
+    this.listaInvitaciones = [];
+    this.listaInvitaciones = listaInvitaciones;
+    console.log(listaInvitaciones);
   }
 
   editarPerfil() {
