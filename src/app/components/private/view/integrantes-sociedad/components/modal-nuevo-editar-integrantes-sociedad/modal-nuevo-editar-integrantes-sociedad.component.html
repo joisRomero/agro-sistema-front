@@ -1,4 +1,4 @@
-<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal" >
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
   <form [formGroup]="form!">
     <app-general-input
       [fGroup]="form"
@@ -54,7 +54,7 @@
     <app-general-button
       claseBoton="secondary"
       label="Cancelar"
-      [esSmall]="true"
+      
       [esSecundario]="true"
       class="m-1"
       [onClickButton]="onClick.cerrarModal"
@@ -62,7 +62,7 @@
     <app-general-button
       claseBoton="primary"
       label="Invitar"
-      [esSmall]="true"
+      
       class="m-1"
       [onClickButton]="onClick.invitar"
     ></app-general-button>

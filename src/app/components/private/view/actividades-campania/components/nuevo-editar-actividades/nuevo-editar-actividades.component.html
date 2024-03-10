@@ -9,7 +9,7 @@
       nombreControl="actividad"
       label="Actividad: "
       [mensajeError]="mensajesError.actividad"
-      [esSmall]="true"
+      
       [values]="valoresTipoActividad"
     ></app-general-select>
     <app-general-input
@@ -37,15 +37,15 @@
     <app-general-button
       claseBoton="primary"
       label="Agregar"
-      [esSmall]="true"
+      
       [onClickButton]="onClick.agregarTrabajador"
     ></app-general-button>
   </div>
   <hr>
 
-  <div class="card mt-2">
-    <div class="card-body p-0 table-responsive">
-      <table class="table table-sm mb-0 table-hover">
+  <div class="mt-2">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mt-3">
         <thead>
           <tr>
             <th scope="col">Nro.</th>
@@ -115,15 +115,15 @@
     <app-general-button
       claseBoton="primary"
       label="Agregar"
-      [esSmall]="true"
+      
       [onClickButton]="onClick.agregarGasto"
     ></app-general-button>
   </div>
   <hr>
 
-  <div class="card mt-2">
-    <div class="card-body p-0 table-responsive">
-      <table class="table table-sm mb-0 table-hover">
+  <div class="mt-2">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mt-3">
         <thead>
           <tr>
             <th scope="col">Nro.</th>
@@ -192,7 +192,7 @@
     <app-general-button
         claseBoton="secondary"
         label="Cancelar"
-        [esSmall]="true"
+        
         [esSecundario]="true"
         class="m-1"
         [onClickButton]="onClick.cancelar"
@@ -200,7 +200,7 @@
       <app-general-button
         claseBoton="primary"
         label="Guardar"
-        [esSmall]="true"
+        
         class="m-1"
         (click)="guardar()" 
       ></app-general-button>

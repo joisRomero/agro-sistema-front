@@ -9,21 +9,21 @@ export class LayoutVars {
     {
       nombre: "Inicio",
       path: "inicio",
-      icono: "bi bi-house-fill"
+      icono: "bi bi-house"
     },
     {
       nombre: "Mis campañas",
       path: "mis-campanias",
-      icono: "bi bi-house-fill"
+      icono: "bi bi-house"
     },
     {
       nombre: "Sociedades",
       path: "sociedades",
-      icono: "bi bi-people-fill"
+      icono: "bi bi-people"
     },
     {
       nombre: "Agroquímicos",
-      icono: "bi bi-house-fill",
+      icono: "bi bi-house",
       menus: [
         {
           nombre: "Agroquímicos",
@@ -41,7 +41,7 @@ export class LayoutVars {
     },
     {
       nombre: "Abonos",
-      icono: "bi bi-house-fill",
+      icono: "bi bi-house",
       menus: [
         {
           nombre: "Abonos",
@@ -55,7 +55,7 @@ export class LayoutVars {
     },
     {
       nombre: "Datos",
-      icono: "bi bi-house-fill",
+      icono: "bi bi-house",
       menus: [
         {
           nombre: "Cultivos",

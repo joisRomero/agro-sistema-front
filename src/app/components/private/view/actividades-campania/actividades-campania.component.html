@@ -1,131 +1,104 @@
 <div *ngIf="!nuevoEditarActividades.mostrarModal">
-  <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="m-0">Actividades</h5>
-  </div>
-
-  <div class="accordion my-3" id="accordionExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button
-          class="accordion-button"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseOne"
-          aria-expanded="true"
-          aria-controls="collapseOne"
-        >
-          Búsqueda
-        </button>
-      </h2>
-      <div
-        id="collapseOne"
-        class="accordion-collapse collapse show"
-        aria-labelledby="headingOne"
-        data-bs-parent="#accordionExample"
-      >
-        <div class="accordion-body">
-          <div class="row">
-            <app-general-select
-              class="py-1 col-12 col-md-4 col-sm-6"
-              [fGroup]="form"
-              nombreControl="tipoActividad"
-              label="Actividad: "
-              [esSmall]="true"
-              [values]="valoresTipoActividad"
-            ></app-general-select>
-            <app-general-input
-              [fGroup]="form"
-              nombreControl="fechaActividad"
-              label="Fecha: "
-              class="py-1 col-12 col-md-4 col-sm-6"
-              tipo="date"
-            ></app-general-input>
-          </div>
-          <div class="d-flex justify-content-end mt-3 align-items-center mt-2">
-            <app-general-button
-              claseBoton="secondary"
-              label="Limpiar"
-              [esSmall]="true"
-              class="me-2" 
-              [esSecundario]="true"
-              [onClickButton]="click.limpiar"
-            ></app-general-button>
-            <app-general-button
-              claseBoton="primary"
-              label="Buscar"
-              [esSmall]="true"
-              (click)="buscar()"
-            ></app-general-button>
-          </div>
-        </div>
-      </div>
+  <h5 class="card-title pt-0">Filtros</h5>
+  <div class="align-items-end row">
+    <app-general-select
+      [fGroup]="form"
+      label="Actividad: "
+      nombreControl="tipoActividad"
+      [values]="valoresTipoActividad"
+      class="col-md-3"
+    ></app-general-select>
+    <app-general-input
+      [fGroup]="form"
+      nombreControl="fechaActividad"
+      label="Fecha: "
+      tipo="date"
+      class="col-md-3"
+    ></app-general-input>
+    <div class="col-4 gap-1 mt-1">
+      <app-general-button
+        claseBoton="secondary"
+        label="Limpiar"
+        class="col-6"
+        [esSecundario]="true"
+        [onClickButton]="click.limpiar"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Buscar"
+        (click)="buscar()"
+        class="col-6 ms-2"
+      ></app-general-button>
     </div>
   </div>
 
-  <div class="d-flex justify-content-start mt-3 align-items-center">
+  <div class="d-flex justify-content-between mt-2 align-items-center">
+    <h5 class="card-title">Listado</h5>
     <app-general-button
       claseBoton="primary"
       label="Nuevo"
-      [esSmall]="true"
       [onClickButton]="click.nuevo"
     ></app-general-button>
   </div>
 
-  <div class="card mt-2">
-    <div class="card-body p-0 table-responsive">
-      <table class="table table-sm mb-0 table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Nro.</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of itemsTabla.data">
-            <td class="ps-2" scope="row">{{ item.correlativo }}</td>
-            <td scope="row">{{ item.nombreTipoActividad }}</td>
-            <td scope="row">{{ item.fechaActividad }}</td>
-            <td scope="row">{{ item.fechaActividad }}</td>
-            <td scope="row">
-              <div class="gap-2 d-flex">
-                <div class="dropdown">
-                  <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"></i>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Editar"
-                          [sinClasesDeBoton]="true">
-                        </app-general-button>
-                        <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Eliminar"
-                          [sinClasesDeBoton]="true">
-                        </app-general-button>
-                      </li>
-                  </ul>
-                </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-sm mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Nro.</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itemsTabla.data">
+          <td class="ps-2" scope="row">{{ item.correlativo }}</td>
+          <td scope="row">{{ item.nombreTipoActividad }}</td>
+          <td scope="row">{{ item.fechaActividad }}</td>
+          <td scope="row">{{ item.fechaActividad }}</td>
+          <td scope="row">
+            <div class="gap-2 d-flex">
+              <div class="dropdown">
+                <button
+                  class="btn btn-info dropdown-toggle btn-sm px-3"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <app-general-button
+                      claseBoton="dropdown-item"
+                      label="Editar"
+                      [sinClasesDeBoton]="true"
+                    >
+                    </app-general-button>
+                    <app-general-button
+                      claseBoton="dropdown-item"
+                      label="Eliminar"
+                      [sinClasesDeBoton]="true"
+                    >
+                    </app-general-button>
+                  </li>
+                </ul>
               </div>
-            </td>
-            
-          </tr>
-        </tbody>
-      </table>
-      <app-general-pagination
-          [paginaActual]="paginacionVars.paginaActual"
-          [totalPaginas]="paginacionVars.totalPaginas"
-          [totalFilas]="paginacionVars.totalFilas"
-          (eventChangePage)="paginacionVars.onChangePage($event)"
-          *ngIf="itemsTabla.data.length > 0"
-        ></app-general-pagination>
-        <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
-    </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-general-pagination
+      [paginaActual]="paginacionVars.paginaActual"
+      [totalPaginas]="paginacionVars.totalPaginas"
+      [totalFilas]="paginacionVars.totalFilas"
+      (eventChangePage)="paginacionVars.onChangePage($event)"
+      *ngIf="itemsTabla.data.length > 0"
+    ></app-general-pagination>
+    <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
   </div>
 </div>
 

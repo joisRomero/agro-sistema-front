@@ -102,6 +102,9 @@ export class SociedadesComponent implements OnInit {
       this.router.navigate(["intranet/sociedades/ver-detalle-sociedad",
                             item.idSociedad.toString()]);
     },
+    limpiar: () => {
+      this.form.controls["nombre"].setValue("");
+    },
     buscar: () => {
       this.buscar();
     },

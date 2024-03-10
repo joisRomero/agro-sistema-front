@@ -7,7 +7,7 @@
             nombreControl="tipoTrabajador"
             label="Tipo de trabajador: "
             [mensajeError]="mensajesError.tipoTrabajador"
-            [esSmall]="true"
+            
             [values]="valoresTipoTrabajador"
         ></app-general-select>
         <app-general-input
@@ -50,7 +50,7 @@
       <app-general-button
         claseBoton="secondary"
         label="Cancelar"
-        [esSmall]="true"
+        
         [esSecundario]="true"
         class="m-1"
         [onClickButton]="onClick.cerrarModal"
@@ -58,7 +58,7 @@
       <app-general-button
         claseBoton="primary"
         label="Guardar"
-        [esSmall]="true"
+        
         class="m-1"
         (click)="guardar()"
       ></app-general-button>

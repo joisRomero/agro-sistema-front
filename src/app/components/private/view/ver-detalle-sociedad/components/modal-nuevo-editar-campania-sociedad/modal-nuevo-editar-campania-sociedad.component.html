@@ -26,7 +26,6 @@
           label="Cultivo: "
           [mensajeError]="mensajesError.cultivo"
           [values]="valoresCultivos"
-          [esSmall] = "true"
         ></app-general-select>
         <app-general-input
           [fGroup]="form"
@@ -53,7 +52,6 @@
           label="Unidad: "
           [mensajeError]="mensajesError.nombre"
           [values]="valoresUnidad"
-          [esSmall] = "true"
         ></app-general-select>
         <app-general-input
           [fGroup]="form"
@@ -72,7 +70,7 @@
       <app-general-button
         claseBoton="secondary"
         label="Cancelar"
-        [esSmall]="true"
+        
         [esSecundario]="true"
         class="m-1"
         [onClickButton]="onClick.cerrarModal"
@@ -80,7 +78,7 @@
       <app-general-button
         claseBoton="primary"
         label="Guardar"
-        [esSmall]="true"
+        
         class="m-1"
         (click)="guardar()"
       ></app-general-button>

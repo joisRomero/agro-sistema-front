@@ -13,6 +13,7 @@ import { CambiarEstadoInvitacionRequest } from 'src/app/models/requests/cambiarE
 import { GeneralAlertInformationVars } from '../general-alert-information/general-alert-information.vars';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
     public perfilUsuarioVars: PerfilUsuarioVars,
     public invitacionService: InvitacionService,
     private alertInformationService: GeneralAlertInformationVars,
+    private toastService: ToastrService
   ) {
     this.connection = new HubConnectionBuilder()
       .withUrl(`${environment.apiUrl}/hubs/invitaciones`)
@@ -66,7 +68,12 @@ export class HeaderComponent implements OnInit {
   ObtenerInvitacionesHub(listaInvitaciones: ListarInvitacionesSociedadesResponse[]) {
     this.listaInvitaciones = [];
     this.listaInvitaciones = listaInvitaciones;
-    console.log(listaInvitaciones);
+    listaInvitaciones.forEach(element => {
+      this.toastService.info(`Tienes una nueva invitacion de ${element.nombreEmisor}`, "Invitación", {
+        closeButton: true,
+        positionClass: 'toast-bottom-right'
+      })
+    });
   }
 
   editarPerfil() {

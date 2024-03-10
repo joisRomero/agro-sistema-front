@@ -24,6 +24,8 @@ export class PerfilUsuarioComponent implements OnInit {
   public formClaves!: FormGroup;
   public usuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   public idUsuario: number = Number.parseInt(this.usuario);
+  public nombreUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
+  public nombreCompleto: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreCompleto;
 
   public mensajesError = {
     claveAnterior: "El campo es obligatorio.",
@@ -55,6 +57,7 @@ export class PerfilUsuarioComponent implements OnInit {
     if(response.status != 200) {
       return;
     }
+    this.nombreCompleto = `${response.body!.nombre} ${response.body!.apellidoPaterno} ${response.body!.apellidoMaterno}`;
     this.formPerfil.get('nombre')?.setValue(response.body!.nombre);
     this.formPerfil.get('apellidoPaterno')?.setValue(response.body!.apellidoPaterno);
     this.formPerfil.get('apellidoMaterno')?.setValue(response.body!.apellidoMaterno);

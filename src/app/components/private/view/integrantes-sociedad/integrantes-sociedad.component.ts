@@ -93,6 +93,9 @@ export class IntegrantesSociedadComponent implements OnInit {
       this.alertAsignarDesasignarAdministradorService.mostrar = true;
       this.usuarioElegidoAdministrador = item;
     },
+    limpiar: () => {
+      this.form.controls["nombre"].setValue("");
+    },
   }
 
   public realizarRecarga() {

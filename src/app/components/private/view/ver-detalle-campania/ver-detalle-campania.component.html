@@ -1,70 +1,137 @@
-<div class="d-flex flex-column h-100">
-  <div class="d-flex align-items-center">
-    <app-general-button
-      claseBoton="light"
-      nombreIcono="bi bi-arrow-left"
-      (click)="onClick.irAtras()"
-    ></app-general-button>
-    <h4 class="m-0 ps-2">Campaña: {{ nombreCampania }}</h4>
+<div class="pagetitle d-flex align-items-center">
+  <app-general-button
+    claseBoton="light"
+    nombreIcono="bi bi-arrow-left"
+    (click)="onClick.irAtras()"
+  ></app-general-button>
+  <h1>Campaña: {{ nombreCampania }}</h1>
+</div>
+
+<!-- <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="actividades-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#actividades"
+      type="button"
+      role="tab"
+      aria-controls="actividades"
+      aria-selected="true"
+    >
+      Actividades
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="gastos-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#gastos"
+      type="button"
+      role="tab"
+      aria-controls="gastos"
+      aria-selected="false"
+    >
+      Gastos
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="cosechas-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#cosechas"
+      type="button"
+      role="tab"
+      aria-controls="cosechas"
+      aria-selected="false"
+    >
+      Cosechas
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane show active"
+    id="actividades"
+    role="tabpanel"
+    aria-labelledby="actividades-tab"
+  >
+    <app-actividades-campania
+      [idCampania]="idCampania"
+    ></app-actividades-campania>
   </div>
+  <div
+    class="tab-pane"
+    id="gastos"
+    role="tabpanel"
+    aria-labelledby="gastos-tab"
+  >
+    <app-gastos-campania [idCampania]="idCampania"></app-gastos-campania>
+  </div>
+  <div
+    class="tab-pane"
+    id="cosechas"
+    role="tabpanel"
+    aria-labelledby="cosechas-tab"
+  >
+    <app-cosechas-campania [idCampania]="idCampania"></app-cosechas-campania>
+  </div>
+</div> -->
 
-  <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link active" 
-        id="actividades-tab" 
-        data-bs-toggle="tab" 
-        data-bs-target="#actividades" 
-        type="button" 
-        role="tab" 
-        aria-controls="actividades" 
-        aria-selected="true"
-      >Actividades</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        id="gastos-tab" 
-        data-bs-toggle="tab" 
-        data-bs-target="#gastos" 
-        type="button" 
-        role="tab" 
-        aria-controls="gastos" 
-        aria-selected="false"
-      >Gastos</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        id="cosechas-tab" 
-        data-bs-toggle="tab" 
-        data-bs-target="#cosechas" 
-        type="button" 
-        role="tab" 
-        aria-controls="cosechas" 
-        aria-selected="false"
-      >Cosechas</button>
-    </li>
-  </ul>
 
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane  show active" id="actividades" role="tabpanel" aria-labelledby="actividades-tab">
-     <app-actividades-campania
-     [idCampania]="idCampania"
-     ></app-actividades-campania>
+<div class="card">
+  <div class="card-body pt-3">
+    <!-- Bordered Tabs -->
+    <ul class="nav nav-tabs nav-tabs-bordered">
+      <li class="nav-item">
+        <button
+          class="nav-link active"
+          data-bs-toggle="tab"
+          data-bs-target="#profile-overview"
+        >
+        Actividades
+        </button>
+      </li>
 
-    </div>
-    <div class="tab-pane " id="gastos" role="tabpanel" aria-labelledby="gastos-tab">
-      <app-gastos-campania
-      [idCampania]="idCampania"
-      ></app-gastos-campania>
-    </div>
-    <div class="tab-pane " id="cosechas" role="tabpanel" aria-labelledby="cosechas-tab">
-      <app-cosechas-campania
-      [idCampania]="idCampania"
-      ></app-cosechas-campania>
+      <li class="nav-item">
+        <button
+          class="nav-link"
+          data-bs-toggle="tab"
+          data-bs-target="#profile-edit"
+        >
+        Gastos
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button
+          class="nav-link"
+          data-bs-toggle="tab"
+          data-bs-target="#cosechas"
+        >
+          Cosechas
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content pt-2">
+      <div
+        class="tab-pane fade show active profile-overview mt-2"
+        id="profile-overview"
+      >
+        <app-actividades-campania
+        [idCampania]="idCampania"
+      ></app-actividades-campania>
+      </div>
+
+      <div class="tab-pane fade pt-2" id="profile-edit">
+        <app-gastos-campania [idCampania]="idCampania"></app-gastos-campania>
+      </div>
+      <div class="tab-pane fade pt-2" id="cosechas">
+        <app-cosechas-campania [idCampania]="idCampania"></app-cosechas-campania>
+      </div>
     </div>
   </div>
 </div>
-
-
