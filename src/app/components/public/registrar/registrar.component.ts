@@ -13,6 +13,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { ValidarNombreUsuarioRequest } from 'src/app/models/requests/validarNombreUsuarioRequest';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { CrearUsuarioRequest } from 'src/app/models/requests/crearUsuarioRequest';
+import { PerfilUsuarioVars } from '../../private/view/perfil-usuario/perfil-usuario-vars';
 
 @Component({
   selector: 'app-registrar',
@@ -40,7 +41,8 @@ export class RegistrarComponent implements OnInit {
     private router: Router,
     private tokenService: TokenService,
     private loginService: LoginService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    public perfilUsuarioVars: PerfilUsuarioVars
   ) { }
 
   ngOnInit(): void {
@@ -153,6 +155,7 @@ export class RegistrarComponent implements OnInit {
         nombreCompleto: this.loginResponse.nombreCompleto
       }
       localStorage.setItem("usuario", JSON.stringify(usuario));
+      this.perfilUsuarioVars.actualizarNombre();
       this.router.navigate(["intranet"]);
     }
   }

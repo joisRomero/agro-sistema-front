@@ -14,6 +14,7 @@ import { TokenRequest } from 'src/app/models/requests/tokenRequest';
 import { TokenService } from 'src/app/services/token.service';
 import { Usuario } from 'src/app/models/usuario';
 import * as CryptoJS from 'crypto-js';
+import { PerfilUsuarioVars } from '../../private/view/perfil-usuario/perfil-usuario-vars';
 
 @Component({
   selector: 'app-olvidado-clave',
@@ -50,6 +51,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
     public alertInformationService: GeneralAlertInformationVars,
     private loginService: LoginService,
     private tokenService: TokenService,
+    public perfilUsuarioVars: PerfilUsuarioVars
   ) { }
 
   ngOnInit(): void {
@@ -143,13 +145,10 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
       if(response.status == 200){
         this.usuario = response.body!.nombreUsuario;
         localStorage.clear();
-        localStorage.clear();
         let responseToken = await this.service.crearToken();
-        
         if (responseToken.status != 200){
           return 
         }
-
         localStorage.setItem('token', responseToken.body!.access_token);
         let responseLogin = await this.service.login();
 
@@ -167,6 +166,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
         this.alertInformationService.mostrar = true;
         this.alertInformationService.titulo = "Recuperar cuenta";
         this.alertInformationService.texto = "Se ha recuperado su cuenta.";
+        this.perfilUsuarioVars.actualizarNombre();
         this.router.navigate(["intranet"]);
       }
     }

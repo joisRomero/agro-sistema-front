@@ -47,11 +47,12 @@ export class LoginComponent implements OnInit {
 
   public async iniciarSesion(){
     localStorage.clear();
-
+    
     this.form.markAllAsTouched();
     if(this.form.valid){
       let responseToken = await this.services.crearToken();
       if (responseToken.status == 200){
+        localStorage.clear();
         localStorage.setItem('token', responseToken.body!.access_token);
         let responseLogin = await this.services.login();
         if (responseLogin.status == 200) {
