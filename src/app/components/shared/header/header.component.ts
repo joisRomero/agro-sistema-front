@@ -14,6 +14,7 @@ import { GeneralAlertInformationVars } from '../general-alert-information/genera
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { LayautService } from '../../private/layout/layaut.service';
 
 @Component({
   selector: 'app-header',
@@ -33,7 +34,8 @@ export class HeaderComponent implements OnInit {
     public perfilUsuarioVars: PerfilUsuarioVars,
     public invitacionService: InvitacionService,
     private alertInformationService: GeneralAlertInformationVars,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private layoutService: LayautService
   ) {
     this.connection = new HubConnectionBuilder()
       .withUrl(`${environment.apiUrl}/hubs/invitaciones`)
@@ -68,12 +70,14 @@ export class HeaderComponent implements OnInit {
   ObtenerInvitacionesHub(listaInvitaciones: ListarInvitacionesSociedadesResponse[]) {
     this.listaInvitaciones = [];
     this.listaInvitaciones = listaInvitaciones;
-    listaInvitaciones.forEach(element => {
-      this.toastService.info(`Tienes una nueva invitacion de ${element.nombreEmisor}`, "Invitación", {
+    if(listaInvitaciones.length > 0) {
+
+      this.toastService.info(`Tienes una nueva invitacion de ${listaInvitaciones.at(-1)?.nombreEmisor}`, "Invitación", {
         closeButton: true,
         positionClass: 'toast-bottom-right'
       })
-    });
+    }
+   
   }
 
   editarPerfil() {
@@ -110,6 +114,9 @@ export class HeaderComponent implements OnInit {
       this.alertInformationService.titulo = "Invitaciones a una sociedad";
       this.alertInformationService.texto = "Invitación aceptada con éxto.";
     },
+    desplegar: () => {
+      this.layoutService.mostrar = !this.layoutService.mostrar;
+    }
   }
 
   private service = {

@@ -14,7 +14,7 @@ export class LayoutVars {
     {
       nombre: "Mis campañas",
       path: "mis-campanias",
-      icono: "bi bi-house"
+      icono: "bi bi-ui-radios-grid"
     },
     {
       nombre: "Sociedades",
@@ -23,39 +23,42 @@ export class LayoutVars {
     },
     {
       nombre: "Agroquímicos",
-      icono: "bi bi-house",
-      menus: [
-        {
-          nombre: "Agroquímicos",
-          path: "agroquimico"
-        },
-        {
-          nombre: "Tipo de agroquímicos",
-          path: "tipo-agroquimicos"
-        },
-        {
-          nombre: "Compra de agroquímicos",
-          path: "compra-agroquimicos"
-        }
-      ]
+      icono: "bi bi-archive",
+      path: "agroquimico"
+
+      // menus: [
+      //   {
+      //     nombre: "Agroquímicos",
+      //     path: "agroquimico"
+      //   },
+      //   // {
+      //   //   nombre: "Tipo de agroquímicos",
+      //   //   path: "tipo-agroquimicos"
+      //   // },
+      //   // {
+      //   //   nombre: "Compra de agroquímicos",
+      //   //   path: "compra-agroquimicos"
+      //   // }
+      // ]
     },
     {
       nombre: "Abonos",
-      icono: "bi bi-house",
-      menus: [
-        {
-          nombre: "Abonos",
-          path: "abonos"
-        },
-        {
-          nombre: "Compra de abonos",
-          path: "compra-abonos"
-        }
-      ]
+      icono: "bi bi-bag",
+      path: "abonos"
+      // menus: [
+      //   {
+      //     nombre: "Abonos",
+      //     path: "abonos"
+      //   },
+      //   // {
+      //   //   nombre: "Compra de abonos",
+      //   //   path: "compra-abonos"
+      //   // }
+      // ]
     },
     {
       nombre: "Datos",
-      icono: "bi bi-house",
+      icono: "bi bi-database",
       menus: [
         {
           nombre: "Cultivos",

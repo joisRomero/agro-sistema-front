@@ -1,21 +1,8 @@
-<!-- <div style="background-color: #fafafa; height: 100vh;">
-  
-  <div class="contenedor">
-    <div>
-      
-    </div>
-    <div class="contenido">
-      <main class="ab">
-        <router-outlet></router-outlet>
-      </main>
-    </div>
-  </div>
-</div> -->
+<div [ngClass]="{'toggle-sidebar': !layoutService.mostrar}">
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <main id="main" class="main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
 
-
-<app-header></app-header>
-<app-sidebar></app-sidebar>
-<main id="main" class="main">
-
-  <router-outlet></router-outlet>
-</main>

@@ -1,1 +1,114 @@
-<p>abonos works!</p>
+<div class="pagetitle">
+  <h1>Abonos</h1>
+</div>
+
+<div class="card mt-2">
+  <div class="card-body">
+    <h5 class="card-title">Filtros</h5>
+    <div class="align-items-end mb-2 row">
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="nombre"
+        label="Nombre:"
+        class="col-md-3"
+        tipo="text"
+      ></app-general-input>
+      <div class="col-md-4 gap-1 mt-1">
+        <app-general-button
+          claseBoton="secondary"
+          label="Limpiar"
+          [esSecundario]="true"
+          class="col-12"
+          (click)="onClick.limpiar()"
+        ></app-general-button>
+        <app-general-button
+          claseBoton="primary"
+          label="Buscar"
+          class="col-12 ms-2"
+          (click)="buscar()"
+        ></app-general-button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-2">
+      <h5 class="card-title">Listado</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Nuevo"
+        (click)="onClick.agregar()"
+      ></app-general-button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemsTabla.data; let i = index">
+            <td class="ps-2" scope="row">{{ item.numero }}</td>
+            <td scope="row">{{ item.nombreAbono }}</td>
+            <td scope="row">{{ item.descripcion }}</td>
+            <td>
+              <div class="gap-2 d-flex">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-info dropdown-toggle btn-sm px-3"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Editar"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.editar(item)"
+                      >
+                      </app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Eliminar"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.eliminar(item)"
+                      >
+                      </app-general-button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-general-pagination
+      [paginaActual]="paginacionVars.paginaActual"
+      [totalPaginas]="paginacionVars.totalPaginas"
+      [totalFilas]="paginacionVars.totalFilas"
+      (eventChangePage)="paginacionVars.onChangePage($event)"
+      *ngIf="itemsTabla.data.length > 0"
+    ></app-general-pagination>
+    <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
+  </div>
+</div>
+
+<app-nuevo-editar-abono
+  *ngIf="servicioModal.mostrarModal"
+  [isEditar]="isEditar"
+  [item]="item"
+  (actualizo)="actualizarTabla()"
+></app-nuevo-editar-abono>
+
+<app-alert-eliminar-abono
+    *ngIf="servicioModalEliminar.mostrarModal"
+    [item]="item"
+    (elimino)="actualizarTabla()"
+  ></app-alert-eliminar-abono>

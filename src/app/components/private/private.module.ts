@@ -51,6 +51,10 @@ import { ModalNuevoEditarTipoActividadComponent } from './view/tipo-actividad/co
 import { AlertEliminarTipoActividadComponent } from './view/tipo-actividad/components/alert-eliminar-tipo-actividad/alert-eliminar-tipo-actividad.component';
 import { AlertEliminarGastosCampaniaComponent } from './view/gastos-campania/components/alert-eliminar-gastos-campania/alert-eliminar-gastos-campania.component';
 import { NuevoEditarGastosCampaniaComponent } from './view/gastos-campania/components/nuevo-editar-gastos-campania/nuevo-editar-gastos-campania.component';
+import { NuevoEditarAbonoComponent } from './view/abonos/components/nuevo-editar-abono/nuevo-editar-abono.component';
+import { AlertEliminarAbonoComponent } from './view/abonos/components/alert-eliminar-abono/alert-eliminar-abono.component';
+import { NuevoEditarAgroquimicoComponent } from './view/agroquimicos/components/nuevo-editar-agroquimico/nuevo-editar-agroquimico.component';
+import { AlertEliminarAgroquimicoComponent } from './view/agroquimicos/components/alert-eliminar-agroquimico/alert-eliminar-agroquimico.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +106,10 @@ import { NuevoEditarGastosCampaniaComponent } from './view/gastos-campania/compo
     AlertEliminarTipoActividadComponent,
     AlertEliminarGastosCampaniaComponent,
     NuevoEditarGastosCampaniaComponent,
+    NuevoEditarAbonoComponent,
+    AlertEliminarAbonoComponent,
+    NuevoEditarAgroquimicoComponent,
+    AlertEliminarAgroquimicoComponent,
   ],
   imports: [
     CommonModule,

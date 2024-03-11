@@ -1,4 +1,4 @@
-<div *ngIf="!nuevoEditarActividades.mostrarModal">
+
   <h5 class="card-title pt-0">Filtros</h5>
   <div class="align-items-end row">
     <app-general-select
@@ -6,20 +6,20 @@
       label="Actividad: "
       nombreControl="tipoActividad"
       [values]="valoresTipoActividad"
-      class="col-md-3"
+      class="col-12 col-md-3"
     ></app-general-select>
     <app-general-input
       [fGroup]="form"
       nombreControl="fechaActividad"
       label="Fecha: "
       tipo="date"
-      class="col-md-3"
+      class="col-12 col-md-3"
     ></app-general-input>
-    <div class="col-4 gap-1 mt-1">
+    <div class="col-md-4 gap-1 mt-1">
       <app-general-button
         claseBoton="secondary"
         label="Limpiar"
-        class="col-6"
+        class="col-12"
         [esSecundario]="true"
         [onClickButton]="click.limpiar"
       ></app-general-button>
@@ -27,7 +27,7 @@
         claseBoton="primary"
         label="Buscar"
         (click)="buscar()"
-        class="col-6 ms-2"
+        class="col-12 ms-2"
       ></app-general-button>
     </div>
   </div>
@@ -100,8 +100,10 @@
     ></app-general-pagination>
     <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
   </div>
-</div>
+
 
 <app-nuevo-editar-actividades
   *ngIf="nuevoEditarActividades.mostrarModal"
+  [idCampania]="idCampania"
+  (actualizo)="actualizarTabla()"
 ></app-nuevo-editar-actividades>

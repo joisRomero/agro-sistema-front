@@ -13,6 +13,7 @@ import { ObtenerTipoActividadPorUsuarioRequest } from '../models/requests/obtene
 import { ObtenerTipoActividadPorUsuarioResponse } from '../models/responses/obtenerTipoActividadPorUsuarioResponse';
 import { ObtenerTipoGastoPorUsuarioRequest } from '../models/requests/obtenerTipoGastoPorUsuarioRequest';
 import { ObtenerTipoGastoPorUsuarioResponse } from '../models/responses/obtenerTipoGastoPorUsuarioResponse';
+import { ObtenerTipoAgroquimicoResponse } from '../models/responses/obtenerTipoAgroquimicoResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,9 @@ export class CombosService {
 
   public obtenerTipoGastoPorUsuario(params: ObtenerTipoGastoPorUsuarioRequest): Observable<HttpResponse<ObtenerTipoGastoPorUsuarioResponse[]>> {
     return this.http.get<ObtenerTipoGastoPorUsuarioResponse[]>(`${this.url}/obtenerTipGastoPorUsuario`,  {observe: 'response', params: params as {}});
+  }
+
+  public obtenerTipoAgroquimico(): Observable<HttpResponse<ObtenerTipoAgroquimicoResponse[]>> {
+    return this.http.get<ObtenerTipoAgroquimicoResponse[]>(`${this.url}/obtenerTipoAgroquimico`,  {observe: 'response'});
   }
 }

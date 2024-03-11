@@ -10,7 +10,7 @@ export class ModalComponent implements OnInit {
   @Input() titulo: string = "";
   @Input() small: boolean = false;
   @Input() large: boolean = false;
-  @Input() estraLarge: boolean = false;
+  @Input() extraLarge: boolean = false;
   @Input() public cerrarModal?: () => void;
   public tamanio: number = 500;
 
@@ -26,7 +26,7 @@ export class ModalComponent implements OnInit {
       this.tamanio = 800;
     }
 
-    if(this.estraLarge) {
+    if(this.extraLarge) {
       this.tamanio = 1140;
     }
   }

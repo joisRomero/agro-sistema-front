@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NuevoEditarTrabajadorVars } from '../../../trabajador/components/nuevo-editar-trbajador/nuevo-editar-trabajador-vars';
 import { NuevoEditarGastosVars } from '../../../gastos/components/nuevo-editar-gastos/nuevo-editar-gastos-vars';
@@ -11,6 +11,9 @@ import { Usuario } from 'src/app/models/usuario';
 import { lastValueFrom } from 'rxjs';
 import { CombosService } from 'src/app/services/combos.service';
 import { GeneralSelectItem } from 'src/app/models/general-select';
+import { AgregarActividadTrabajadorRequest, GastoDTO, TrabajadorDTO } from 'src/app/models/requests/agregarActividadTrabajadorRequest';
+import { ActividadService } from 'src/app/services/actividad.service';
+import { GeneralAlertInformationVars } from 'src/app/components/shared/general-alert-information/general-alert-information.vars';
 
 @Component({
   selector: 'app-nuevo-editar-actividades',
@@ -21,6 +24,8 @@ export class NuevoEditarActividadesComponent implements OnInit {
 
   public form!: FormGroup;
   @Input() isEditarActividad: boolean = false;
+  @Input() idCampania: string = '';
+  @Output() actualizo = new EventEmitter();
   public isEditarTrabajador: boolean = false;
   public isEditarGasto: boolean = false;
   public trabajadores: Trabajador[] = [];
@@ -34,16 +39,22 @@ export class NuevoEditarActividadesComponent implements OnInit {
   public trabajadorItem!: Trabajador;
   public gastoItem!: Gasto;
   private idUsuarioStorage: number = parseInt((JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario);
+  private nombreUsuarioStorage: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
   public valoresTipoActividad: GeneralSelectItem[] = [];
   public verMensajeSinDatosTrabajadores: boolean = true;
   public verMensajeSinDatosGastos: boolean = true;
+  public listaTrabajadoresRequestDTO: TrabajadorDTO[] = [];
+  public listaGastosRequestDTO: GastoDTO[] = [];
+  public tituloModal: string = '';
 
   constructor(
     public fb: FormBuilder,
     public nuevoEditarTrabajadorVars: NuevoEditarTrabajadorVars,
     public nuevoEditarGastosVars: NuevoEditarGastosVars,
     public nuevoEditaractividades: NuevoEditarActividadVars,
-    public combosService: CombosService
+    public combosService: CombosService,
+    public actividadService: ActividadService,
+    private alertInformationService: GeneralAlertInformationVars
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +68,11 @@ export class NuevoEditarActividadesComponent implements OnInit {
       fecha: ["", Validators.required],
       descripcion: [""]
     });
+    if(this.isEditarActividad) {
+      this.tituloModal = "Editar actividad";
+    } else {
+      this.tituloModal = "Nueva actividad";
+    }
   }
 
   iniciarCombos() {
@@ -156,7 +172,11 @@ export class NuevoEditarActividadesComponent implements OnInit {
     if(this.isEditarActividad){
 
     } else {
-
+      let response = await this.service.agregarActividad();
+      this.nuevoEditaractividades.mostrarModal = false;
+      this.alertInformationService.titulo = "Actividad";
+      this.alertInformationService.texto = "Actividad agregado.";
+      this.actualizo.emit()
     }
   }
 
@@ -201,6 +221,9 @@ export class NuevoEditarActividadesComponent implements OnInit {
       this.isEditarGasto = true;
       this.nuevoEditarGastosVars.mostrarModal = true;
       this.gastoItem = gasto;
+    },
+    cerrarModal: () => {
+      this.nuevoEditaractividades.mostrarModal = false;
     }
   }
 
@@ -210,6 +233,42 @@ export class NuevoEditarActividadesComponent implements OnInit {
         idUsuario:  this.idUsuarioStorage
       }
       return lastValueFrom(this.combosService.obtenerTipoActividadPorUsuario(params));
+    },
+    agregarActividad: () => {
+      this.listaTrabajadoresRequestDTO = [];
+      this.trabajadores.forEach(item => {
+        let ab: TrabajadorDTO = {
+          descripcionTrabajador: item.descripcion,
+          cantidadTrabajador: item.cantidad,
+          costoUnitario: item.costoUnitario,
+          costoTotal: item.costoTotal,
+          idTipoTrabajador: item.idTipoTrabajador,
+        }
+        this.listaTrabajadoresRequestDTO.push(ab);
+      });
+
+      this.listaGastosRequestDTO = [];
+      this.gastos.forEach(item => {
+        let cd: GastoDTO = {
+          descripcionGasto: item.descripcion,
+          cantidadGasto: item.cantidad,
+          costoUnitario: item.costoUnitario,
+          costoTotal: item.costoTotal,
+          idTipoGasto: item.idTipoGasto
+        };
+        this.listaGastosRequestDTO.push(cd);
+      });
+
+      let params: AgregarActividadTrabajadorRequest = {
+        fechaActividad: this.form.controls["fecha"].value,
+        descripcionActividad: this.form.controls["descripcion"].value.trim(),
+        idTipoActividad: this.form.controls["actividad"].value,
+        idCampania: parseInt(this.idCampania),
+        usuarioInserta: this.nombreUsuarioStorage,
+        listaTrabajadores: this.listaTrabajadoresRequestDTO,
+        listaGastos: this.listaGastosRequestDTO
+      };
+      return lastValueFrom(this.actividadService.agregarActividadTrabajadorGastos(params));
     }
   }
 

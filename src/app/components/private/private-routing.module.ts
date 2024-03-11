@@ -70,30 +70,30 @@ export const privateModuleRoutes: Routes = [
         component: AgroquimicosComponent,
         canActivate: [LoginGuard]
       },
-      {
-        path: 'tipo-agroquimicos',
-        title: 'Tipo de agroquímicos',
-        component: TipoAgroquimicoComponent,
-        canActivate: [LoginGuard]
-      },
-      {
-        path: 'compra-agroquimicos',
-        title: 'Compra de agroquímicos',
-        component: CompraAgroquimicoComponent,
-        canActivate: [LoginGuard]
-      },
+      // {
+      //   path: 'tipo-agroquimicos',
+      //   title: 'Tipo de agroquímicos',
+      //   component: TipoAgroquimicoComponent,
+      //   canActivate: [LoginGuard]
+      // },
+      // {
+      //   path: 'compra-agroquimicos',
+      //   title: 'Compra de agroquímicos',
+      //   component: CompraAgroquimicoComponent,
+      //   canActivate: [LoginGuard]
+      // },
       {
         path: 'abonos',
         title: 'Abonos',
         component: AbonosComponent,
         canActivate: [LoginGuard]
       },
-      {
-        path: 'compra-abonos',
-        title: 'Abonos',
-        component: CompraAbonosComponent,
-        canActivate: [LoginGuard]
-      },
+      // {
+      //   path: 'compra-abonos',
+      //   title: 'Abonos',
+      //   component: CompraAbonosComponent,
+      //   canActivate: [LoginGuard]
+      // },
       {
         path: 'cultivos',
         title: 'Cultivos',

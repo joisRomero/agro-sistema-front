@@ -23,7 +23,7 @@ export class GastosCampaniaComponent implements OnInit {
   public nombre: string = '';
   public itemsTabla: ListaPaginaGastoDetalleResponse = new ListaPaginaGastoDetalleResponse();
   public gastoDetalleItem!: ListaPaginaGastoDetalleResponseItem;
-  public listaGastoDetalles!: ListaPaginaGastoDetalleRequest;
+  public listaGastoDetalles!: ListaPaginaGastoDetalleRequest; //
   public verMensajeSinDatos: boolean = false;
   @Input() idCampania: string = '';
   public valoresTipoGasto: GeneralSelectItem[] = [];

@@ -7,81 +7,6 @@
   <h1>Campaña: {{ nombreCampania }}</h1>
 </div>
 
-<!-- <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link active"
-      id="actividades-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#actividades"
-      type="button"
-      role="tab"
-      aria-controls="actividades"
-      aria-selected="true"
-    >
-      Actividades
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="gastos-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#gastos"
-      type="button"
-      role="tab"
-      aria-controls="gastos"
-      aria-selected="false"
-    >
-      Gastos
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="cosechas-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#cosechas"
-      type="button"
-      role="tab"
-      aria-controls="cosechas"
-      aria-selected="false"
-    >
-      Cosechas
-    </button>
-  </li>
-</ul>
-
-<div class="tab-content" id="myTabContent">
-  <div
-    class="tab-pane show active"
-    id="actividades"
-    role="tabpanel"
-    aria-labelledby="actividades-tab"
-  >
-    <app-actividades-campania
-      [idCampania]="idCampania"
-    ></app-actividades-campania>
-  </div>
-  <div
-    class="tab-pane"
-    id="gastos"
-    role="tabpanel"
-    aria-labelledby="gastos-tab"
-  >
-    <app-gastos-campania [idCampania]="idCampania"></app-gastos-campania>
-  </div>
-  <div
-    class="tab-pane"
-    id="cosechas"
-    role="tabpanel"
-    aria-labelledby="cosechas-tab"
-  >
-    <app-cosechas-campania [idCampania]="idCampania"></app-cosechas-campania>
-  </div>
-</div> -->
-
-
 <div class="card">
   <div class="card-body pt-3">
     <!-- Bordered Tabs -->
@@ -92,7 +17,7 @@
           data-bs-toggle="tab"
           data-bs-target="#profile-overview"
         >
-        Actividades
+          Actividades
         </button>
       </li>
 
@@ -102,7 +27,7 @@
           data-bs-toggle="tab"
           data-bs-target="#profile-edit"
         >
-        Gastos
+          Gastos
         </button>
       </li>
 
@@ -122,15 +47,17 @@
         id="profile-overview"
       >
         <app-actividades-campania
-        [idCampania]="idCampania"
-      ></app-actividades-campania>
+          [idCampania]="idCampania"
+        ></app-actividades-campania>
       </div>
 
       <div class="tab-pane fade pt-2" id="profile-edit">
         <app-gastos-campania [idCampania]="idCampania"></app-gastos-campania>
       </div>
       <div class="tab-pane fade pt-2" id="cosechas">
-        <app-cosechas-campania [idCampania]="idCampania"></app-cosechas-campania>
+        <app-cosechas-campania
+          [idCampania]="idCampania"
+        ></app-cosechas-campania>
       </div>
     </div>
   </div>

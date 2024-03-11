@@ -1,0 +1,38 @@
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal">
+    <form class="w-100" [formGroup]="form!">
+      <div class="d-flex flex-wrap">
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="nombre"
+            label="Nombre: "
+            [mensajeError]="mensajesError.nombre"
+            class="px-2 py-1 col-12 col-md-12 col-sm-12"
+            tipo="text"
+        ></app-general-input>  
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="descripcion"
+            label="Descripción: "
+            class="px-2 py-1 col-12 col-md-12 col-sm-12"
+            tipo="area"
+            [filas]="2"
+        ></app-general-input>  
+      </div>
+    </form>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cerrarModal"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        class="m-1"
+        (click)="guardar()"
+      ></app-general-button>
+    </div>
+  </app-modal>
+  

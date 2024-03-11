@@ -1,6 +1,5 @@
-<h5 class="m-0 my-3">Nueva Actividad</h5>
-<hr>
 
+<app-modal [titulo]="tituloModal" [extraLarge]="true" [cerrarModal]="onClick.cerrarModal">
 <form class="w-100" [formGroup]="form!">
   <div class="d-flex flex-wrap">
     <app-general-select
@@ -9,7 +8,6 @@
       nombreControl="actividad"
       label="Actividad: "
       [mensajeError]="mensajesError.actividad"
-      
       [values]="valoresTipoActividad"
     ></app-general-select>
     <app-general-input
@@ -33,15 +31,13 @@
 
   
   <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="m-0">Información de trabajadores</h5>
+    <h5 class="card-title pt-0">Información de trabajadores</h5>
     <app-general-button
       claseBoton="primary"
       label="Agregar"
-      
       [onClickButton]="onClick.agregarTrabajador"
     ></app-general-button>
   </div>
-  <hr>
 
   <div class="mt-2">
     <div class="table-responsive">
@@ -111,7 +107,7 @@
   </div>
 
   <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="m-0">Información de gastos</h5>
+    <h5 class="card-title pt-0">Información de gastos</h5>
     <app-general-button
       claseBoton="primary"
       label="Agregar"
@@ -119,7 +115,6 @@
       [onClickButton]="onClick.agregarGasto"
     ></app-general-button>
   </div>
-  <hr>
 
   <div class="mt-2">
     <div class="table-responsive">
@@ -187,27 +182,27 @@
         ></app-general-sin-datos>
     </div>
   </div>
-
+</form>
+<div footer>
   <div class="d-flex justify-content-end mt-3">
     <app-general-button
-        claseBoton="secondary"
-        label="Cancelar"
-        
-        [esSecundario]="true"
-        class="m-1"
-        [onClickButton]="onClick.cancelar"
-      ></app-general-button>
-      <app-general-button
-        claseBoton="primary"
-        label="Guardar"
-        
-        class="m-1"
-        (click)="guardar()" 
-      ></app-general-button>
+    claseBoton="secondary"
+    label="Cancelar"
+    [esSecundario]="true"
+    class="m-1"
+    [onClickButton]="onClick.cerrarModal"
+    ></app-general-button>
+    <app-general-button
+    claseBoton="primary"
+    label="Guardar"
+    class="m-1"
+    (click)="guardar()" 
+    ></app-general-button>
   </div>
+  
+</div>
 
-</form>
-
+</app-modal>
 <app-nuevo-editar-trbajador
   *ngIf="nuevoEditarTrabajadorVars.mostrarModal"
   [isEditar]="isEditarTrabajador"
