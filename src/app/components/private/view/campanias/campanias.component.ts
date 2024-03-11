@@ -79,6 +79,9 @@ export class CampaniasComponent implements OnInit {
     buscar: () => {
       this.buscar();
     },
+    limpiar: () => {
+      this.form.controls["nombre"].setValue("");
+    },
     verMas: (item: ListaPaginaCampaniasUsuarioResponseItem) => {
       this.router.navigate(["intranet/mis-campanias/ver-detalle-campania",
                             item.idCampania.toString()]);

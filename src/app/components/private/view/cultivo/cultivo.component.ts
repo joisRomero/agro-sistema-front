@@ -1,14 +1,10 @@
 import { ListaPaginadaCultivosRequest } from './../../../../models/requests/listaPaginadaCultivosRequest';
-import { Cultivo } from './../../../../models/cultivo';
-import { IdCultivo } from './../../../../models/id-cultivo';
 import { AlertEliminarService } from './components/alert-eliminar/alert-eliminar.service';
-import { ListaCultivosResponse } from './../../../../models/responses/lista-cultivos-response';
 import { ModalNuevoEditarCultivoService } from './components/modal-nuevo-editar-cultivo/modal-nuevo-editar-cultivo.service';
 import { Component, OnInit } from '@angular/core';
 import { CultivoService } from 'src/app/services/cultivo.service';
 import { lastValueFrom } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ListaCultivosRequest } from 'src/app/models/requests/listaCultivosRequest';
 import { Usuario } from 'src/app/models/usuario';
 import { Paginacion } from 'src/app/models/paginacion';
 import { ListaPaginadaCultivosResponse } from 'src/app/models/responses/listaPaginadaCultivosResponse';
@@ -98,6 +94,9 @@ export class CultivoComponent implements OnInit {
       this.isEditar = false;
       this.nombre = 'nuevo'
       this.modalNuevoEditarCultivoService.mostrarModal = true;
+    },
+    limpiar: () => {
+      this.form.controls["nombre"].setValue("");
     },
     editarCultivo: async (editItem: ListaPaginadaCultivosResponseItem) => {
       this.cultivoItem = editItem

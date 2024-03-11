@@ -18,6 +18,7 @@ import { GeneralPaginationComponent } from './general-pagination/general-paginat
 import { GeneralSinDatosComponent } from './general-sin-datos/general-sin-datos.component';
 import { GeneralAlertErrorComponent } from './general-alert-error/general-alert-error.component';
 import { LoaderComponent } from './loader/loader.component';
+import { GeneralToastComponent } from './general-toast/general-toast.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { LoaderComponent } from './loader/loader.component';
     GeneralSinDatosComponent,
     GeneralAlertErrorComponent,
     LoaderComponent,
+    GeneralToastComponent,
   ],
   imports: [
     CommonModule,

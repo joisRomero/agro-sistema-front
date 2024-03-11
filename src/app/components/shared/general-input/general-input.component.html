@@ -3,7 +3,7 @@
   <span *ngIf="esObligatorio" style="color: red"> {{ " *" }} </span>
   <input
     *ngIf="tipo != 'area'"
-    class="form-control form-control-sm"
+    class="form-control"
     [id]="nombreControl"
     type="{{ tipo }}"
     [formControl]="control"

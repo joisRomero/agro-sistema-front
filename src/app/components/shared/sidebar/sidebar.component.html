@@ -1,12 +1,10 @@
-<div class="offcanvas-md offcanvas-start canvas" tabindex="-1" id="menuDesplegable" aria-labelledby="offcanvasExampleLabel">
+<!-- <div class="offcanvas-md offcanvas-start canvas" tabindex="-1" id="menuDesplegable" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header pt-2 ps-2 pb-2">
     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menú</h5>
   </div>
   <div class="offcanvas-body">
     <nav class="sidebar pt-2 ">
-      <!-- <div class="px-3">
-        <span class="h3">AgroSistema</span>
-      </div> -->
+
       <ul class="lista">
         <li class="lista-item"
             *ngFor="let item of items"
@@ -31,4 +29,45 @@
   </div>
 </div>
 
+ -->
 
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item " *ngFor="let item of items">
+      <a
+        class="nav-link collapsed"
+        [routerLink]="item.path!"
+        *ngIf="item.menus === undefined"
+        routerLinkActive="activo"
+      >
+        <i [ngClass]="item.icono"></i>
+        <span>{{ item.nombre }}</span>
+      </a>
+
+      <a
+        class="nav-link collapsed"
+        attr.data-bs-target="#{{ item.nombre }}"
+        data-bs-toggle="collapse"
+        *ngIf="item.menus != undefined"
+      >
+        <i [ngClass]="item.icono"></i><span>{{ item.nombre }}</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        [id]="item.nombre"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+        *ngIf="item.menus != undefined"
+      >
+        <li *ngFor="let subItem of item.menus">
+          <a [routerLink]="[subItem.path!]" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>{{ subItem.nombre }}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+<!-- End Sidebar-->

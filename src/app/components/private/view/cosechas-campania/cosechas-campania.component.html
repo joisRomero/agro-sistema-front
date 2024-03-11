@@ -1,86 +1,86 @@
-<div class="d-flex justify-content-between mt-3 align-items-center">
-  <h5 class="m-0">Cosechas</h5>
+<!-- <h5 class="card-title pt-0">Filtros</h5> -->
+
+<div class="d-flex justify-content-between align-items-center mt-2">
+  <h5 class="card-title">Listado</h5>
   <app-general-button
     claseBoton="primary"
     label="Nuevo"
-    [esSmall]="true"
     (click)="onClick.nuevaCosecha()"
   ></app-general-button>
 </div>
 
-<div class="card mt-2">
-  <div class="card-body p-0 table-responsive">
-    <table class="table table-sm mb-0 table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Nro.</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of itemsTablaCosecha.data">
-          <td class="ps-2" scope="row">{{ item.numero }}</td>
-          <td scope="row">{{ item.fecha }}</td>
-          <td scope="row">{{ item.descripcion }}</td>
-          <td>
-            <div class="gap-2 d-flex">
-              <div class="dropdown">
-                <button
-                  class="btn btn-info dropdown-toggle btn-sm px-3"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-three-dots-vertical"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <app-general-button
-                      claseBoton="dropdown-item"
-                      label="Agregar detalle"
-                      [sinClasesDeBoton]="true"
-                      (click)="onClick.nuevoDetalleCosecha()"
-                    ></app-general-button>
-                    <app-general-button
-                      claseBoton="dropdown-item"
-                      label="Ver detalle"
-                      [sinClasesDeBoton]="true"
-                      (click)="onClick.verDetalleCosecha()"
-                    ></app-general-button>
-                    <app-general-button
-                      claseBoton="dropdown-item"
-                      label="Editar"
-                      [sinClasesDeBoton]="true"
-                      (click)="onClick.editarCosecha()"
-                    ></app-general-button>
-                    <app-general-button
-                      claseBoton="dropdown-item"
-                      label="Eliminar"
-                      [sinClasesDeBoton]="true"
-                      (click)="onClick.eliminarCosecha()"
-                    ></app-general-button>
-                  </li>
-                </ul>
-              </div>
+<div class="table-responsive">
+  <table class="table table-hover table-sm mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Nro.</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of itemsTablaCosecha.data">
+        <td class="ps-2" scope="row">{{ item.numero }}</td>
+        <td scope="row">{{ item.fecha }}</td>
+        <td scope="row">{{ item.descripcion }}</td>
+        <td>
+          <div class="gap-2 d-flex">
+            <div class="dropdown">
+              <button
+                class="btn btn-info dropdown-toggle btn-sm px-3"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <app-general-button
+                    claseBoton="dropdown-item"
+                    label="Agregar detalle"
+                    [sinClasesDeBoton]="true"
+                    (click)="onClick.nuevoDetalleCosecha()"
+                  ></app-general-button>
+                  <app-general-button
+                    claseBoton="dropdown-item"
+                    label="Ver detalle"
+                    [sinClasesDeBoton]="true"
+                    (click)="onClick.verDetalleCosecha()"
+                  ></app-general-button>
+                  <app-general-button
+                    claseBoton="dropdown-item"
+                    label="Editar"
+                    [sinClasesDeBoton]="true"
+                    (click)="onClick.editarCosecha()"
+                  ></app-general-button>
+                  <app-general-button
+                    claseBoton="dropdown-item"
+                    label="Eliminar"
+                    [sinClasesDeBoton]="true"
+                    (click)="onClick.eliminarCosecha()"
+                  ></app-general-button>
+                </li>
+              </ul>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <app-general-pagination
-      [paginaActual]="paginacionVarsCosechas.paginaActual"
-      [totalPaginas]="paginacionVarsCosechas.totalPaginas"
-      [totalFilas]="paginacionVarsCosechas.totalFilas"
-      (eventChangePage)="paginacionVarsCosechas.onChangePage($event)"
-      *ngIf="itemsTablaCosecha.data.length > 0"
-    ></app-general-pagination>
-    <app-general-sin-datos
-      *ngIf="verMensajeSinDatosCosecha"
-    ></app-general-sin-datos>
-  </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+<app-general-pagination
+  [paginaActual]="paginacionVarsCosechas.paginaActual"
+  [totalPaginas]="paginacionVarsCosechas.totalPaginas"
+  [totalFilas]="paginacionVarsCosechas.totalFilas"
+  (eventChangePage)="paginacionVarsCosechas.onChangePage($event)"
+  *ngIf="itemsTablaCosecha.data.length > 0"
+></app-general-pagination>
+<app-general-sin-datos
+  *ngIf="verMensajeSinDatosCosecha"
+></app-general-sin-datos>
+
 <app-nuevo-cosecha
   *ngIf="modalNuevoCosecha.mostrarModal"
   [esEditar]="esEditarNuevoCosecha"

@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './components/shared/shared.module';
 import { HeaderInterceptor } from './interceptors/header.interceptor';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
-
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +18,9 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },

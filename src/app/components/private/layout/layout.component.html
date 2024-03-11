@@ -1,14 +1,21 @@
-<div style="background-color: #fafafa; height: 100vh;">
-  <app-header></app-header>
+<!-- <div style="background-color: #fafafa; height: 100vh;">
+  
   <div class="contenedor">
     <div>
-      <app-sidebar></app-sidebar>
+      
     </div>
     <div class="contenido">
-      <!-- <app-header></app-header> -->
       <main class="ab">
         <router-outlet></router-outlet>
       </main>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<main id="main" class="main">
+
+  <router-outlet></router-outlet>
+</main>

@@ -1,51 +1,54 @@
-<div class="d-flex flex-column h-100">
-  <div class="d-flex align-items-center">
-    <app-general-button
-      claseBoton="light"
-      nombreIcono="bi bi-arrow-left"
-      (click) = "onClick.irAtras()"
-    ></app-general-button>
-    <h4 class="m-0 ps-2">Sociedad: {{nombreSociedad}}</h4>
-  </div>
+<div class="pagetitle d-flex align-items-center">
+  <app-general-button
+    claseBoton="light"
+    nombreIcono="bi bi-arrow-left"
+    (click)="onClick.irAtras()"
+  ></app-general-button>
+  <h1>Sociedad: {{ nombreSociedad }}</h1>
+</div>
 
-  <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link active" 
-        id="campanias-tab" 
-        data-bs-toggle="tab" 
-        data-bs-target="#campanias" 
-        type="button" 
-        role="tab" 
-        aria-controls="campanias" 
-        aria-selected="true"
-      >Campañas</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        id="integrantes-tab" 
-        data-bs-toggle="tab" 
-        data-bs-target="#integrantes" 
-        type="button" 
-        role="tab" 
-        aria-controls="integrantes" 
-        aria-selected="false"
-      >Integrantes</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane  show active" id="campanias" role="tabpanel" aria-labelledby="campanias-tab">
-      <app-campania-sociedad
-        [idSociedad]="idSociedad"
-        [esAdministrador]="esAdministrador"
-      ></app-campania-sociedad>
+<div class="card">
+  <div class="card-body pt-3">
+    <!-- Bordered Tabs -->
+    <ul class="nav nav-tabs nav-tabs-bordered">
+      <li class="nav-item">
+        <button
+          class="nav-link active"
+          data-bs-toggle="tab"
+          data-bs-target="#profile-overview"
+        >
+          Campañas
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button
+          class="nav-link"
+          data-bs-toggle="tab"
+          data-bs-target="#profile-edit"
+        >
+          Integrantes
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content pt-2">
+      <div
+        class="tab-pane fade show active profile-overview mt-2"
+        id="profile-overview"
+      >
+        <app-campania-sociedad
+          [idSociedad]="idSociedad"
+          [esAdministrador]="esAdministrador"
+        ></app-campania-sociedad>
+      </div>
+
+      <div class="tab-pane fade pt-2" id="profile-edit">
+        <app-integrantes-sociedad
+          [idSociedad]="idSociedad"
+          [esAdministrador]="esAdministrador"
+        ></app-integrantes-sociedad>
+      </div>
     </div>
-    <div class="tab-pane " id="integrantes" role="tabpanel" aria-labelledby="integrantes-tab">
-      <app-integrantes-sociedad
-        [idSociedad]="idSociedad"
-        [esAdministrador]="esAdministrador"
-      ></app-integrantes-sociedad>
-    </div>
+    <!-- End Bordered Tabs -->
   </div>
 </div>

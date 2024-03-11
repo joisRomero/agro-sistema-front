@@ -1,96 +1,116 @@
-<div class="d-flex flex-column h-100">
+<div class="pagetitle">
+  <h1>Sociedades</h1>
+</div>
 
-  <div class="d-flex justify-content-between align-items-center">
-    <h4 class="m-0">Sociedades</h4>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Filtros</h5>
+    <div class="align-items-end mb-2 row">
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="nombre"
+        class="col-md-3"
+        label="Nombre:"
+        tipo="text"
+      ></app-general-input>
+      <div class="col-md-4 gap-1 mt-1">
+        <app-general-button
+          claseBoton="secondary"
+          label="Limpiar"
+          [esSecundario]="true"
+          class="col-12"
+          (click)="onClick.limpiar()"
+        ></app-general-button>
+        <app-general-button
+          claseBoton="primary"
+          label="Buscar"
+          class="col-12 ms-2"
+          (click)="onClick.buscar()"
+        ></app-general-button>
+      </div>
+    </div>
 
-    <app-general-button
-    claseBoton="primary"
-    label="Nuevo"
-    [esSmall]="true"
-    (click) = "onClick.nuevaSociedad()"
-    ></app-general-button>
-  </div>
+    <div class="d-flex justify-content-between align-items-center mt-2">
+      <h5 class="card-title">Listado</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Nuevo"
+        (click)="onClick.nuevaSociedad()"
+      ></app-general-button>
+    </div>
 
-  <div class="row p-0 m-0">
-    <app-general-input
-    [fGroup]="form"
-    nombreControl="nombre"
-    class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
-    tipo="text"
-    placeholder="Buscar por nombre"
-    nombreIcono="bi-search"
-    [onClickButton]="onClick.buscar"
-    (keyup.enter)="onClick.buscar()"
-    ></app-general-input>
-  </div>
-
-  <div class="card mt-2">
-    <div class="card-body p-0 table-responsive">
-      <table class="table table-sm mb-0 table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Nro.</th>
-            <th scope="col">Nombre</th>
-            <th scope="col"></th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of itemsTabla.data">
-            <td class="ps-2" scope="row">{{ item.numero }}</td>
-            <td scope="row">{{ item.nombre }}</td>
-            <td>
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Nro.</th>
+          <th scope="col">Nombre</th>
+          <th scope="col"></th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itemsTabla.data">
+          <td class="ps-2" scope="row">{{ item.numero }}</td>
+          <td scope="row">{{ item.nombre }}</td>
+          <td>
             <span *ngIf="item.esAdministrador" class="badge bg-success"
               >Administrador</span
             >
           </td>
-            <td scope="row">
-              <div class="gap-2 d-flex">
-                <div class="dropdown">
-                  <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"></i>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <app-general-button
-                          claseBoton="dropdown-item"
-                          label="Ver más"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.verMas(item)"
-                        ></app-general-button>
-                        <app-general-button
-                          *ngIf="item.esAdministrador"
-                          claseBoton="dropdown-item"
-                          label="Editar"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.editarSociedad(item)">
-                        </app-general-button>
-                        <app-general-button
-                          *ngIf="item.esAdministrador"
-                          claseBoton="dropdown-item"
-                          label="Eliminar"
-                          [sinClasesDeBoton]="true"
-                          (click)="onClick.eliminarSociedad(item.idSociedad)">
-                        </app-general-button>
-                      </li>
-                  </ul>
-                </div>
+          <td scope="row">
+            <div class="gap-2 d-flex">
+              <div class="dropdown">
+                <button
+                  class="btn btn-info dropdown-toggle btn-sm px-3"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <app-general-button
+                      claseBoton="dropdown-item"
+                      label="Ver más"
+                      [sinClasesDeBoton]="true"
+                      (click)="onClick.verMas(item)"
+                    ></app-general-button>
+                    <app-general-button
+                      *ngIf="item.esAdministrador"
+                      claseBoton="dropdown-item"
+                      label="Editar"
+                      [sinClasesDeBoton]="true"
+                      (click)="onClick.editarSociedad(item)"
+                    >
+                    </app-general-button>
+                    <app-general-button
+                      *ngIf="item.esAdministrador"
+                      claseBoton="dropdown-item"
+                      label="Eliminar"
+                      [sinClasesDeBoton]="true"
+                      (click)="onClick.eliminarSociedad(item.idSociedad)"
+                    >
+                    </app-general-button>
+                  </li>
+                </ul>
               </div>
-            </td>
-          </tr>
-        </tbody>
+            </div>
+          </td>
+        </tr>
+      </tbody>
       </table>
-      <app-general-pagination
-        [paginaActual]="paginacionVars.paginaActual"
-        [totalPaginas]="paginacionVars.totalPaginas"
-        [totalFilas]="paginacionVars.totalFilas"
-        (eventChangePage)="paginacionVars.onChangePage($event)"
-        *ngIf="itemsTabla.data.length > 0"
-      ></app-general-pagination>
-      <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
-
     </div>
+
+    <app-general-pagination
+      [paginaActual]="paginacionVars.paginaActual"
+      [totalPaginas]="paginacionVars.totalPaginas"
+      [totalFilas]="paginacionVars.totalFilas"
+      (eventChangePage)="paginacionVars.onChangePage($event)"
+      *ngIf="itemsTabla.data.length > 0"
+    ></app-general-pagination>
+    <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
   </div>
 </div>
 
