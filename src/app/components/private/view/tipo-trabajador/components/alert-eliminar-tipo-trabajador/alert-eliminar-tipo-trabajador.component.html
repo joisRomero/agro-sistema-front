@@ -1,5 +1,5 @@
-<app-general-alert titulo="Tipo de actividad" [cerrarAlert]="onClick.cerrarAlert">
-  <p class="fw-normal mb-0">¿Está seguro de querer eliminar el tipo de actividad?</p>
+<app-general-alert titulo="Tipo de trabajador" [cerrarAlert]="onClick.cerrarAlert">
+  <p class="fw-normal mb-0">¿Está seguro de querer eliminar el tipo de trabajador?</p>
   <div footer>
     <app-general-button
       claseBoton="secondary"
@@ -14,7 +14,7 @@
       label="Eliminar"
       [esSmall]="true"
       class="m-1"
-      (click)="onClick.eliminarTipoActividad()"
+      (click)="onClick.eliminarTipoTrabajador()"
     ></app-general-button>
   </div>
 </app-general-alert>

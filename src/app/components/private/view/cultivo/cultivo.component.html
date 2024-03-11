@@ -1,4 +1,3 @@
-
 <div class="pagetitle">
   <h1>Cultivos</h1>
 </div>
@@ -39,49 +38,55 @@
       ></app-general-button>
     </div>
 
-  <div class="table-responsive">  
-    <table class="table table-hover table-sm mt-3">
-      <thead>
-        <tr>
-          <th scope="col">Nro.</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of itemsTabla.data; let i = index">
-          <td class="ps-2" scope="row">{{ item.correlativo }}</td>
-          <td scope="row">{{ item.nombreCultivo }}</td>
-          <td>
-            <div class="gap-2 d-flex">
-              <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i class="bi bi-three-dots-vertical"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemsTabla.data; let i = index">
+            <td class="ps-2" scope="row">{{ item.correlativo }}</td>
+            <td scope="row">{{ item.nombreCultivo }}</td>
+            <td>
+              <div class="gap-2 d-flex">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-info dropdown-toggle btn-sm px-3"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <app-general-button
                         claseBoton="dropdown-item"
                         label="Editar"
                         [sinClasesDeBoton]="true"
-                        (click)="onClick.editarCultivo(item)">
+                        (click)="onClick.editarCultivo(item)"
+                      >
                       </app-general-button>
                       <app-general-button
                         claseBoton="dropdown-item"
                         label="Eliminar"
                         [sinClasesDeBoton]="true"
-                        (click)="onClick.eliminarCultivo(item.idCultivo)">
+                        (click)="onClick.eliminarCultivo(item.idCultivo)"
+                      >
                       </app-general-button>
                     </li>
-                </ul>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <app-general-pagination
       [paginaActual]="paginacionVars.paginaActual"
       [totalPaginas]="paginacionVars.totalPaginas"
@@ -92,7 +97,6 @@
     <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
   </div>
 </div>
-
 
 <app-modal-nuevo-editar-cultivo
   *ngIf="modalNuevoEditarCultivoService.mostrarModal"

@@ -65,15 +65,15 @@ export class LayoutVars {
           path: 'cultivos',
         },
         {
-          nombre: "Tipo actividad",
+          nombre: "Tipo de actividad",
           path: 'tipo-actividad',
         },
         {
-          nombre: "Tipo trabajador",
+          nombre: "Tipo de trabajador",
           path: 'tipo-trabajador',
         },
         {
-          nombre: "Tipo gasto",
+          nombre: "Tipo de gasto",
           path: 'tipo-gasto',
         },
       ]

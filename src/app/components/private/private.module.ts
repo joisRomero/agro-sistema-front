@@ -51,6 +51,10 @@ import { ModalNuevoEditarTipoActividadComponent } from './view/tipo-actividad/co
 import { AlertEliminarTipoActividadComponent } from './view/tipo-actividad/components/alert-eliminar-tipo-actividad/alert-eliminar-tipo-actividad.component';
 import { AlertEliminarGastosCampaniaComponent } from './view/gastos-campania/components/alert-eliminar-gastos-campania/alert-eliminar-gastos-campania.component';
 import { NuevoEditarGastosCampaniaComponent } from './view/gastos-campania/components/nuevo-editar-gastos-campania/nuevo-editar-gastos-campania.component';
+import { ModalNuevoEditarTipoGastoComponent } from './view/tipo-gasto/components/modal-nuevo-editar-tipo-gasto/modal-nuevo-editar-tipo-gasto.component';
+import { AlertEliminarTipoGastoComponent } from './view/tipo-gasto/components/alert-eliminar-tipo-gasto/alert-eliminar-tipo-gasto.component';
+import { ModalNuevoEditarTipoTrabajadorComponent } from './view/tipo-trabajador/components/modal-nuevo-editar-tipo-trabajador/modal-nuevo-editar-tipo-trabajador.component';
+import { AlertEliminarTipoTrabajadorComponent } from './view/tipo-trabajador/components/alert-eliminar-tipo-trabajador/alert-eliminar-tipo-trabajador.component';
 import { NuevoEditarAbonoComponent } from './view/abonos/components/nuevo-editar-abono/nuevo-editar-abono.component';
 import { AlertEliminarAbonoComponent } from './view/abonos/components/alert-eliminar-abono/alert-eliminar-abono.component';
 import { NuevoEditarAgroquimicoComponent } from './view/agroquimicos/components/nuevo-editar-agroquimico/nuevo-editar-agroquimico.component';
@@ -110,6 +114,10 @@ import { AlertEliminarAgroquimicoComponent } from './view/agroquimicos/component
     AlertEliminarAbonoComponent,
     NuevoEditarAgroquimicoComponent,
     AlertEliminarAgroquimicoComponent,
+    ModalNuevoEditarTipoGastoComponent,
+    AlertEliminarTipoGastoComponent,
+    ModalNuevoEditarTipoTrabajadorComponent,
+    AlertEliminarTipoTrabajadorComponent,
   ],
   imports: [
     CommonModule,

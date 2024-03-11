@@ -16,6 +16,7 @@ import { VerDetalleCampaniaComponent } from './view/ver-detalle-campania/ver-det
 import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
 import { TipoTrabajadorComponent } from './view/tipo-trabajador/tipo-trabajador.component';
 import { TipoGastoComponent } from './view/tipo-gasto/tipo-gasto.component';
+import { TipoActividadComponent } from './view/tipo-actividad/tipo-actividad.component';
 
 export const privateModuleRoutes: Routes = [
   {
@@ -115,7 +116,7 @@ export const privateModuleRoutes: Routes = [
       {
         path: 'tipo-actividad',
         title: 'Tipo actividad',
-        component: TipoTrabajadorComponent,
+        component: TipoActividadComponent,
         canActivate: [LoginGuard]
       },
       {

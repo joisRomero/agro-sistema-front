@@ -1,94 +1,126 @@
-<!-- <div class="d-flex flex-column h-100">
+<div class="pagetitle">
+  <h1>Tipos de actividades</h1>
+</div>
 
-    <div class="d-flex justify-content-between align-items-center">
-      <h4 class="m-0">Tipo actividad</h4>
-  
-      <app-general-button
-      claseBoton="primary"
-      label="Nuevo"
-      
-      (click) = "onClick.nuevo()"
-      ></app-general-button>
-    </div>
-  
-    <div class="row p-0 m-0">
+<div class="card mt-2">
+  <div class="card-body">
+    <h5 class="card-title">Filtros</h5>
+    <div class="align-items-end mb-2 row">
       <app-general-input
-      [fGroup]="form"
-      nombreControl="nombre"
-      class="col-lg-4 col-md-6 col-sm-12 p-0 pt-2"
-      tipo="text"
-      placeholder="Buscar por nombre"
-      nombreIcono="bi-search"
-      [onClickButton]="onClick.buscar"
-      (keyup.enter)="onClick.buscar()"
+        [fGroup]="form"
+        nombreControl="nombre"
+        label="Nombre:"
+        class="col-md-3"
+        tipo="text"
       ></app-general-input>
-    </div>
-  
-    <div class="card mt-2">
-      <div class="card-body table-responsive">
-        <table class="table table-hover table-sm mt-3">
-          <thead>
-            <tr>
-              <th scope="col">Nro.</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of itemsTabla.data; let i = index">
-              <td class="ps-2" scope="row">{{ item.correlativo }}</td>
-              <td scope="row">{{ item.nombreCultivo }}</td>
-              <td>
-                <div class="gap-2 d-flex">
-                  <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle btn-sm px-3" type="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                          <app-general-button
-                            claseBoton="dropdown-item"
-                            label="Editar"
-                            [sinClasesDeBoton]="true"
-                            (click)="onClick.editarCultivo(item)">
-                          </app-general-button>
-                          <app-general-button
-                            claseBoton="dropdown-item"
-                            label="Eliminar"
-                            [sinClasesDeBoton]="true"
-                            (click)="onClick.eliminarCultivo(item.idCultivo)">
-                          </app-general-button>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <app-general-pagination
-          [paginaActual]="paginacionVars.paginaActual"
-          [totalPaginas]="paginacionVars.totalPaginas"
-          [totalFilas]="paginacionVars.totalFilas"
-          (eventChangePage)="paginacionVars.onChangePage($event)"
-          *ngIf="itemsTabla.data.length > 0"
-        ></app-general-pagination>
-        <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
+      <app-general-select
+      class="col-md-3"
+        [fGroup]="form"
+        nombreControl="realizadoPor"
+        label="Realizado por: "
+        [values]="valoresRealizadoPor"
+      ></app-general-select>
+      <div class="col-md-4 gap-1 mt-1">
+        <app-general-button
+          claseBoton="secondary"
+          label="Limpiar"
+          [esSecundario]="true"
+          class="col-12"
+          (click)="onClick.limpiar()"
+        ></app-general-button>
+        <app-general-button
+          claseBoton="primary"
+          label="Buscar"
+          class="col-12 ms-2"
+          (click)="onClick.buscar()"
+        ></app-general-button>
       </div>
     </div>
-  
+
+    <div class="d-flex justify-content-between align-items-center mt-2">
+      <h5 class="card-title">Listado</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Nuevo"
+        (click)="onClick.nuevoTipoActividad()"
+      ></app-general-button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Realizado por</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemsTabla.data; let i = index">
+            <td class="ps-2" scope="row">{{ item.correlativo }}</td>
+            <td scope="row">{{ item.nombreTipoActividad }}</td>
+            <td scope="row">{{ item.descripcionTipoActividad || "-" }}</td>
+            <td scope="row">{{ item.realizadaPorTipoActividad || "-" }}</td>
+            <td>
+              <div class="gap-2 d-flex">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-info dropdown-toggle btn-sm px-3"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Editar"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.editarTipoActividad(item)"
+                      >
+                      </app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Eliminar"
+                        [sinClasesDeBoton]="true"
+                        (click)="
+                          onClick.eliminarTipoActividad(item.idTipoActividad)
+                        "
+                      >
+                      </app-general-button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-general-pagination
+      [paginaActual]="paginacionVars.paginaActual"
+      [totalPaginas]="paginacionVars.totalPaginas"
+      [totalFilas]="paginacionVars.totalFilas"
+      (eventChangePage)="paginacionVars.onChangePage($event)"
+      *ngIf="itemsTabla.data.length > 0"
+    ></app-general-pagination>
+    <app-general-sin-datos *ngIf="verMensajeSinDatos"></app-general-sin-datos>
   </div>
-  <app-modal-nuevo-editar-cultivo
-    *ngIf="servicioModal.mostrarModal"
-    [isEditar]="isEditar"
-    [cultivoItem]="cultivoItem"
-    (actualizo)="actualizarTabla()"
-  ></app-modal-nuevo-editar-cultivo>
-  
-  <app-alert-eliminar
-    *ngIf="servicioModal.mostrar"
-    [idCultivo]="idCultivo"
-    (elimino)="actualizarTabla()"
-  ></app-alert-eliminar>
-   -->
+</div>
+
+<app-modal-nuevo-editar-tipo-actividad
+  *ngIf="modalNuevoEditarTipoActividadService.mostrarModal"
+  [isEditar]="isEditar"
+  [tipoActividadItem]="tipoActividadItem"
+  (actualizo)="actualizarTabla()"
+></app-modal-nuevo-editar-tipo-actividad>
+
+<app-alert-eliminar-tipo-actividad
+  *ngIf="alertEliminarService.mostrar"
+  [idTipoActividad]="idTipoActividad"
+  (elimino)="actualizarTabla()"
+></app-alert-eliminar-tipo-actividad>
