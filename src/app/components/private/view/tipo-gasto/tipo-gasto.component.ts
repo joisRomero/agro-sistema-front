@@ -16,22 +16,22 @@ import { AlertEliminarTipoGastoService } from './components/alert-eliminar-tipo-
 })
 export class TipoGastoComponent implements OnInit {
 
-  public isEditar: boolean = false;
-  public nombre: string = '';
-  public itemsTabla: ListaPaginaTipoGastoResponse = new ListaPaginaTipoGastoResponse();
-  public idTipoGasto!: number;
-  public tipoGastoItem!: ListaPaginaTipoGastoResponseItem;
-  public form!: FormGroup;
-  public listaTipoGastos!: ListaPaginaTipoGastoRequest;
   private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
+  public form!: FormGroup;
+  public idTipoGasto!: number;
+  public isEditar: boolean = false;
+  public itemsTabla: ListaPaginaTipoGastoResponse = new ListaPaginaTipoGastoResponse();
+  public listaTipoGastos!: ListaPaginaTipoGastoRequest;
+  public nombre: string = '';
+  public tipoGastoItem!: ListaPaginaTipoGastoResponseItem;
   public verMensajeSinDatos: boolean = false;
 
 
   constructor(
+    public alertEliminarService: AlertEliminarTipoGastoService,
+    public fb: FormBuilder,
     public modalNuevoEditarTipoGastoService: ModalNuevoEditarTipoGastoService,
     public tipoGastoService: TipoGastoService,
-    public alertEliminarService: AlertEliminarTipoGastoService,
-    public fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -90,14 +90,12 @@ export class TipoGastoComponent implements OnInit {
       this.modalNuevoEditarTipoGastoService.mostrarModal = true;
     },
     editarTipoGasto: async (editItem: ListaPaginaTipoGastoResponseItem) => {
-      this.tipoGastoItem = editItem
-      console.log(this.tipoGastoItem)
+      this.tipoGastoItem = editItem;
       this.isEditar = true;
-      this.nombre = 'editar'
+      this.nombre = 'editar';
       this.modalNuevoEditarTipoGastoService.mostrarModal = true;
     },
     eliminarTipoGasto: async (idTipoGasto: number) => {
-      debugger
       this.idTipoGasto = idTipoGasto;
       this.alertEliminarService.mostrar = true;
     },

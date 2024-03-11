@@ -1,1 +1,51 @@
-<p>modal-nuevo-editar-tipo-actividad works!</p>
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal" [large]="true">
+  <form class="w-100" [formGroup]="form!">
+    <div class="d-flex flex-wrap">
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="nombre"
+        label="Nombre: "
+        [mensajeError]="mensajesError.nombre"
+        class="px-2 py-1 col-12 col-md-6 col-sm-6"
+        tipo="text"
+      ></app-general-input>
+
+      <app-general-select
+        class="px-2 py-1 col-12 col-md-6 col-sm-6"
+        [fGroup]="form"
+        nombreControl="realizadoPor"
+        label="Realizado por: "
+        [mensajeError]="mensajesError.realizadoPor"
+        [values]="valoresRealizadoPor"
+        [esSmall] = "true"
+      ></app-general-select>
+
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="descripcion"
+        label="Descripción: "
+        [mensajeError]="mensajesError.descripcion"
+        class="px-2 py-1 col-12 col-md-12 col-sm-12"
+        tipo="area"
+        [filas]="2"
+      ></app-general-input>
+    </div>
+  </form>
+  <div footer>
+    <app-general-button
+      claseBoton="secondary"
+      label="Cancelar"
+      [esSmall]="true"
+      [esSecundario]="true"
+      class="m-1"
+      [onClickButton]="onClick.cerrarModal"
+    ></app-general-button>
+    <app-general-button
+      claseBoton="primary"
+      label="Guardar"
+      [esSmall]="true"
+      class="m-1"
+      (click)="guardar()"
+    ></app-general-button>
+  </div>
+</app-modal>

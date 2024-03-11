@@ -53,6 +53,8 @@ import { AlertEliminarGastosCampaniaComponent } from './view/gastos-campania/com
 import { NuevoEditarGastosCampaniaComponent } from './view/gastos-campania/components/nuevo-editar-gastos-campania/nuevo-editar-gastos-campania.component';
 import { ModalNuevoEditarTipoGastoComponent } from './view/tipo-gasto/components/modal-nuevo-editar-tipo-gasto/modal-nuevo-editar-tipo-gasto.component';
 import { AlertEliminarTipoGastoComponent } from './view/tipo-gasto/components/alert-eliminar-tipo-gasto/alert-eliminar-tipo-gasto.component';
+import { ModalNuevoEditarTipoTrabajadorComponent } from './view/tipo-trabajador/components/modal-nuevo-editar-tipo-trabajador/modal-nuevo-editar-tipo-trabajador.component';
+import { AlertEliminarTipoTrabajadorComponent } from './view/tipo-trabajador/components/alert-eliminar-tipo-trabajador/alert-eliminar-tipo-trabajador.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +108,8 @@ import { AlertEliminarTipoGastoComponent } from './view/tipo-gasto/components/al
     NuevoEditarGastosCampaniaComponent,
     ModalNuevoEditarTipoGastoComponent,
     AlertEliminarTipoGastoComponent,
+    ModalNuevoEditarTipoTrabajadorComponent,
+    AlertEliminarTipoTrabajadorComponent,
   ],
   imports: [
     CommonModule,

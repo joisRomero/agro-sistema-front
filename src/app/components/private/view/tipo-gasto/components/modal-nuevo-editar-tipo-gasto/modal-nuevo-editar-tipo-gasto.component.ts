@@ -26,11 +26,6 @@ export class ModalNuevoEditarTipoGastoComponent implements OnInit {
   private idUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario;
   private nombreUsuario: string = (JSON.parse(localStorage.getItem("usuario")!) as Usuario).nombreUsuario;
 
-  public mensajesError = {
-    nombre: "El campo es obligatorio.",
-    descripcion: "El campo es obligatorio."
-  }
-
   constructor(
     public servicioModal: ModalNuevoEditarTipoGastoService,
     private fb: FormBuilder,
@@ -47,6 +42,11 @@ export class ModalNuevoEditarTipoGastoComponent implements OnInit {
     } else {
       this.tituloModal = "Nuevo tipo de gasto";
     }
+  }
+
+  public mensajesError = {
+    nombre: "El campo es obligatorio.",
+    descripcion: "El campo es obligatorio."
   }
 
   async guardar() {
@@ -75,8 +75,6 @@ export class ModalNuevoEditarTipoGastoComponent implements OnInit {
     this.form = this.fb.nonNullable.group({
       nombre: ["", [Validators.required]],
       descripcion: [""]
-      /*estado: [true],
-      prueba: ["", [Validators.required]]*/
     });
   }
 
