@@ -51,7 +51,7 @@ export class CampaniasComponent implements OnInit {
       idUsuario:  parseInt(this.idUsuario),
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10,
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
     }
   }
 

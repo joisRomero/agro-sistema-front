@@ -69,7 +69,7 @@ export class CultivoComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaCultivos = {
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
       IdUsuario: parseInt(this.idUsuario),
       PageNumber: this.paginacionVars.paginaActual,
       PageSize: 10

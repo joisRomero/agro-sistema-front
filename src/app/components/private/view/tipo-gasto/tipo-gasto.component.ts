@@ -69,7 +69,7 @@ export class TipoGastoComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaTipoGastos = {
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
       idUsuario: parseInt(this.idUsuario),
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10

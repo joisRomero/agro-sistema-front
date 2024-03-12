@@ -89,7 +89,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
   private service = {
     agregarCultivo: () => {
       let params: AgregarCultivoRequest = {
-        NombreCultivo: this.form.controls["nombre"].value.trim(),
+        NombreCultivo: this.form.controls["nombre"]!.value.trim(),
         IdUsuario: parseInt(this.idUsuario),
         UsuarioInserta: this.nombreUsuario,
       }
@@ -98,7 +98,7 @@ export class ModalNuevoEditarCultivoComponent implements OnInit {
     editarCultivo: () => {
       let params: EditarCultivoRequest = {
         IdCultivo: this.cultivoItem.idCultivo,
-        NombreCultivo: this.form.controls["nombre"].value.trim(),
+        NombreCultivo: this.form.controls["nombre"]!.value.trim(),
         IdUsuario: parseInt(this.idUsuario),
         UsuarioModifica: this.nombreUsuario,
       }

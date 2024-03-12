@@ -84,7 +84,7 @@ export class AgroquimicosComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaAbono = {
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
       idTipoAgroquimico: this.form.controls["tipoAgroquimico"].value,
       idUsuario: this.idUsuarioStorage,
       pageNumber: this.paginacionVars.paginaActual,

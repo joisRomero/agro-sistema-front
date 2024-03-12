@@ -191,7 +191,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
       return lastValueFrom(this.usuarioService.validarCodigoRecuperacionCuenta(params));
     },
     cambiarClaveRecuperacionCuenta: () => {
-      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!.value.trim());
+      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!!.value.trim());
       const encodedClave = CryptoJS.enc.Base64.stringify(encodedWordClave);
       let params: CambiarClaveRecuperacionCuentaRequest = {
         clave: encodedClave,
@@ -202,7 +202,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
     login: () => {
       const encodedWordUsuario = CryptoJS.enc.Utf8.parse(this.usuario);
       const encodedUsuario = CryptoJS.enc.Base64.stringify(encodedWordUsuario);
-      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!.value.trim());
+      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!!.value.trim());
       const encodedClave = CryptoJS.enc.Base64.stringify(encodedWordClave);
       let params: LoginRequest = {
         usuario: encodedUsuario,
@@ -213,7 +213,7 @@ export class OlvidadoClaveComponent implements OnInit, OnDestroy{
     crearToken: () => {
       const encodedWordUsuario = CryptoJS.enc.Utf8.parse(this.usuario);
       const encodedUsuario = CryptoJS.enc.Base64.stringify(encodedWordUsuario);
-      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!.value.trim());
+      const encodedWordClave = CryptoJS.enc.Utf8.parse(this.formPaso3!.controls['clave']!!.value.trim());
       const encodedClave = CryptoJS.enc.Base64.stringify(encodedWordClave);
       let params: TokenRequest = {
         usuario: encodedUsuario,

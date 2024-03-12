@@ -88,8 +88,8 @@ export class ModalNuevoEditarTipoTrabajadorComponent implements OnInit {
     agregarTipoTrabajador: () => {
 
       let params: RegistrarTipoTrabajadorRequest = {
-        nombreTipoTrabajador: this.form.controls["nombre"].value.trim(),
-        descripcionTipoTrabajador: this.form.controls["descripcion"].value.trim(),
+        nombreTipoTrabajador: this.form.controls["nombre"]!.value.trim(),
+        descripcionTipoTrabajador: this.form.controls["descripcion"]!.value.trim(),
         idUsuario: parseInt(this.idUsuario),
         usuarioInserta: this.nombreUsuario,
       }
@@ -98,8 +98,8 @@ export class ModalNuevoEditarTipoTrabajadorComponent implements OnInit {
     editarTipoTrabajador: () => {
       let params: ModificarTipoTrabajadorRequest = {
         idTipoTrabajador: this.tipoTrabajadorItem.idTipoTrabajador,
-        nombreTipoTrabajador: this.form.controls["nombre"].value.trim(),
-        descripcionTipoTrabajador: this.form.controls["descripcion"].value.trim(),
+        nombreTipoTrabajador: this.form.controls["nombre"]!.value.trim(),
+        descripcionTipoTrabajador: this.form.controls["descripcion"]!.value.trim(),
         usuarioModifica: this.nombreUsuario,
       }
       return lastValueFrom(this.tipoTrabajadorService.modificarTipoTrabajador(params));

@@ -69,7 +69,7 @@ export class TipoTrabajadorComponent implements OnInit {
   setDatosBusqueda() {
     this.listaTipoTrabajadores = {
       idUsuario: parseInt(this.idUsuario),
-      nombreTipoTrabajador: this.form.controls["nombre"].value.trim(),
+      nombreTipoTrabajador: this.form.controls["nombre"]!.value.trim(),
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10,
     }

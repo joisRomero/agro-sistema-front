@@ -71,7 +71,7 @@ export class SociedadesComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaSociedades = {
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
       idUsuario: parseInt(this.idUsuario),
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10

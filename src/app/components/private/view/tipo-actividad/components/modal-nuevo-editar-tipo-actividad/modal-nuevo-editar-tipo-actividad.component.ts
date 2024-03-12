@@ -46,7 +46,7 @@ export class ModalNuevoEditarTipoActividadComponent implements OnInit {
     if(this.isEditar) {
       this.form.controls["descripcion"].setValue(this.tipoActividadItem.descripcionTipoActividad);
       this.form.controls["nombre"].setValue(this.tipoActividadItem.nombreTipoActividad);
-      this.form.controls["realizadoPor"].setValue(this.tipoActividadItem.realizadaPorTipoActividad);
+      this.form.controls["realizadoPor"].setValue(this.tipoActividadItem.realizadaPorTipoActividad?.charAt(0));
       this.tituloModal = "Editar tipo de actividad";
     } else {
       this.tituloModal = "Nuevo tipo de actividad";
@@ -94,9 +94,9 @@ export class ModalNuevoEditarTipoActividadComponent implements OnInit {
   private service = {
     agregarTipoActividad: () => {
       let params: RegistrarTipoActividadRequest = {
-        descripcionTipoActividad: this.form.controls["descripcion"].value.trim(),
+        descripcionTipoActividad: this.form.controls["descripcion"]!.value.trim(),
         idUsuario: parseInt(this.idUsuario),
-        nombreTipoActividad: this.form.controls["nombre"].value.trim(),
+        nombreTipoActividad: this.form.controls["nombre"]!.value.trim(),
         realizadaPorTipoActividad: this.form.controls["realizadoPor"].value,
         usuarioInserta: this.nombreUsuario,
       }
@@ -104,9 +104,9 @@ export class ModalNuevoEditarTipoActividadComponent implements OnInit {
     },
     editarTipoActividad: () => {
       let params: ModificarTipoActividadRequest = {
-        descripcionTipoActividad: this.form.controls["descripcion"].value.trim(),
+        descripcionTipoActividad: this.form.controls["descripcion"]!.value.trim(),
         idTipoActividad: this.tipoActividadItem.idTipoActividad,
-        nombreTipoActividad: this.form.controls["nombre"].value.trim(),
+        nombreTipoActividad: this.form.controls["nombre"]!.value.trim(),
         realizadaPorTipoActividad: this.form.controls["realizadoPor"].value,
         usuarioModifica: this.nombreUsuario,
       }

@@ -85,8 +85,8 @@ export class NuevoEditarAbonoComponent implements OnInit {
   private service = {
     agregar: () => {
       let params: AgregarAbono = {
-        nombreAbono: this.form.controls["nombre"].value.trim(),
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        nombreAbono: this.form.controls["nombre"]!.value.trim(),
+        descripcion: this.form.controls["descripcion"]!.value.trim(),
         idUsuario: parseInt(this.idUsuario),
         usuarioInserta: this.nombreUsuario,
       }
@@ -95,8 +95,8 @@ export class NuevoEditarAbonoComponent implements OnInit {
     editar: () => {
       let params: EditarAbonoRequest = {
         idAbono: this.item.idAbono,
-        nombreAbono: this.form.controls["nombre"].value.trim(),
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        nombreAbono: this.form.controls["nombre"]!.value.trim(),
+        descripcion: this.form.controls["descripcion"]!.value.trim(),
         usuarioModifica: this.nombreUsuario,
       }
       return lastValueFrom(this.abonoService.editarAbono(params));

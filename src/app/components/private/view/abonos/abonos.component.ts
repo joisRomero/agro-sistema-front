@@ -68,7 +68,7 @@ export class AbonosComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaAbono = {
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
       idUsuario: this.idUsuarioStorage,
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10

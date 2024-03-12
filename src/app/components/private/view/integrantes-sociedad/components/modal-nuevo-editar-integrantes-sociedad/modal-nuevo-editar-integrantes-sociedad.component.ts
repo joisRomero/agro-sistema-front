@@ -57,7 +57,7 @@ export class ModalNuevoEditarIntegrantesSociedadComponent implements OnInit {
       this.servicioModal.mostrarModal = false;
     },
      buscar: async () => {
-      if(this.form.controls["nombre"].value.trim() != ""){
+      if(this.form.controls["nombre"]!.value.trim() != ""){
         this.haySeleccionado = false;
         let response = await this.service.busquedaIntegranteResponse();
         this.listaBuscado = response.body!;
@@ -94,7 +94,7 @@ export class ModalNuevoEditarIntegrantesSociedadComponent implements OnInit {
     busquedaIntegranteResponse: () => {
       let params: BusquedaIntegranteRequest = {
         idUsuario : this.idUsuario,
-        nombre: this.form.controls["nombre"].value.trim(),
+        nombre: this.form.controls["nombre"]!.value.trim(),
         idSociedad: parseInt(this.idSociedad),
       }
       return lastValueFrom(this.sociedadService.busquedaIntegrante(params));

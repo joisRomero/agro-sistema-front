@@ -73,7 +73,7 @@ export class TipoActividadComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaTipoActividades = {
-      nombreTipoActividad: this.form.controls["nombre"].value.trim(),
+      nombreTipoActividad: this.form.controls["nombre"]!.value.trim(),
       idUsuario: parseInt(this.idUsuario),
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10,

@@ -336,7 +336,7 @@ export class NuevoEditarActividadesComponent implements OnInit {
 
       let params: AgregarActividadTrabajadorRequest = {
         fechaActividad: this.form.controls["fecha"].value,
-        descripcionActividad: this.form.controls["descripcion"].value.trim(),
+        descripcionActividad: this.form.controls["descripcion"]!.value.trim(),
         idTipoActividad: this.form.controls["actividad"].value,
         idCampania: parseInt(this.idCampania),
         usuarioInserta: this.nombreUsuarioStorage,
@@ -383,7 +383,7 @@ export class NuevoEditarActividadesComponent implements OnInit {
       let params: ModificarActividadTrabajadorGastosRequest = {
         idActividad: this.item.idActividad,
         fechaActividad: this.form.controls["fecha"].value,
-        descripcionActividad: this.form.controls["descripcion"].value.trim(),
+        descripcionActividad: this.form.controls["descripcion"]!.value.trim(),
         idTipoActividad: this.form.controls["actividad"].value,
         idCampania: parseInt(this.idCampania),
         usuarioModifica: this.nombreUsuarioStorage,

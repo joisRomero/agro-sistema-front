@@ -103,8 +103,8 @@ export class NuevoEditarAgroquimicoComponent implements OnInit {
   private service = {
     agregar: () => {
       let params: AgregarAgroquimico = {
-        nombreAgroquimico: this.form.controls["nombre"].value.trim(),
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        nombreAgroquimico: this.form.controls["nombre"]!.value.trim(),
+        descripcion: this.form.controls["descripcion"]!.value.trim(),
         idTipoAgroquimico: this.form.controls["tipoAgroquimico"].value,
         idUsuario: parseInt(this.idUsuario),
         usuarioInserta: this.nombreUsuario,
@@ -115,8 +115,8 @@ export class NuevoEditarAgroquimicoComponent implements OnInit {
       let params: EditarAgroquimicoRequest = {
         idAgroquimico: this.item.idAgroquimico,
         idTipoAgroquimico: this.form.controls["tipoAgroquimico"].value,
-        nombreAgroquimico: this.form.controls["nombre"].value.trim(),
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        nombreAgroquimico: this.form.controls["nombre"]!.value.trim(),
+        descripcion: this.form.controls["descripcion"]!.value.trim(),
         usuarioModifica: this.nombreUsuario,
       }
       return lastValueFrom(this.abonoService.editarAgroquimico(params));

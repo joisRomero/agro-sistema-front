@@ -87,8 +87,8 @@ export class ModalNuevoEditarTipoGastoComponent implements OnInit {
   private service = {
     agregarTipoGasto: () => {
       let params: AgregarTipoGastoRequest = {
-        nombreTipoGasto: this.form.controls["nombre"].value.trim(),
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        nombreTipoGasto: this.form.controls["nombre"]!.value.trim(),
+        descripcion: this.form.controls["descripcion"]!.value.trim(),
         idUsuario: parseInt(this.idUsuario),
         usuarioInserta: this.nombreUsuario,
       }
@@ -97,8 +97,8 @@ export class ModalNuevoEditarTipoGastoComponent implements OnInit {
     editarTipoGasto: () => {
       let params: EditarTipoGastoRequest = {
         idTipoGasto: this.tipoGastoItem.idTipoGasto,
-        nombreTipoGasto: this.form.controls["nombre"].value.trim(),
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        nombreTipoGasto: this.form.controls["nombre"]!.value.trim(),
+        descripcion: this.form.controls["descripcion"]!.value.trim(),
         usuarioModifica: this.nombreUsuario,
       }
       return lastValueFrom(this.tipoGastoService.editarTipoGasto(params));

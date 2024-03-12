@@ -130,12 +130,12 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
   private service = {
     registrarCampania: () => {
       let params: RegistrarCampaniaRequest = {
-        nombreTerreno: this.form.controls["nombreTerreno"].value.trim(),
+        nombreTerreno: this.form.controls["nombreTerreno"]!.value.trim(),
         areaSembrar : this.form.controls["areaSembrar"].value,
         unidadTerreno : this.form.controls["unidad"].value,
-        nombreCampania : this.form.controls["nombre"].value.trim(),
-        descripcionCampania : this.form.controls["descripcion"].value.trim(),
-        fechaInicio : this.form.controls["fechaInicio"].value.trim(),
+        nombreCampania : this.form.controls["nombre"]!.value.trim(),
+        descripcionCampania : this.form.controls["descripcion"]!.value.trim(),
+        fechaInicio : this.form.controls["fechaInicio"]!.value.trim(),
         idCultivo : this.form.controls["cultivo"].value, 
         idSociedad : parseInt(this.idSociendad),
         idUsuario : parseInt(this.idUsuario),
@@ -146,12 +146,12 @@ export class ModalNuevoEditarCampaniaSociedadComponent implements OnInit {
     editarCampania: () => {
       let params: EditarCampaniaRequest = {
         idCampania: this.idCampania,
-        nombreTerreno: this.form.controls["nombreTerreno"].value.trim(),
+        nombreTerreno: this.form.controls["nombreTerreno"]!.value.trim(),
         areaSembrar : this.form.controls["areaSembrar"].value,
         unidadTerreno : this.form.controls["unidad"].value,
-        nombreCampania : this.form.controls["nombre"].value.trim(),
-        descripcionCampania : this.form.controls["descripcion"].value.trim(),
-        fechaInicio : this.form.controls["fechaInicio"].value.trim(),
+        nombreCampania : this.form.controls["nombre"]!.value.trim(),
+        descripcionCampania : this.form.controls["descripcion"]!.value.trim(),
+        fechaInicio : this.form.controls["fechaInicio"]!.value.trim(),
         idCultivo : this.form.controls["cultivo"].value, 
         idSociedad : parseInt(this.idSociendad),
         idUsuario : parseInt(this.idUsuario),

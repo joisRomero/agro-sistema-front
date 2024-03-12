@@ -52,7 +52,7 @@ export class IntegrantesSociedadComponent implements OnInit {
       idSociedad:  parseInt(this.idSociedad),
       pageNumber: this.paginacionVars.paginaActual,
       pageSize: 10,
-      nombre: this.form.controls["nombre"].value.trim(),
+      nombre: this.form.controls["nombre"]!.value.trim(),
     }
   }
 
