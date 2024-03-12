@@ -23,7 +23,7 @@
         <tbody>
           <!-- <tr *ngFor="let item of itemsTabla.data">
               <td class="ps-2" scope="row">{{ item.numero }}</td>
-              <td scope="row">{{ item.fecha }}</td>
+              <td scope="row">{{ item.fecha | date : "dd/MM/yyyy"}}</td>
               <td scope="row">{{ item.descripcion }}</td>
               <td>
                 <span *ngIf="item.estado; else inactivo" class="badge bg-success">Activo</span>

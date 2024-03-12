@@ -36,7 +36,7 @@ export class AlertEliminarAbonoComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Abono";
-      this.alertInformationService.texto = "Abono eliminado con éxito.";
+      this.alertInformationService.texto = "Abono eliminado.";
     },
   };
 

@@ -1,7 +1,7 @@
 export interface ObtenerGastoDetalleResponse {
     idGastoDetalle: number;
     idTipoGasto: number;
-    fechaGasto: string;
+    fechaGasto: Date;
     cantidad: number;
     costoUnitario: number;
     costoTotal: number;

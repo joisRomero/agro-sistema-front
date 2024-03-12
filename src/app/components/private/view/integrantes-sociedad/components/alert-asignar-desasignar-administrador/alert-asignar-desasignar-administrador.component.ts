@@ -50,7 +50,7 @@ export class AlertAsignarDesasignarAdministradorComponent implements OnInit {
       this.recargar.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Integrantes";
-      this.alertInformationService.texto = "Realizó el cambio con éxito.";
+      this.alertInformationService.texto = "Realizó el cambio.";
     },
   };
 

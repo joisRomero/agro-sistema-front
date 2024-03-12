@@ -1,7 +1,7 @@
 export interface ListaPaginaActividadRequest {
     idCampania: number;
     fechaActividad: Date;
-    idTipoActividad: number;
+    nombreTipoActividad: string;
     pageNumber: number;
     pageSize: number;
 }

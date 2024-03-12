@@ -1,12 +1,11 @@
 <h5 class="card-title pt-0">Filtros</h5>
 <div class="align-items-end row">
-  <app-general-select
+  <app-general-input
     class="col-12 col-md-3"
     [fGroup]="form"
     nombreControl="tipoGasto"
-    label="Tipo de gasto: "
-    [values]="valoresTipoGasto"
-  ></app-general-select>
+    label="Gasto: "
+  ></app-general-input>
   <app-general-input
     [fGroup]="form"
     nombreControl="fechaGasto"

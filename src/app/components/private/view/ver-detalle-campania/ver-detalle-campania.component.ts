@@ -37,15 +37,24 @@ export class VerDetalleCampaniaComponent implements OnInit {
       let response = await this.service.validarPertenenciaCampaniaSociedad();
       this.nombreCampania = response.body!.nombreCampania;
       this.mostrarInformacion = true;
-      // this.buscarCosechas();
     } catch (error) {
-      this.router.navigate(["intranet/mis-campanias"]);
+      const rutaActual = this.router.url;
+      if (rutaActual.includes('mis-campanias')) {
+        this.router.navigate(['/intranet/mis-campanias']);
+      } else if (rutaActual.includes('sociedades')) {
+        this.router.navigate(['/intranet/sociedades']);
+      }
     }
   }
 
   public onClick = {
     irAtras: () => {
-      this.location.back();
+      const rutaActual = this.router.url;
+      if (rutaActual.includes('mis-campanias')) {
+        this.router.navigate(['/intranet/mis-campanias']);
+      } else if (rutaActual.includes('sociedades')) {
+        this.router.navigate(['/intranet/sociedades']);
+      }
     }
   }
 

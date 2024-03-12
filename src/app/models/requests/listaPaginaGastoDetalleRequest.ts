@@ -1,6 +1,6 @@
 export interface ListaPaginaGastoDetalleRequest {
     idCampania: number;
-    idTipoGasto: number | null;
+    nombreTipoGasto: string | null;
     fechaGasto: string | null;
     pageNumber: number;
     pageSize: number;

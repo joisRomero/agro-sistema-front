@@ -17,6 +17,9 @@ import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.com
 import { TipoTrabajadorComponent } from './view/tipo-trabajador/tipo-trabajador.component';
 import { TipoGastoComponent } from './view/tipo-gasto/tipo-gasto.component';
 import { TipoActividadComponent } from './view/tipo-actividad/tipo-actividad.component';
+import { ActividadesCampaniaComponent } from './view/actividades-campania/actividades-campania.component';
+import { GastosCampaniaComponent } from './view/gastos-campania/gastos-campania.component';
+import { CosechasCampaniaComponent } from './view/cosechas-campania/cosechas-campania.component';
 
 export const privateModuleRoutes: Routes = [
   {
@@ -28,6 +31,11 @@ export const privateModuleRoutes: Routes = [
         pathMatch: 'full',
         canActivate: [LoginGuard],
         component: InicioComponent
+      },
+      {
+        path: '',
+        redirectTo: '/inicio',
+        pathMatch: 'full'
       },
       {
         path: 'inicio',
@@ -45,7 +53,29 @@ export const privateModuleRoutes: Routes = [
         path: 'mis-campanias/ver-detalle-campania/:id',
         title: 'Detalle campañas',
         component: VerDetalleCampaniaComponent,
-        canActivate: [LoginGuard]
+        canActivate: [LoginGuard],
+        children: [
+          {
+            path: '',
+            component: ActividadesCampaniaComponent,
+            canActivate: [LoginGuard],
+          },
+          {
+            path: "actividades",
+            component: ActividadesCampaniaComponent,
+            canActivate: [LoginGuard],
+          },
+          {
+            path: "gastos",
+            component: GastosCampaniaComponent,
+            canActivate: [LoginGuard]
+          },
+          {
+            path: "cosechas",
+            component: CosechasCampaniaComponent,
+            canActivate: [LoginGuard],
+          },
+        ]
       },
       {
         path: 'sociedades',
@@ -63,7 +93,29 @@ export const privateModuleRoutes: Routes = [
         path: 'sociedades/ver-detalle-campania/:id',
         title: 'Detalle campaña',
         component: VerDetalleCampaniaComponent,
-        canActivate: [LoginGuard]
+        canActivate: [LoginGuard],
+        children: [
+          {
+            path: '',
+            component: ActividadesCampaniaComponent,
+            canActivate: [LoginGuard],
+          },
+          {
+            path: "actividades",
+            component: ActividadesCampaniaComponent,
+            canActivate: [LoginGuard],
+          },
+          {
+            path: "gastos",
+            component: GastosCampaniaComponent,
+            canActivate: [LoginGuard]
+          },
+          {
+            path: "cosechas",
+            component: CosechasCampaniaComponent,
+            canActivate: [LoginGuard],
+          },
+        ]
       },
       {
         path: 'agroquimico',

@@ -14,6 +14,12 @@ import { GeneralSelectItem } from 'src/app/models/general-select';
 import { AgregarActividadTrabajadorRequest, GastoDTO, TrabajadorDTO } from 'src/app/models/requests/agregarActividadTrabajadorRequest';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { GeneralAlertInformationVars } from 'src/app/components/shared/general-alert-information/general-alert-information.vars';
+import { ListarDetalleActividadRequest } from 'src/app/models/requests/listarDetalleActividadRequest';
+import { ListaPaginaActividadResponseItem } from 'src/app/models/responses/listaPaginaActividadResponse';
+import { Convert } from 'src/app/utils/convert';
+import { ModificarTipoActividadRequest } from 'src/app/models/requests/modificarTipoActividadRequest';
+import { GastoTrabajadorModificarDTO, ModificarActividadTrabajadorGastosRequest, TrabajadorModificarDTO } from 'src/app/models/requests/modificarActividadTrabajadorGastosRequest';
+import { EliminarActividadVars } from '../aler-eliminar-actividad/eliminar-actividad-vars';
 
 @Component({
   selector: 'app-nuevo-editar-actividades',
@@ -45,7 +51,12 @@ export class NuevoEditarActividadesComponent implements OnInit {
   public verMensajeSinDatosGastos: boolean = true;
   public listaTrabajadoresRequestDTO: TrabajadorDTO[] = [];
   public listaGastosRequestDTO: GastoDTO[] = [];
+  public listaTrabajadoresModificaRequestDTO: TrabajadorModificarDTO[] = [];
+  public listaGastosModificaRequestDTO: GastoTrabajadorModificarDTO[] = [];
   public tituloModal: string = '';
+  @Input() item!: ListaPaginaActividadResponseItem;
+  @Input() verDetalle: boolean = false;
+  public tipoActividadSeleccion:number = 0;
 
   constructor(
     public fb: FormBuilder,
@@ -54,7 +65,7 @@ export class NuevoEditarActividadesComponent implements OnInit {
     public nuevoEditaractividades: NuevoEditarActividadVars,
     public combosService: CombosService,
     public actividadService: ActividadService,
-    private alertInformationService: GeneralAlertInformationVars
+    private alertInformationService: GeneralAlertInformationVars,
   ) { }
 
   ngOnInit(): void {
@@ -62,14 +73,65 @@ export class NuevoEditarActividadesComponent implements OnInit {
     this.iniciarCombos();
   }
 
-  private initialControls() {
+  async initialControls() {
     this.form = this.fb.nonNullable.group({
       actividad: ["", Validators.required],
       fecha: ["", Validators.required],
-      descripcion: [""]
+      descripcion: [""],
+      cantidadSemilla: [""],
+      unidadSemilla: [""],
+      cantidadFumigacion: [""],
+      unidadFumigacion: [""],
     });
-    if(this.isEditarActividad) {
+
+    if(this.isEditarActividad || this.verDetalle) {
       this.tituloModal = "Editar actividad";
+      let response = await this.service.obtenerActividad();
+
+      this.form.controls["actividad"].setValue(response.body!.idTipoActividad);
+      this.form.controls["fecha"].setValue(Convert.dateToDateInput(response.body!.fechaActividad));
+      this.form.controls["descripcion"].setValue(response.body!.descripcionActividad);
+
+      this.trabajadores = [];
+      response.body!.listaDetalleTrabajadores?.forEach((item,index) => {
+        let ab: Trabajador = {
+          idTrabajador: item.idTrabajador,
+          descripcion: item.descripcionTrabajador,
+          cantidad: item.cantidadTrabajador,
+          costoUnitario: item.costoUnitario,
+          costoTotal: item.costoTotal,
+          idTipoTrabajador: item.idTipoTrabajador,
+          descripcionTipoTrabajador: item.descripcionTipoTrabajador,
+          numero: index + 1
+        }
+        this.trabajadores.push(ab);
+      });
+      
+      this.gastos = [];
+      response.body!.listaDetalleGastos?.forEach((item, index) => {
+        let cd: Gasto = {
+          idGasto: item.idGastoDetalle,
+          descripcion: item.descripcionGastoDetalle,
+          cantidad: item.cantidadGastoDetalle,
+          costoUnitario: item.costoUnitarioGastoDetalle,
+          costoTotal: item.costoTotalGastoDetalle,
+          idTipoGasto: item.idTipoGasto,
+          descripcionTipoGasto: "",
+          numero: index+1
+        }
+        this.gastos.push(cd)
+      });
+      
+      this.buscarTrabajadores();
+      this.buscarGastos();
+
+
+      if(this.verDetalle){
+        this.form.controls["actividad"].disable();
+        this.form.controls["fecha"].disable();
+        this.form.controls["descripcion"].disable();
+        this.tituloModal = "Ver detalle actividad"
+      }
     } else {
       this.tituloModal = "Nueva actividad";
     }
@@ -84,7 +146,11 @@ export class NuevoEditarActividadesComponent implements OnInit {
       })
     })();
   }
- 
+
+  changeActividad(){
+    // this.tipoActividadSeleccion = this.form.controls["actividad"].value;
+  }
+
   public paginacionTrabajadorVars: Paginacion = {
     paginaActual: 1,
     totalPaginas: 0,
@@ -133,6 +199,7 @@ export class NuevoEditarActividadesComponent implements OnInit {
       this.trabajadores[trabajador.numero - 1] = trabajador;
     } else {
       let trabajadorb : Trabajador = {
+        idTrabajador: null,
         numero: this.trabajadores.length + 1,
         cantidad: trabajador.cantidad,
         costoTotal: trabajador.costoTotal,
@@ -151,6 +218,7 @@ export class NuevoEditarActividadesComponent implements OnInit {
       this.gastos[gasto.numero - 1] = gasto;
     } else {
       let gastob : Gasto = {
+        idGasto: null,
         numero: this.gastos.length + 1,
         cantidad: gasto.cantidad,
         costoTotal: gasto.costoTotal,
@@ -170,12 +238,18 @@ export class NuevoEditarActividadesComponent implements OnInit {
       return;
     }
     if(this.isEditarActividad){
-
+      let response = await this.service.editarActividad();
+      this.nuevoEditaractividades.mostrarModal = false;
+      this.alertInformationService.titulo = "Actividad";
+      this.alertInformationService.texto = "Actividad editada.";
+      this.alertInformationService.mostrar = true;
+      this.actualizo.emit()
     } else {
       let response = await this.service.agregarActividad();
       this.nuevoEditaractividades.mostrarModal = false;
       this.alertInformationService.titulo = "Actividad";
-      this.alertInformationService.texto = "Actividad agregado.";
+      this.alertInformationService.texto = "Actividad agregada.";
+      this.alertInformationService.mostrar = true;
       this.actualizo.emit()
     }
   }
@@ -224,7 +298,8 @@ export class NuevoEditarActividadesComponent implements OnInit {
     },
     cerrarModal: () => {
       this.nuevoEditaractividades.mostrarModal = false;
-    }
+    },
+    
   }
 
   service = {
@@ -266,9 +341,71 @@ export class NuevoEditarActividadesComponent implements OnInit {
         idCampania: parseInt(this.idCampania),
         usuarioInserta: this.nombreUsuarioStorage,
         listaTrabajadores: this.listaTrabajadoresRequestDTO,
-        listaGastos: this.listaGastosRequestDTO
+        listaGastos: this.listaGastosRequestDTO,
+
+        listaAbonacion: [],
+        listaFumigacionDetalle: [],
+
+        cantidadSemillaActividad: null,
+        unidadSemilla: null,
+
+        cantidadFumigacion: null,
+        unidadFumigacion:null
       };
       return lastValueFrom(this.actividadService.agregarActividadTrabajadorGastos(params));
+    },
+    editarActividad: () => {
+      this.listaTrabajadoresModificaRequestDTO = [];
+      this.trabajadores.forEach(item => {
+        let ab: TrabajadorModificarDTO = {
+          idTrabajador: item.idTrabajador,
+          descripcionTrabajador: item.descripcion,
+          cantidadTrabajador: item.cantidad,
+          costoUnitario: item.costoUnitario,
+          costoTotal: item.costoTotal,
+          idTipoTrabajador: item.idTipoTrabajador,
+        }
+        this.listaTrabajadoresModificaRequestDTO.push(ab);
+      });
+
+      this.listaGastosModificaRequestDTO = [];
+      this.gastos.forEach(item => {
+        let cd: GastoTrabajadorModificarDTO = {
+          idGasto: item.idGasto,
+          descripcionGasto: item.descripcion,
+          cantidadGasto: item.cantidad,
+          costoUnitario: item.costoUnitario,
+          costoTotal: item.costoTotal,
+          idTipoGasto: item.idTipoGasto
+        };
+        this.listaGastosModificaRequestDTO.push(cd);
+      });
+      let params: ModificarActividadTrabajadorGastosRequest = {
+        idActividad: this.item.idActividad,
+        fechaActividad: this.form.controls["fecha"].value,
+        descripcionActividad: this.form.controls["descripcion"].value.trim(),
+        idTipoActividad: this.form.controls["actividad"].value,
+        idCampania: parseInt(this.idCampania),
+        usuarioModifica: this.nombreUsuarioStorage,
+        listaTrabajador: this.listaTrabajadoresModificaRequestDTO,
+        listaGasto: this.listaGastosModificaRequestDTO,
+
+        listaAbonacion: [],
+        listaFumigacionDetalle: [],
+
+        cantidadSemillaActividad: null,
+        unidadSemilla: null,
+
+        cantidadFumigacion: null,
+        unidadFumigacion:null
+      }
+      return lastValueFrom(this.actividadService.modificarActividadTrabajadorGastos(params));
+    },
+    obtenerActividad:() => {
+      let params: ListarDetalleActividadRequest = {
+        idActividad: this.item.idActividad
+      };
+      return lastValueFrom(this.actividadService.listarDetalleActividad(params))
     }
   }
 

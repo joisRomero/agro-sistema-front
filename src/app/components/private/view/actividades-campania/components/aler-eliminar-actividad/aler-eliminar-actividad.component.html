@@ -1,1 +1,19 @@
-<p>aler-eliminar-actividad works!</p>
+<app-general-alert titulo="Actividad" [cerrarAlert]="onClick.cerrarAlert">
+    <p class="fw-normal mb-0">¿Está seguro de querer eliminar la activiada?</p>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSecundario]="true"
+        class="m-1"
+        (click)="onClick.cerrarAlert()"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Eliminar"
+        class="m-1"
+        (click)="onClick.eliminar()"
+      ></app-general-button>
+    </div>
+  </app-general-alert>
+  

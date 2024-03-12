@@ -84,7 +84,7 @@ export class CampaniasComponent implements OnInit {
     },
     verMas: (item: ListaPaginaCampaniasUsuarioResponseItem) => {
       this.router.navigate(["intranet/mis-campanias/ver-detalle-campania",
-                            item.idCampania.toString()]);
+                            item.idCampania.toString(),"actividades"]);
     },
     nuevaCampania: () => {
       this.isEditar = false;

@@ -85,7 +85,7 @@ export class NuevoEditarGastosCampaniaComponent implements OnInit {
       this.form.controls["costoUnitario"].setValue(response.body!.costoUnitario);
       this.form.controls["costoTotal"].setValue(response.body!.costoTotal);
       this.form.controls["descripcion"].setValue(response.body!.descripcion);
-      this.form.controls["fechaGasto"].setValue(response.body!.fechaGasto);
+      this.form.controls["fechaGasto"].setValue(Convert.dateToDateInput(response.body!.fechaGasto));
     } else {
       this.tituloModal = "Agregar gastos";
       this.form.controls["costoTotal"].setValue(0);

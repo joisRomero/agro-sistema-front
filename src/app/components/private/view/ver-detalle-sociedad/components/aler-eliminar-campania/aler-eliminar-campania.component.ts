@@ -35,7 +35,7 @@ export class AlerEliminarCampaniaComponent implements OnInit {
       this.recargar.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Campaña";
-      this.alertInformationService.texto = "Campaña eliminada con éxito.";
+      this.alertInformationService.texto = "Campaña eliminada.";
     },
   };
 

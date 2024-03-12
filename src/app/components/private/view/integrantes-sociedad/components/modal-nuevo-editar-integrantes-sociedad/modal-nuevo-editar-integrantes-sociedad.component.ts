@@ -81,7 +81,7 @@ export class ModalNuevoEditarIntegrantesSociedadComponent implements OnInit {
           this.servicioModal.mostrarModal = false;
           this.alertInformationService.mostrar = true;
           this.alertInformationService.titulo = "Integrante";
-          this.alertInformationService.texto = "Usuario invitado con éxito.";
+          this.alertInformationService.texto = "Usuario invitado.";
         } 
       } else {
         this.mostrarModalDeNoEncontrados = true;

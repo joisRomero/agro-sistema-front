@@ -37,7 +37,7 @@ export class AlertEliminarTipoTrabajadorComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Tipo de trabajador";
-      this.alertInformationService.texto = "Tipo de trabajador eliminado con éxito.";
+      this.alertInformationService.texto = "Tipo de trabajador eliminado.";
     },
   };
 

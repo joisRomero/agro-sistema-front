@@ -1,4 +1,5 @@
 export interface Gasto {
+    idGasto: number | null;
     numero: number;
     idTipoGasto: number,
     descripcionTipoGasto: string,

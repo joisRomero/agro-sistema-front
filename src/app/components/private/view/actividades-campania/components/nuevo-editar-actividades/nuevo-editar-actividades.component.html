@@ -9,6 +9,7 @@
       label="Actividad: "
       [mensajeError]="mensajesError.actividad"
       [values]="valoresTipoActividad"
+      (change)="changeActividad()"
     ></app-general-select>
     <app-general-input
       [fGroup]="form"
@@ -18,6 +19,44 @@
       class="px-2 py-1 col-12 col-md-4 col-sm-4"
       tipo="date"
     ></app-general-input>
+    <app-general-input
+      [fGroup]="form"
+      nombreControl="cantidadSemilla"
+      label="Cantidad de semilla: "
+      [mensajeError]="mensajesError.fecha"
+      class="px-2 py-1 col-12 col-md-4 col-sm-4"
+      tipo="text"
+      [soloNumeros]="true"
+      *ngIf="tipoActividadSeleccion == 3"
+    ></app-general-input>
+    <app-general-select
+      class="px-2 py-1 col-12 col-md-4 col-sm-4"
+      [fGroup]="form"
+      nombreControl="unidadSemilla"
+      label="Unidad semilla: "
+      [mensajeError]="mensajesError.actividad"
+      [values]="valoresTipoActividad"
+      *ngIf="tipoActividadSeleccion == 3"
+    ></app-general-select>
+    <app-general-input
+      [fGroup]="form"
+      nombreControl="cantidadFumigacion"
+      label="Cantidad de fumigación: "
+      [mensajeError]="mensajesError.fecha"
+      class="px-2 py-1 col-12 col-md-4 col-sm-4"
+      tipo="text"
+      [soloNumeros]="true"
+      *ngIf="tipoActividadSeleccion == 1"
+    ></app-general-input>
+    <app-general-select
+      class="px-2 py-1 col-12 col-md-4 col-sm-4"
+      [fGroup]="form"
+      nombreControl="unidadFumigacion"
+      label="Unidad fumigacion: "
+      [mensajeError]="mensajesError.actividad"
+      [values]="valoresTipoActividad"
+      *ngIf="tipoActividadSeleccion == 1"
+    ></app-general-select>
     <app-general-input
       [fGroup]="form"
       nombreControl="descripcion"
@@ -36,6 +75,7 @@
       claseBoton="primary"
       label="Agregar"
       [onClickButton]="onClick.agregarTrabajador"
+      *ngIf="!verDetalle"
     ></app-general-button>
   </div>
 
@@ -49,7 +89,8 @@
             <th scope="col">Cantidad</th>
             <th scope="col">Costo unitario</th>
             <th scope="col">Costo total</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Descripción</th>
+            <th scope="col" *ngIf="!verDetalle">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +100,8 @@
               <td scope="row">{{ item.cantidad }}</td>
               <td scope="row">{{ item.costoUnitario }}</td>
               <td scope="row">{{ item.costoTotal }}</td>
-              <td>
+              <td scope="row">{{ item.descripcion }}</td>
+              <td *ngIf="!verDetalle">
                 <div class="gap-2 d-flex">
                   <div class="dropdown">
                     <button
@@ -111,8 +153,8 @@
     <app-general-button
       claseBoton="primary"
       label="Agregar"
-      
       [onClickButton]="onClick.agregarGasto"
+      *ngIf="!verDetalle"
     ></app-general-button>
   </div>
 
@@ -126,7 +168,8 @@
             <th scope="col">Cantidad</th>
             <th scope="col">Costo unitario</th>
             <th scope="col">Costo total</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Descripción</th>
+            <th scope="col" *ngIf="!verDetalle">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -136,7 +179,8 @@
               <td scope="row">{{ item.cantidad }}</td>
               <td scope="row">{{ item.costoUnitario }}</td>
               <td scope="row">{{ item.costoTotal }}</td>
-              <td>
+              <td scope="row">{{ item.descripcion }}</td>
+              <td *ngIf="!verDetalle">
                 <div class="gap-2 d-flex">
                   <div class="dropdown">
                     <button
@@ -184,7 +228,7 @@
   </div>
 </form>
 <div footer>
-  <div class="d-flex justify-content-end mt-3">
+  <div class="d-flex justify-content-end mt-3" *ngIf="!verDetalle">
     <app-general-button
     claseBoton="secondary"
     label="Cancelar"
@@ -200,6 +244,13 @@
     ></app-general-button>
   </div>
   
+  <app-general-button
+    claseBoton="primary"
+    label="Salir"
+    class="m-1"
+    [onClickButton]="onClick.cerrarModal"
+    *ngIf="verDetalle"
+  ></app-general-button>
 </div>
 
 </app-modal>

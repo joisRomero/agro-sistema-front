@@ -37,7 +37,7 @@ export class AlertEliminarTipoGastoComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Tipo de gasto";
-      this.alertInformationService.texto = "Tipo de gasto eliminado con éxito.";
+      this.alertInformationService.texto = "Tipo de gasto eliminado.";
     },
   };
 

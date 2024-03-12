@@ -9,8 +9,10 @@ import { CombosService } from 'src/app/services/combos.service';
 import { Paginacion } from 'src/app/models/paginacion';
 import { lastValueFrom } from 'rxjs';
 import { ObtenerTipoActividadPorUsuarioRequest } from 'src/app/models/requests/obtenerTipoActividadPorUsuarioRequest';
-import { ListaPaginaActividadResponse } from 'src/app/models/responses/listaPaginaActividadResponse';
+import { ListaPaginaActividadResponse, ListaPaginaActividadResponseItem } from 'src/app/models/responses/listaPaginaActividadResponse';
 import { ListaPaginaActividadRequest } from 'src/app/models/requests/listaPaginaActividadRequest';
+import { ActivatedRoute } from '@angular/router';
+import { EliminarActividadVars } from './components/aler-eliminar-actividad/eliminar-actividad-vars';
 
 @Component({
   selector: 'app-actividades-campania',
@@ -27,36 +29,30 @@ export class ActividadesCampaniaComponent implements OnInit {
   private idUsuarioStorage: number = parseInt((JSON.parse(localStorage.getItem("usuario")!) as Usuario).idUsuario);
   public itemsTabla: ListaPaginaActividadResponse = new ListaPaginaActividadResponse();
   public listaActividad!: ListaPaginaActividadRequest;
+  public item!: ListaPaginaActividadResponseItem;
+  public verDetalle: boolean = false;
 
   constructor(
     public nuevoEditarActividades: NuevoEditarActividadVars,
     public actividadService: ActividadService,
     private combosServices: CombosService,
     private fb: FormBuilder,
+    private route: ActivatedRoute,
+    public servicioAlert: EliminarActividadVars,
   ) { }
 
   ngOnInit(): void {
     this.inicarControles();
     this.setDatosBusqueda();
-    this.iniciarCombos();
     this.buscar();
   }
 
   private inicarControles() {
+    this.idCampania = this.route.snapshot.parent?.params['id'];
     this.form = this.fb.nonNullable.group({
       tipoActividad: [""],
       fechaActividad: [""],
     });
-  }
-
-  iniciarCombos() {
-    (async () => {
-      this.valoresTipoActividad = [];
-      let response = await this.service.obtenerTipoActividdad();
-      response.body!.forEach(e => {
-        this.valoresTipoActividad.push(new GeneralSelectItem(e.idTipoActividad, e.nombreTipoActividad));
-      })
-    })();
   }
 
   public paginacionVars: Paginacion = {
@@ -85,7 +81,7 @@ export class ActividadesCampaniaComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaActividad = {
-      idTipoActividad: this.form.controls["tipoActividad"].value,
+      nombreTipoActividad: this.form.controls["tipoActividad"].value,
       fechaActividad: this.form.controls["fechaActividad"].value,
       idCampania: parseInt(this.idCampania),
       pageNumber: this.paginacionVars.paginaActual,
@@ -95,12 +91,30 @@ export class ActividadesCampaniaComponent implements OnInit {
 
   public click = {
     nuevo: () => {
+      this.isEditar = false;
+      this.verDetalle = false;
       this.nuevoEditarActividades.mostrarModal = true;
     },
     limpiar: () => {
       this.form.controls["tipoActividad"].setValue("");
       this.form.controls["fechaActividad"].setValue("");
     },
+    editar: (item: ListaPaginaActividadResponseItem) => {
+      this.isEditar = true;
+      this.verDetalle = false;
+      this.item = item;
+      this.nuevoEditarActividades.mostrarModal = true;
+    },
+    verDetalle: (item: ListaPaginaActividadResponseItem) => {
+      this.verDetalle = true;
+      this.isEditar = false;
+      this.item = item;
+      this.nuevoEditarActividades.mostrarModal = true;
+    },
+    eliminar: (item: ListaPaginaActividadResponseItem) => {
+      this.item = item;
+      this.servicioAlert.mostrarModal = true;
+    }
   }
 
   private service ={

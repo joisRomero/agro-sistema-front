@@ -11,6 +11,7 @@ import { ObtenerTipoGastoPorUsuarioRequest } from 'src/app/models/requests/obten
 import { CombosService } from 'src/app/services/combos.service';
 import { Usuario } from 'src/app/models/usuario';
 import { EliminarGastosCampaniaVars } from './components/alert-eliminar-gastos-campania/eliminar-gastos-campania.vars';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gastos-campania',
@@ -34,13 +35,14 @@ export class GastosCampaniaComponent implements OnInit {
     private fb: FormBuilder,
     public gastoDetalleService: GastoDetalleService,
     private combosServices: CombosService,
-    public eliminarGastoDetalleService: EliminarGastosCampaniaVars
+    public eliminarGastoDetalleService: EliminarGastosCampaniaVars,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.idCampania = this.route.snapshot.parent?.params['id'];
     this.inicarControles();
     this.setDatosBusqueda();
-    this.iniciarCombos();
     this.buscar();
   }
 
@@ -51,15 +53,7 @@ export class GastosCampaniaComponent implements OnInit {
     });
   }
   
-  iniciarCombos() {
-    (async () => {
-      this.valoresTipoGasto = [];
-      let response = await this.service.obtenerTipoGasto();
-      response.body!.forEach(e => {
-        this.valoresTipoGasto.push(new GeneralSelectItem(e.idTipoGasto, e.nombreTipoGasto));
-      })
-    })();
-  }
+
 
   public paginacionVars: Paginacion = {
     paginaActual: 1,
@@ -87,7 +81,7 @@ export class GastosCampaniaComponent implements OnInit {
 
   setDatosBusqueda() {
     this.listaGastoDetalles = {
-      idTipoGasto: this.form.controls["tipoGasto"].value,
+      nombreTipoGasto: this.form.controls["tipoGasto"].value,
       fechaGasto: this.form.controls["fechaGasto"].value,
       idCampania: parseInt(this.idCampania),
       pageNumber: this.paginacionVars.paginaActual,

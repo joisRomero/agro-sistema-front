@@ -109,12 +109,13 @@ export class NuevoEditarTrbajadorComponent implements OnInit {
     }
     if (this.isEditar) {
       let trabajador: Trabajador = {
+        idTrabajador: this.trabajadorItem.idTrabajador,
         numero: this.trabajadorItem.numero,
         idTipoTrabajador: this.form.controls["tipoTrabajador"].value,
         cantidad: this.form.controls["cantidad"].value,
         costoTotal: this.form.controls["costoTotal"].value,
         costoUnitario: this.form.controls["costoUnitario"].value,
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        descripcion: this.form.controls["descripcion"].value,
         descripcionTipoTrabajador: this.valoresTipoTrabajador.find( a => (a.value == this.form.controls["tipoTrabajador"].value))?.text || ""
       }
       this.servicioModal.mostrarModal = false;
@@ -124,12 +125,13 @@ export class NuevoEditarTrbajadorComponent implements OnInit {
       this.enviarTrabajador.emit(trabajador);
     } else {
       let trabajador: Trabajador = {
+        idTrabajador: null,
         numero: 0,
         idTipoTrabajador: this.form.controls["tipoTrabajador"].value,
         cantidad: this.form.controls["cantidad"].value,
         costoTotal: this.form.controls["costoTotal"].value,
         costoUnitario: this.form.controls["costoUnitario"].value,
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        descripcion: this.form.controls["descripcion"].value,
         descripcionTipoTrabajador: this.valoresTipoTrabajador.find( a => (a.value == this.form.controls["tipoTrabajador"].value))?.text || ""
       }
       this.enviarTrabajador.emit(trabajador);

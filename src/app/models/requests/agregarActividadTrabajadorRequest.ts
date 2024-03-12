@@ -4,8 +4,17 @@ export interface AgregarActividadTrabajadorRequest {
     idCampania: number;
     idTipoActividad: number;
     usuarioInserta: string | null;
+
+    cantidadSemillaActividad: number | null;
+    unidadSemilla: number | null;
+
+    cantidadFumigacion: number | null;
+    unidadFumigacion: number | null;
+
     listaTrabajadores: TrabajadorDTO[] | null;
     listaGastos: GastoDTO[] | null;
+    listaAbonacion: AbonacionDTO[] | null;
+    listaFumigacionDetalle: FumigacionDetalleDTO[] | null;
 }
 
 export interface TrabajadorDTO {
@@ -22,4 +31,16 @@ export interface GastoDTO {
     costoUnitario: number;
     costoTotal: number;
     idTipoGasto: number;
+}
+
+export interface AbonacionDTO {
+    cantidadAbonacion: number | null;
+    unidadAbonacion: number | null;
+    idAbono: number | null;
+}
+
+export interface FumigacionDetalleDTO {
+    cantidadFumigacionDetalle: number | null;
+    unidadFumigacionDetalle: number | null;
+    idAgroquimico: number | null;
 }

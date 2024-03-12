@@ -110,12 +110,13 @@ export class NuevoEditarGastosComponent implements OnInit {
     }
     if (this.isEditar) {
       let gasto: Gasto = {
+        idGasto: this.gastoItem.idGasto,
         numero: this.gastoItem.numero,
         idTipoGasto: this.form.controls["tipoGasto"].value,
         cantidad: this.form.controls["cantidad"].value,
         costoTotal: this.form.controls["costoTotal"].value,
         costoUnitario: this.form.controls["costoUnitario"].value,
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        descripcion: this.form.controls["descripcion"].value,
         descripcionTipoGasto: this.valoresTipoGasto.find( a => (a.value == this.form.controls["tipoGasto"].value))?.text || ""
       }
       this.servicioModal.mostrarModal = false;
@@ -126,12 +127,13 @@ export class NuevoEditarGastosComponent implements OnInit {
     } else {
       this.servicioModal.mostrarModal = false;
       let gasto: Gasto = {
+        idGasto: null,
         numero: 0,
         idTipoGasto: this.form.controls["tipoGasto"].value,
         cantidad: this.form.controls["cantidad"].value,
         costoTotal: this.form.controls["costoTotal"].value,
         costoUnitario: this.form.controls["costoUnitario"].value,
-        descripcion: this.form.controls["descripcion"].value.trim(),
+        descripcion: this.form.controls["descripcion"].value,
         descripcionTipoGasto: this.valoresTipoGasto.find( a => (a.value == this.form.controls["tipoGasto"].value))?.text || ""
       }
       this.enviarGasto.emit(gasto);

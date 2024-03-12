@@ -1,13 +1,12 @@
 
   <h5 class="card-title pt-0">Filtros</h5>
   <div class="align-items-end row">
-    <app-general-select
+    <app-general-input
       [fGroup]="form"
       label="Actividad: "
       nombreControl="tipoActividad"
-      [values]="valoresTipoActividad"
       class="col-12 col-md-3"
-    ></app-general-select>
+    ></app-general-input>
     <app-general-input
       [fGroup]="form"
       nombreControl="fechaActividad"
@@ -56,8 +55,8 @@
         <tr *ngFor="let item of itemsTabla.data">
           <td class="ps-2" scope="row">{{ item.correlativo }}</td>
           <td scope="row">{{ item.nombreTipoActividad }}</td>
-          <td scope="row">{{ item.fechaActividad }}</td>
-          <td scope="row">{{ item.fechaActividad }}</td>
+          <td scope="row">{{ item.fechaActividad | date : "dd/MM/yyyy" }}</td>
+          <td scope="row">{{ item.descripcionActividad }}</td>
           <td scope="row">
             <div class="gap-2 d-flex">
               <div class="dropdown">
@@ -75,14 +74,22 @@
                       claseBoton="dropdown-item"
                       label="Editar"
                       [sinClasesDeBoton]="true"
+                      (click)="click.editar(item)"
                     >
                     </app-general-button>
+                    <app-general-button
+                    claseBoton="dropdown-item"
+                    label="Ver detalle"
+                    [sinClasesDeBoton]="true"
+                    (click)="click.verDetalle(item)"
+                  >
+                  </app-general-button>
                     <app-general-button
                       claseBoton="dropdown-item"
                       label="Eliminar"
                       [sinClasesDeBoton]="true"
-                    >
-                    </app-general-button>
+                      (click)="click.eliminar(item)"
+                    ></app-general-button>
                   </li>
                 </ul>
               </div>
@@ -106,4 +113,12 @@
   *ngIf="nuevoEditarActividades.mostrarModal"
   [idCampania]="idCampania"
   (actualizo)="actualizarTabla()"
+  [item]="item"
+  [isEditarActividad]="isEditar"
+  [verDetalle]="verDetalle"
 ></app-nuevo-editar-actividades>
+
+<app-aler-eliminar-actividad
+  [item]="item"
+  *ngIf="servicioAlert.mostrarModal"
+></app-aler-eliminar-actividad>

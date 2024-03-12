@@ -37,7 +37,7 @@ export class AlertEliminarTipoActividadComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Tipo de actividad";
-      this.alertInformationService.texto = "Tipo de actividad eliminado con éxito.";
+      this.alertInformationService.texto = "Tipo de actividad eliminado.";
     },
   };
 

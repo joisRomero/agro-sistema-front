@@ -53,7 +53,7 @@ export class FinalizarCampaniaComponent implements OnInit {
     this.servicioModal.mostrarModal=false;
     this.alertInformationService.mostrar = true;
     this.alertInformationService.titulo = "Campaña";
-    this.alertInformationService.texto = "Campaña finalizada con éxito.";
+    this.alertInformationService.texto = "Campaña finalizada.";
     this.actualizo.emit();
   }
 

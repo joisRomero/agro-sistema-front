@@ -37,7 +37,7 @@ export class AlertEliminarComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Cultivo";
-      this.alertInformationService.texto = "Cultivo eliminado con éxito.";
+      this.alertInformationService.texto = "Cultivo eliminado.";
     },
   };
 

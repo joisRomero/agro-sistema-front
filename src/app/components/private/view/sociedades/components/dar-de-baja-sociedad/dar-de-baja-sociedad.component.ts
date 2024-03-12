@@ -47,7 +47,7 @@ export class DarDeBajaSociedadComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Sociedad";
-      this.alertInformationService.texto = "Se eliminó la sociedad exitosamente";
+      this.alertInformationService.texto = "Sociedad eliminada.";
     },
   };
 

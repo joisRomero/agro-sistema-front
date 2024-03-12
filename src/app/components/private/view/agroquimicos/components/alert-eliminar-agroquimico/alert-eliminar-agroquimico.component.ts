@@ -37,7 +37,7 @@ export class AlertEliminarAgroquimicoComponent implements OnInit {
       this.elimino.emit();
       this.alertInformationService.mostrar = true;
       this.alertInformationService.titulo = "Agroquímico";
-      this.alertInformationService.texto = "Agroquímico eliminado con éxito.";
+      this.alertInformationService.texto = "Agroquímico eliminado.";
     },
   };
 

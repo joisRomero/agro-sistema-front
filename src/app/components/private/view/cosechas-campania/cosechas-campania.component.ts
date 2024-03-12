@@ -9,6 +9,7 @@ import { NuevoCosechaVars } from '../ver-detalle-campania/components/nuevo-cosec
 import { NuevoDetalleCosechaVars } from '../ver-detalle-campania/components/nuevo-detalle-cosecha/nuevo-detalle-cosecha.vars';
 import { VerDetalleCosechaVars } from '../ver-detalle-campania/components/ver-detalle-cosecha/ver-detalle-cosecha.vars';
 import { EliminarCosechaVars } from '../ver-detalle-campania/components/eliminar-cosecha/eliminar-cosecha.vars';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cosechas-campania',
@@ -33,9 +34,11 @@ export class CosechasCampaniaComponent implements OnInit {
     public modalNuevoDetalleCosecha: NuevoDetalleCosechaVars,
     public modalVerDetalleCosecha: VerDetalleCosechaVars,
     public modalEliminarCosecha: EliminarCosechaVars,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.idCampania = this.route.snapshot.parent?.params['id'];
     this.iniciarControles();
     this.buscarCosechas();
   }

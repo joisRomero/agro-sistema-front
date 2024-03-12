@@ -1,5 +1,6 @@
 export interface Trabajador {
-    numero: number;
+    idTrabajador: number | null,
+    numero: number,
     idTipoTrabajador: number,
     descripcionTipoTrabajador: string,
     cantidad: number, 

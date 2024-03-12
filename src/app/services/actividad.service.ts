@@ -8,6 +8,7 @@ import { AgregarActividadTrabajadorRequest } from '../models/requests/agregarAct
 import { ModificarActividadTrabajadorGastosRequest } from '../models/requests/modificarActividadTrabajadorGastosRequest';
 import { ListarDetalleActividadRequest } from '../models/requests/listarDetalleActividadRequest';
 import { ListarDetalleActividadResponse } from '../models/responses/listarDetalleActividadResponse';
+import { EliminarActividadRequest } from '../models/requests/eliminarActividadRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class ActividadService {
 
   public listarDetalleActividad(params: ListarDetalleActividadRequest): Observable<HttpResponse<ListarDetalleActividadResponse>> {
     return this.http.post<ListarDetalleActividadResponse>(`${this.url}/listarDetalleActividad`, params, {observe: 'response'});
+  }
+
+  public eliminarActividad(params: EliminarActividadRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/eliminarActividad`, params, {observe: 'response'});
   }
 }
