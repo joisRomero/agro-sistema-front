@@ -5,6 +5,7 @@ import { lastValueFrom } from 'rxjs';
 import { ValidarPertenenciaCampaniaSociedadRequest } from 'src/app/models/requests/validarPertenenciaCampaniaSociedadRequest';
 import { Usuario } from 'src/app/models/usuario';
 import { CampaniaService } from 'src/app/services/campania.service';
+import { VerDetalleCampaniaDataVars } from './ver-detalle-campania-data-vars';
 
 @Component({
   selector: 'app-ver-detalle-campania',
@@ -23,6 +24,7 @@ export class VerDetalleCampaniaComponent implements OnInit {
     private campaniaService: CampaniaService,
     private location: Location,
     private router: Router,
+    private data: VerDetalleCampaniaDataVars
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class VerDetalleCampaniaComponent implements OnInit {
     try {
       let response = await this.service.validarPertenenciaCampaniaSociedad();
       this.nombreCampania = response.body!.nombreCampania;
+      this.data.estadoProcesoCampania = response.body!.estadoProceso;
       this.mostrarInformacion = true;
     } catch (error) {
       const rutaActual = this.router.url;

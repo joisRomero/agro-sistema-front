@@ -36,6 +36,7 @@
     claseBoton="primary"
     label="Nuevo"
     [onClickButton]="onClick.agregarGasto"
+    *ngIf="data.estadoProcesoCampania == 'P'"
   ></app-general-button>
 </div>
 
@@ -80,12 +81,14 @@
                     label="Editar"
                     [sinClasesDeBoton]="true"
                     (click)="onClick.editarGasto(item)"
+                    *ngIf="data.estadoProcesoCampania == 'P'"
                   ></app-general-button>
                   <app-general-button
                     claseBoton="dropdown-item"
                     label="Eliminar"
                     [sinClasesDeBoton]="true"
                     (click)="onClick.eliminarGasto(item)"
+                    *ngIf="data.estadoProcesoCampania == 'P'"
                   ></app-general-button>
                 </li>
               </ul>

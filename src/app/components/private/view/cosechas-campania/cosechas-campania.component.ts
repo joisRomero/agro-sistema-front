@@ -8,6 +8,8 @@ import { CosechaService } from 'src/app/services/cosecha.service';
 
 import { ActivatedRoute } from '@angular/router';
 import { AgregarCosechaVars } from './components/agregar-editar-cosecha/agregar-cosecha.vars';
+import { EliminarCosechaVars } from './components/alert-eliminar-cosecha/eliminar-cosecha-vars';
+import { VerDetalleCampaniaDataVars } from '../ver-detalle-campania/ver-detalle-campania-data-vars';
 
 @Component({
   selector: 'app-cosechas-campania',
@@ -24,12 +26,15 @@ export class CosechasCampaniaComponent implements OnInit {
   public cosechaItem!: ListaPaginadaCosechasResponseItem;
   public listaCosechas!: ListaPaginadaCosechasRequest;
   @Input() idCampania: string = '';
+  public verDetalle: boolean = false;
 
   constructor(
     private cosechaService: CosechaService,
     private fb: FormBuilder,
     public route: ActivatedRoute,
     public servicioModal: AgregarCosechaVars,
+    public servicioAlert: EliminarCosechaVars,
+    public data: VerDetalleCampaniaDataVars
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +44,7 @@ export class CosechasCampaniaComponent implements OnInit {
   }
 
   private iniciarControles() {
+    this.idCampania = this.route.snapshot.parent?.params['id'];
     this.form = this.fb.nonNullable.group({
       fechaCosecha: [""],
     });
@@ -78,19 +84,23 @@ export class CosechasCampaniaComponent implements OnInit {
     nuevaCosecha: () => {
       this.servicioModal.mostrarModal = true;
       this.esEditarNuevoCosecha = false;
+      this.verDetalle = false;
     },
-    editarCosecha: () => {
-      // this.modalNuevoCosecha.mostrarModal = true;
+    editarCosecha: (item: ListaPaginadaCosechasResponseItem) => {
+      this.servicioModal.mostrarModal = true;
       this.esEditarNuevoCosecha = true;
+      this.cosechaItem = item;
+      this.verDetalle = false;
     },
-    nuevoDetalleCosecha: () => {
-      // this.modalNuevoDetalleCosecha.mostrarModal = true;
+    verDetalleCosecha: (item: ListaPaginadaCosechasResponseItem) => {
+      this.servicioModal.mostrarModal = true;
+      this.esEditarNuevoCosecha = false;
+      this.cosechaItem = item;
+      this.verDetalle = true;
     },
-    verDetalleCosecha: () => {
-      // this.modalVerDetalleCosecha.mostrarModal = true;
-    },
-    eliminarCosecha: () => {
-      //this.modalEliminarCosecha.mostrarModal = true;
+    eliminarCosecha: (item: ListaPaginadaCosechasResponseItem) => {
+      this.servicioAlert.mostrarModal = true;
+      this.cosechaItem = item;
     },
     limpiar: () => {
       this.form.controls["fechaCosecha"].setValue("");

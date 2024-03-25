@@ -9,6 +9,7 @@ import { SociedadService } from 'src/app/services/sociedad.service';
 import { NuevoEditarIntegrantesSociedadVars } from './components/modal-nuevo-editar-integrantes-sociedad/nuevo-editar-integrantes-sociedad-vars';
 import { BusquedaIntegranteRequest } from 'src/app/models/requests/busquedaIntegranteRequest';
 import { AlertAsignarDesasignarAdministradorService } from './components/alert-asignar-desasignar-administrador/alert-asignar-desasignar-administrador.service';
+import { AlertRetirarSociedadService } from './components/alert-retirar-sociedad/alert-retirar-sociedad.service';
 
 @Component({
   selector: 'app-integrantes-sociedad',
@@ -28,12 +29,14 @@ export class IntegrantesSociedadComponent implements OnInit {
   public esAsignarAdministrador: boolean = false;
   public esDesasignarAdministrador: boolean = false;
   public usuarioElegidoAdministrador!: ObtenerIntegrantesSociedadResponseItem;
+  public esRetirarse: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private sociedadService: SociedadService,
     public modalIntegrantesSociedadVars: NuevoEditarIntegrantesSociedadVars,
-    public alertAsignarDesasignarAdministradorService: AlertAsignarDesasignarAdministradorService
+    public alertAsignarDesasignarAdministradorService: AlertAsignarDesasignarAdministradorService,
+    public retirarService: AlertRetirarSociedadService
   ) { }
 
   ngOnInit(): void {
@@ -95,6 +98,11 @@ export class IntegrantesSociedadComponent implements OnInit {
     },
     limpiar: () => {
       this.form.controls["nombre"].setValue("");
+    },
+    retirar: (item: ObtenerIntegrantesSociedadResponseItem)  => {
+      this.esRetirarse = item.idIntegrante == this.idUsuario;
+      this.retirarService.mostrar = true;
+      this.usuarioElegidoAdministrador = item;
     },
   }
 

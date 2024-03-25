@@ -1,18 +1,20 @@
-<app-general-alert titulo="Actividad" [cerrarAlert]="onClick.cerrarAlert">
-    <p class="fw-normal mb-0">¿Está seguro de querer eliminar la cosecha?</p>
+<app-general-alert titulo="Integrantes" [cerrarAlert]="onClick.cerrarAlert">
+    <p class="fw-normal mb-0">{{ pregunta }}</p>
     <div footer>
       <app-general-button
         claseBoton="secondary"
         label="Cancelar"
+        
         [esSecundario]="true"
         class="m-1"
         (click)="onClick.cerrarAlert()"
       ></app-general-button>
       <app-general-button
         claseBoton="primary"
-        label="Eliminar"
+        label="Aceptar"
+        
         class="m-1"
-        (click)="onClick.eliminar()"
+        (click)="onClick.accion()"
       ></app-general-button>
     </div>
   </app-general-alert>

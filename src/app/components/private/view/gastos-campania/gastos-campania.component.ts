@@ -12,6 +12,7 @@ import { CombosService } from 'src/app/services/combos.service';
 import { Usuario } from 'src/app/models/usuario';
 import { EliminarGastosCampaniaVars } from './components/alert-eliminar-gastos-campania/eliminar-gastos-campania.vars';
 import { ActivatedRoute } from '@angular/router';
+import { VerDetalleCampaniaDataVars } from '../ver-detalle-campania/ver-detalle-campania-data-vars';
 
 @Component({
   selector: 'app-gastos-campania',
@@ -36,7 +37,8 @@ export class GastosCampaniaComponent implements OnInit {
     public gastoDetalleService: GastoDetalleService,
     private combosServices: CombosService,
     public eliminarGastoDetalleService: EliminarGastosCampaniaVars,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public data: VerDetalleCampaniaDataVars
   ) { }
 
   ngOnInit(): void {

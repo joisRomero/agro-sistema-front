@@ -63,6 +63,7 @@ import { NuevoEditarFumigacionComponent } from './view/fumigacion/components/nue
 import { AgregarEditarCosechaComponent } from './view/cosechas-campania/components/agregar-editar-cosecha/agregar-editar-cosecha.component';
 import { AlertEliminarCosechaComponent } from './view/cosechas-campania/components/alert-eliminar-cosecha/alert-eliminar-cosecha.component';
 import { AgregarDetalleCosechaComponent } from './view/cosechas-campania/components/agregar-detalle-cosecha/agregar-detalle-cosecha.component';
+import { AlertRetirarSociedadComponent } from './view/integrantes-sociedad/components/alert-retirar-sociedad/alert-retirar-sociedad.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { AgregarDetalleCosechaComponent } from './view/cosechas-campania/compone
     AgregarEditarCosechaComponent,
     AlertEliminarCosechaComponent,
     AgregarDetalleCosechaComponent,
+    AlertRetirarSociedadComponent,
   ],
   imports: [
     CommonModule,

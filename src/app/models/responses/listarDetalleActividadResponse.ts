@@ -10,6 +10,9 @@ export interface ListarDetalleActividadResponse {
     listaDetalleFumigacionDetalle: DetalleFumigacionDTO[] | null;
     cantidadFumigacion: number | null;
     unidadDatoComunFumigacion: number | null;
+    unidadSemilla: number,
+    unidadDescripcionSemilla: string,
+    cantidadSemilla: number
 }
 
 export interface DetalleTrabajadoresDTO {

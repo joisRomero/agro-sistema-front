@@ -76,6 +76,7 @@
                       claseBoton="dropdown-item"
                       [sinClasesDeBoton]="true"
                       label="Retirar"
+                      (click)="onClick.retirar(item)"
                     ></app-general-button>
                     <app-general-button
                       claseBoton="dropdown-item"
@@ -104,6 +105,7 @@
               *ngIf="item.idIntegrante == idUsuario"
               label="Retirarse"
               [esSmall]="true"
+              (click)="onClick.retirar(item)"
             ></app-general-button>
           </ng-template>
         </td>
@@ -133,3 +135,11 @@
   (recargar)="realizarRecarga()"
   [idIntegrante]="usuarioElegidoAdministrador.idIntegrante"
 ></app-alert-asignar-desasignar-administrador>
+
+<app-alert-retirar-sociedad
+  *ngIf="retirarService.mostrar"
+  [idSociedad]="idSociedad"
+  (recargar)="realizarRecarga()"
+  [idIntegrante]="usuarioElegidoAdministrador.idIntegrante"
+  [esRetirarse]="esRetirarse"
+></app-alert-retirar-sociedad>

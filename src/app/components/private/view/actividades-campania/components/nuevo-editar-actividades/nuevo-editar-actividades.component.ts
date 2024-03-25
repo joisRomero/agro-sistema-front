@@ -115,8 +115,8 @@ export class NuevoEditarActividadesComponent implements OnInit {
       this.changeActividad();
       this.form.controls["fecha"].setValue(Convert.dateToDateInput(response.body!.fechaActividad));
       this.form.controls["descripcion"].setValue(response.body!.descripcionActividad);
-      // this.form.controls["cantidadSemilla"].setValue(response.body!.);
-      // this.form.controls["unidadSemilla"].setValue(response.body!.descripcionActividad);
+      this.form.controls["cantidadSemilla"].setValue(response.body!.cantidadSemilla);
+      this.form.controls["unidadSemilla"].setValue(response.body!.unidadSemilla);
       this.form.controls["cantidadFumigacion"].setValue(response.body!.cantidadFumigacion);
       this.form.controls["unidadFumigacion"].setValue(response.body!.unidadDatoComunFumigacion);
 
@@ -679,7 +679,7 @@ export class NuevoEditarActividadesComponent implements OnInit {
         unidadFumigacion = this.form.controls["unidadFumigacion"].value
         this.listaFumigacionModificaRequestDTO = [];
         this.fumigacion.forEach(item => {
-          let fg:FumigacionDetalleModificarDTO = {
+          let fg: FumigacionDetalleModificarDTO = {
             idFumigacionDetalle: item.idFumigacion,
             cantidadFumigacionDetalle: item.cantidad,
             unidadFumigacionDetalle: item.unidad,
@@ -720,6 +720,4 @@ export class NuevoEditarActividadesComponent implements OnInit {
       return lastValueFrom(this.combosService.obtenerUnidadSemilla());
     }
   }
-
-
 }

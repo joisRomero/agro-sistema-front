@@ -1,6 +1,6 @@
 export interface ObtenerCosechaResponse {
     idCosecha: number;
-    fechaCosecha: string | null;
+    fechaCosecha: Date;
     descripcion: string | null;
     idCampania: number | null;
     listaDetalleCosecha: DetalleCosechaDetalleDTO[] | null;
@@ -12,4 +12,6 @@ export interface DetalleCosechaDetalleDTO {
     unidad: number;
     calidad: number;
     descripcion: string | null;
+    unidadDescripcion: string | null;
+    calidadDescripcion: string | null;
 }

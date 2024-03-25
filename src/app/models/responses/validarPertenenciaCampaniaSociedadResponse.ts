@@ -1,3 +1,4 @@
 export interface ValidarPertenenciaCampaniaSociedadResponse {
-    nombreCampania: string
+    nombreCampania: string,
+    estadoProceso: string
 } 

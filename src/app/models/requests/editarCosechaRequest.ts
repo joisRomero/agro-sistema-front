@@ -1,5 +1,5 @@
 export interface EditarCosechaRequest {
-    idCosecha: number;
+    idCosecha: number | null;
     fechaCosecha: string | null;
     idCampania: number;
     descripcion: string | null;

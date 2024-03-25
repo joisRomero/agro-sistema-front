@@ -31,6 +31,7 @@
     claseBoton="primary"
     label="Nuevo"
     (click)="onClick.nuevaCosecha()"
+    *ngIf="data.estadoProcesoCampania == 'P'"
   ></app-general-button>
 </div>
 
@@ -47,7 +48,7 @@
     <tbody>
       <tr *ngFor="let item of itemsTablaCosecha.data">
         <td class="ps-2" scope="row">{{ item.numero }}</td>
-        <td scope="row">{{ item.fecha | date : "dd/MM/yyyy" }}</td>
+        <td scope="row">{{ item.fecha }}</td>
         <td scope="row">{{ item.descripcion }}</td>
         <td>
           <div class="gap-2 d-flex">
@@ -64,27 +65,23 @@
                 <li>
                   <app-general-button
                     claseBoton="dropdown-item"
-                    label="Agregar detalle"
-                    [sinClasesDeBoton]="true"
-                    (click)="onClick.nuevoDetalleCosecha()"
-                  ></app-general-button>
-                  <app-general-button
-                    claseBoton="dropdown-item"
-                    label="Ver detalle"
-                    [sinClasesDeBoton]="true"
-                    (click)="onClick.verDetalleCosecha()"
-                  ></app-general-button>
-                  <app-general-button
-                    claseBoton="dropdown-item"
                     label="Editar"
                     [sinClasesDeBoton]="true"
-                    (click)="onClick.editarCosecha()"
+                    (click)="onClick.editarCosecha(item)"
+                    *ngIf="data.estadoProcesoCampania == 'P'"
+                  ></app-general-button>
+                  <app-general-button
+                  claseBoton="dropdown-item"
+                  label="Ver detalle"
+                  [sinClasesDeBoton]="true"
+                  (click)="onClick.verDetalleCosecha(item)"
                   ></app-general-button>
                   <app-general-button
                     claseBoton="dropdown-item"
                     label="Eliminar"
                     [sinClasesDeBoton]="true"
-                    (click)="onClick.eliminarCosecha()"
+                    (click)="onClick.eliminarCosecha(item)"
+                    *ngIf="data.estadoProcesoCampania == 'P'"
                   ></app-general-button>
                 </li>
               </ul>
@@ -109,10 +106,14 @@
 <app-agregar-editar-cosecha
   *ngIf="servicioModal.mostrarModal"
   [esEditar]="esEditarNuevoCosecha"
+  [idCampania]="idCampania"
+  (actualizo)="buscar()"
+  [item]="cosechaItem"
+  [verDetalle]="verDetalle"
 ></app-agregar-editar-cosecha>
 
-
-<!-- 
-<app-eliminar-cosecha
-  *ngIf="modalEliminarCosecha.mostrarModal"
-></app-eliminar-cosecha> -->
+<app-alert-eliminar-cosecha
+  *ngIf="servicioAlert.mostrarModal"
+  [item]="cosechaItem"
+  (elimino)="buscar()"
+></app-alert-eliminar-cosecha>

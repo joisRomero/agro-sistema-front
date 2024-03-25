@@ -13,6 +13,7 @@ import { ListaPaginaActividadResponse, ListaPaginaActividadResponseItem } from '
 import { ListaPaginaActividadRequest } from 'src/app/models/requests/listaPaginaActividadRequest';
 import { ActivatedRoute } from '@angular/router';
 import { EliminarActividadVars } from './components/aler-eliminar-actividad/eliminar-actividad-vars';
+import { VerDetalleCampaniaDataVars } from '../ver-detalle-campania/ver-detalle-campania-data-vars';
 
 @Component({
   selector: 'app-actividades-campania',
@@ -39,6 +40,7 @@ export class ActividadesCampaniaComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     public servicioAlert: EliminarActividadVars,
+    public data: VerDetalleCampaniaDataVars
   ) { }
 
   ngOnInit(): void {

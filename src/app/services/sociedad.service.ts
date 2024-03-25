@@ -19,6 +19,7 @@ import { ValidarPertenenciaSociedadRequest } from '../models/requests/validarPer
 import { BusquedaIntegranteRequest } from '../models/requests/busquedaIntegranteRequest';
 import { BusquedaIntegranteResponse } from '../models/responses/busquedaIntegranteResponse';
 import { AsignarAdministradorSociedadRequest } from '../models/requests/asignarAdministradorSociedadRequest';
+import { RetirarseUsuarioSociedadRequest } from '../models/requests/retirarseUsuarioSociedadRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,10 @@ export class SociedadService {
 
   public asignarAdministradorSociedad(params: AsignarAdministradorSociedadRequest): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.url}/asignarAdministrador`, params, { observe: 'response' })
+  }
+
+  public retirarseUsuarioSociedad(params: RetirarseUsuarioSociedadRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/retirarseUsuarioSociedad`, params, { observe: 'response' })
   }
   
 

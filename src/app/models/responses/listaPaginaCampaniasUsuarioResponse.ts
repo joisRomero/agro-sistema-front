@@ -16,4 +16,6 @@ export interface ListaPaginaCampaniasUsuarioResponseItem {
   estado : boolean,
   areaSembrar : number,
   unidad: string
+  estadoProceso: string
+  estadoDescripcionProceso: string
 }

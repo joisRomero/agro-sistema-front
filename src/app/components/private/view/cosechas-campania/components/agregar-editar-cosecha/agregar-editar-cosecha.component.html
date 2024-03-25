@@ -104,17 +104,27 @@
   </div>
 
   <div footer>
-    <app-general-button
-      claseBoton="secondary"
-      label="Cancelar"
-      [esSecundario]="true"
-      class="m-1"
-      [onClickButton]="onClick.cerrarModal"
-    ></app-general-button>
+    <div class="d-flex justify-content-end mt-3" *ngIf="!verDetalle">
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cerrarModal"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        class="m-1"
+        (click)="guardar()"
+      ></app-general-button>
+    </div>
     <app-general-button
       claseBoton="primary"
-      label="Guardar"
+      label="Salir"
       class="m-1"
+      [onClickButton]="onClick.cerrarModal"
+      *ngIf="verDetalle"
     ></app-general-button>
   </div>
 </app-modal>

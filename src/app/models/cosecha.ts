@@ -1,10 +1,10 @@
 export interface Cosecha {
     idCosecha: number | null,
     numero : number,
-    cantidad: string,
+    cantidad: number,
     unidad: number,
-    unidadDescripcion: string,
+    unidadDescripcion: string | null,
     calidad: number,
-    calidadDescripcion: string,
-    descripcion: string
+    calidadDescripcion: string | null,
+    descripcion: string | null
 }
