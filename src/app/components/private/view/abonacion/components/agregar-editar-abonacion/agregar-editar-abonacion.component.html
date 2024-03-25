@@ -1,0 +1,47 @@
+<app-modal [titulo]="tituloModal" [cerrarModal]="onClick.cerrarModal" [large]="true">
+    <form class="w-100" [formGroup]="form!">
+      <div class="d-flex flex-wrap">
+        <app-general-select
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [fGroup]="form"
+            nombreControl="tipoAbono"
+            label="Abono: "
+            [mensajeError]="mensajesError.general"
+            [values]="valoresTipoAbono"
+        ></app-general-select>
+        <app-general-input
+            [fGroup]="form"
+            nombreControl="cantidad"
+            label="Cantidad: "
+            [mensajeError]="mensajesError.general"
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [soloNumeros]="true"
+        ></app-general-input>
+        <app-general-select
+            class="px-2 py-1 col-12 col-md-6 col-sm-6"
+            [fGroup]="form"
+            nombreControl="unidad"
+            label="Unidad: "
+            [mensajeError]="mensajesError.general"
+            [values]="valoresUnidadTipoAbono"
+        ></app-general-select>
+      </div>
+    </form>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cerrarModal"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        class="m-1"
+        (click)="guardar()"
+      ></app-general-button>
+    </div>
+  </app-modal>
+  

@@ -18,10 +18,6 @@ import { SociedadesComponent } from './view/sociedades/sociedades.component';
 import { CampaniasComponent } from './view/campanias/campanias.component';
 import { VerDetalleSociedadComponent } from './view/ver-detalle-sociedad/ver-detalle-sociedad.component';
 import { VerDetalleCampaniaComponent } from './view/ver-detalle-campania/ver-detalle-campania.component';
-import { VerDetalleCosechaComponent } from './view/ver-detalle-campania/components/ver-detalle-cosecha/ver-detalle-cosecha.component';
-import { NuevoCosechaComponent } from './view/ver-detalle-campania/components/nuevo-cosecha/nuevo-cosecha.component';
-import { NuevoDetalleCosechaComponent } from './view/ver-detalle-campania/components/nuevo-detalle-cosecha/nuevo-detalle-cosecha.component';
-import { EliminarCosechaComponent } from './view/ver-detalle-campania/components/eliminar-cosecha/eliminar-cosecha.component';
 import { DarDeBajaSociedadComponent } from './view/sociedades/components/dar-de-baja-sociedad/dar-de-baja-sociedad.component';
 import { NuevoEditarSociedadComponent } from './view/sociedades/components/nuevo-editar-sociedad/nuevo-editar-sociedad.component';
 import { PerfilUsuarioComponent } from './view/perfil-usuario/perfil-usuario.component';
@@ -59,6 +55,14 @@ import { NuevoEditarAbonoComponent } from './view/abonos/components/nuevo-editar
 import { AlertEliminarAbonoComponent } from './view/abonos/components/alert-eliminar-abono/alert-eliminar-abono.component';
 import { NuevoEditarAgroquimicoComponent } from './view/agroquimicos/components/nuevo-editar-agroquimico/nuevo-editar-agroquimico.component';
 import { AlertEliminarAgroquimicoComponent } from './view/agroquimicos/components/alert-eliminar-agroquimico/alert-eliminar-agroquimico.component';
+import { AbonacionComponent } from './view/abonacion/abonacion.component';
+import { FumigacionComponent } from './view/fumigacion/fumigacion.component';
+import { AgregarEditarAbonacionComponent } from './view/abonacion/components/agregar-editar-abonacion/agregar-editar-abonacion.component';
+import { AlertEliminarAbonacionComponent } from './view/abonacion/components/alert-eliminar-abonacion/alert-eliminar-abonacion.component';
+import { NuevoEditarFumigacionComponent } from './view/fumigacion/components/nuevo-editar-fumigacion/nuevo-editar-fumigacion.component';
+import { AgregarEditarCosechaComponent } from './view/cosechas-campania/components/agregar-editar-cosecha/agregar-editar-cosecha.component';
+import { AlertEliminarCosechaComponent } from './view/cosechas-campania/components/alert-eliminar-cosecha/alert-eliminar-cosecha.component';
+import { AgregarDetalleCosechaComponent } from './view/cosechas-campania/components/agregar-detalle-cosecha/agregar-detalle-cosecha.component';
 
 @NgModule({
   declarations: [
@@ -76,10 +80,6 @@ import { AlertEliminarAgroquimicoComponent } from './view/agroquimicos/component
     CampaniasComponent,
     VerDetalleSociedadComponent,
     VerDetalleCampaniaComponent,
-    VerDetalleCosechaComponent,
-    NuevoCosechaComponent,
-    NuevoDetalleCosechaComponent,
-    EliminarCosechaComponent,
     DarDeBajaSociedadComponent,
     NuevoEditarSociedadComponent,
     PerfilUsuarioComponent,
@@ -118,6 +118,14 @@ import { AlertEliminarAgroquimicoComponent } from './view/agroquimicos/component
     AlertEliminarTipoGastoComponent,
     ModalNuevoEditarTipoTrabajadorComponent,
     AlertEliminarTipoTrabajadorComponent,
+    AbonacionComponent,
+    FumigacionComponent,
+    AgregarEditarAbonacionComponent,
+    AlertEliminarAbonacionComponent,
+    NuevoEditarFumigacionComponent,
+    AgregarEditarCosechaComponent,
+    AlertEliminarCosechaComponent,
+    AgregarDetalleCosechaComponent,
   ],
   imports: [
     CommonModule,

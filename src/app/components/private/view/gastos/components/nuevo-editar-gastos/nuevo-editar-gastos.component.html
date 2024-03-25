@@ -24,7 +24,7 @@
             label="Costo unitario: "
             [mensajeError]="mensajesError.costoUnitario"
             class="px-2 py-1 col-12 col-md-6 col-sm-6"
-            [soloNumeros]="true"
+            [soloDecimales]="true"
         ></app-general-input>
         <app-general-input
             [fGroup]="form"
@@ -32,7 +32,7 @@
             label="Costo total: "
             [mensajeError]="mensajesError.costoTotal"
             class="px-2 py-1 col-12 col-md-6 col-sm-6"
-            [soloNumeros]="true"
+            [soloDecimales]="true"
             [desabilitado]="true"
         ></app-general-input>  
         <app-general-input

@@ -81,7 +81,7 @@ export class NuevoEditarTrbajadorComponent implements OnInit {
   }
 
   public calcularTotal() {
-    let resultado = parseInt(this.form.controls["costoUnitario"].value || "0") * parseInt(this.form.controls["cantidad"].value || "0")
+    let resultado = parseFloat(this.form.controls["costoUnitario"].value || "0") * parseFloat(this.form.controls["cantidad"].value || "0")
     this.form.controls["costoTotal"].setValue(resultado)
   }
 

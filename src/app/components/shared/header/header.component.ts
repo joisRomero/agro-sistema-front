@@ -70,14 +70,12 @@ export class HeaderComponent implements OnInit {
   ObtenerInvitacionesHub(listaInvitaciones: ListarInvitacionesSociedadesResponse[]) {
     this.listaInvitaciones = [];
     this.listaInvitaciones = listaInvitaciones;
-    // if(listaInvitaciones.length > 0) {
-
-    //   this.toastService.info(`Tienes una nueva invitacion de ${listaInvitaciones.at(-1)?.nombreEmisor}`, "Invitación", {
-    //     closeButton: true,
-    //     positionClass: 'toast-bottom-right'
-    //   })
-    // }
-   
+    if(listaInvitaciones.length > 0) {
+      this.toastService.info(`Tienes una nueva invitacion de ${listaInvitaciones.at(-1)?.nombreEmisor}`, "Invitación", {
+        closeButton: true,
+        positionClass: 'toast-bottom-right'
+      })
+    }
   }
 
   editarPerfil() {

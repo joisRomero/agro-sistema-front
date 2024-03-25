@@ -1,100 +1,252 @@
+<app-modal
+  [titulo]="tituloModal"
+  [extraLarge]="true"
+  [cerrarModal]="onClick.cerrarModal"
+>
+  <form class="w-100" [formGroup]="form!">
+    <div class="d-flex flex-wrap">
+      <app-general-select
+        class="px-2 py-1 col-12 col-md-4 col-sm-4"
+        [fGroup]="form"
+        nombreControl="actividad"
+        label="Actividad: "
+        [mensajeError]="mensajesError.actividad"
+        [values]="valoresTipoActividad"
+        (change)="changeActividad()"
+      ></app-general-select>
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="fecha"
+        label="Fecha: "
+        [mensajeError]="mensajesError.fecha"
+        class="px-2 py-1 col-12 col-md-4 col-sm-4"
+        tipo="date"
+      ></app-general-input>
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="cantidadSemilla"
+        label="Cantidad de semilla: "
+        [mensajeError]="mensajesError.fecha"
+        class="px-2 py-1 col-12 col-md-4 col-sm-4"
+        tipo="text"
+        [soloNumeros]="true"
+        *ngIf="tipoActividadSeleccion == 3"
+      ></app-general-input>
+      <app-general-select
+        class="px-2 py-1 col-12 col-md-4 col-sm-4"
+        [fGroup]="form"
+        nombreControl="unidadSemilla"
+        label="Unidad semilla: "
+        [mensajeError]="mensajesError.actividad"
+        [values]="valoresUnidadSemillas"
+        *ngIf="tipoActividadSeleccion == 3"
+      ></app-general-select>
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="cantidadFumigacion"
+        label="Cantidad de fumigación: "
+        [mensajeError]="mensajesError.fecha"
+        class="px-2 py-1 col-12 col-md-4 col-sm-4"
+        tipo="text"
+        [soloNumeros]="true"
+        *ngIf="tipoActividadSeleccion == 1"
+      ></app-general-input>
+      <app-general-select
+        class="px-2 py-1 col-12 col-md-4 col-sm-4"
+        [fGroup]="form"
+        nombreControl="unidadFumigacion"
+        label="Unidad fumigacion: "
+        [mensajeError]="mensajesError.actividad"
+        [values]="valoresUnidadFumigacion"
+        *ngIf="tipoActividadSeleccion == 1"
+      ></app-general-select>
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="descripcion"
+        label="Descripción: "
+        [mensajeError]="mensajesError.fecha"
+        class="px-2 py-1 col-12 col-md-8 col-sm-8"
+        tipo="area"
+        [filas]="2"
+      ></app-general-input>
+    </div>
 
-<app-modal [titulo]="tituloModal" [extraLarge]="true" [cerrarModal]="onClick.cerrarModal">
-<form class="w-100" [formGroup]="form!">
-  <div class="d-flex flex-wrap">
-    <app-general-select
-      class="px-2 py-1 col-12 col-md-4 col-sm-4"
-      [fGroup]="form"
-      nombreControl="actividad"
-      label="Actividad: "
-      [mensajeError]="mensajesError.actividad"
-      [values]="valoresTipoActividad"
-      (change)="changeActividad()"
-    ></app-general-select>
-    <app-general-input
-      [fGroup]="form"
-      nombreControl="fecha"
-      label="Fecha: "
-      [mensajeError]="mensajesError.fecha"
-      class="px-2 py-1 col-12 col-md-4 col-sm-4"
-      tipo="date"
-    ></app-general-input>
-    <app-general-input
-      [fGroup]="form"
-      nombreControl="cantidadSemilla"
-      label="Cantidad de semilla: "
-      [mensajeError]="mensajesError.fecha"
-      class="px-2 py-1 col-12 col-md-4 col-sm-4"
-      tipo="text"
-      [soloNumeros]="true"
-      *ngIf="tipoActividadSeleccion == 3"
-    ></app-general-input>
-    <app-general-select
-      class="px-2 py-1 col-12 col-md-4 col-sm-4"
-      [fGroup]="form"
-      nombreControl="unidadSemilla"
-      label="Unidad semilla: "
-      [mensajeError]="mensajesError.actividad"
-      [values]="valoresTipoActividad"
-      *ngIf="tipoActividadSeleccion == 3"
-    ></app-general-select>
-    <app-general-input
-      [fGroup]="form"
-      nombreControl="cantidadFumigacion"
-      label="Cantidad de fumigación: "
-      [mensajeError]="mensajesError.fecha"
-      class="px-2 py-1 col-12 col-md-4 col-sm-4"
-      tipo="text"
-      [soloNumeros]="true"
-      *ngIf="tipoActividadSeleccion == 1"
-    ></app-general-input>
-    <app-general-select
-      class="px-2 py-1 col-12 col-md-4 col-sm-4"
-      [fGroup]="form"
-      nombreControl="unidadFumigacion"
-      label="Unidad fumigacion: "
-      [mensajeError]="mensajesError.actividad"
-      [values]="valoresTipoActividad"
-      *ngIf="tipoActividadSeleccion == 1"
-    ></app-general-select>
-    <app-general-input
-      [fGroup]="form"
-      nombreControl="descripcion"
-      label="Descripción: "
-      [mensajeError]="mensajesError.fecha"
-      class="px-2 py-1 col-12 col-md-8 col-sm-8"
-      tipo="area"
-      [filas]="2"
-    ></app-general-input>
-  </div>
+    <div class="d-flex justify-content-between mt-3 align-items-center" *ngIf="tipoActividadSeleccion == 1">
+      <h5 class="card-title pt-0">Información de fumigación</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Agregar"
+        [onClickButton]="onClick.agregarFumigacion"
+        *ngIf="!verDetalle"
+      ></app-general-button>
+    </div>
 
-  
-  <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="card-title pt-0">Información de trabajadores</h5>
-    <app-general-button
-      claseBoton="primary"
-      label="Agregar"
-      [onClickButton]="onClick.agregarTrabajador"
-      *ngIf="!verDetalle"
-    ></app-general-button>
-  </div>
+    <div class="mt-2" *ngIf="tipoActividadSeleccion == 1">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm ">
+          <thead>
+            <tr>
+              <th scope="col">Nro.</th>
+              <th scope="col">Agroquímico</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Unidad</th>
+              <th scope="col" *ngIf="!verDetalle">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of fumigacionTabla; let i = index">
+              <td class="ps-2" scope="row">{{ item.numero }}</td>
+              <td scope="row">{{ item.descripcionAgroquimico }}</td>
+              <td scope="row">{{ item.cantidad }}</td>
+              <td scope="row">{{ item.unidadDescripcion }}</td>
+              <td *ngIf="!verDetalle">
+                <div class="gap-2 d-flex">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-info dropdown-toggle btn-sm px-3"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Editar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.editarFumgiacion(item)"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Eliminar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.eliminarFumigacion(item)"
+                        ></app-general-button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <app-general-pagination
+        [paginaActual]="paginacionFumigacionVars.paginaActual"
+        [totalPaginas]="paginacionFumigacionVars.totalPaginas"
+        [totalFilas]="paginacionFumigacionVars.totalFilas"
+        (eventChangePage)="paginacionFumigacionVars.onChangePage($event)"
+        *ngIf="fumigacion.length > 0"
+      ></app-general-pagination>
+      <app-general-sin-datos
+        *ngIf="verMensajeSinDatosFumigacion"
+        texto="No ha agregado información de la fumigación"
+      ></app-general-sin-datos>
+    </div>
 
-  <div class="mt-2">
-    <div class="table-responsive">
-      <table class="table table-hover table-sm mt-3">
-        <thead>
-          <tr>
-            <th scope="col">Nro.</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Costo unitario</th>
-            <th scope="col">Costo total</th>
-            <th scope="col">Descripción</th>
-            <th scope="col" *ngIf="!verDetalle">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of trabajadoresTabla, let i = index">
+    <div class="d-flex justify-content-between mt-3 align-items-center" *ngIf="tipoActividadSeleccion == 2">
+      <h5 class="card-title pt-0">Información de abonamiento</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Agregar"
+        [onClickButton]="onClick.agregarAbono"
+        *ngIf="!verDetalle"
+      ></app-general-button>
+    </div>
+
+    <div class="mt-2" *ngIf="tipoActividadSeleccion == 2">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Nro.</th>
+              <th scope="col">Abono</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Unidad</th>
+              <th scope="col" *ngIf="!verDetalle">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of abonoTabla; let i = index">
+              <td class="ps-2" scope="row">{{ item.numero }}</td>
+              <td scope="row">{{ item.descripcionTipoAbono }}</td>
+              <td scope="row">{{ item.cantidad }}</td>
+              <td scope="row">{{ item.unidadDescripcion }}</td>
+              <td *ngIf="!verDetalle">
+                <div class="gap-2 d-flex">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-info dropdown-toggle btn-sm px-3"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Editar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.editarAbono(item)"
+                        ></app-general-button>
+                        <app-general-button
+                          claseBoton="dropdown-item"
+                          label="Eliminar"
+                          [sinClasesDeBoton]="true"
+                          (click)="onClick.eliminarAbono(item)"
+                        ></app-general-button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <app-general-pagination
+        [paginaActual]="paginacionAbonosVars.paginaActual"
+        [totalPaginas]="paginacionAbonosVars.totalPaginas"
+        [totalFilas]="paginacionAbonosVars.totalFilas"
+        (eventChangePage)="paginacionAbonosVars.onChangePage($event)"
+        *ngIf="abonos.length > 0"
+      ></app-general-pagination>
+      <app-general-sin-datos
+        *ngIf="verMensajeSinDatosAbono"
+        texto="No ha agregado información de abonamiento"
+      ></app-general-sin-datos>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3 align-items-center">
+      <h5 class="card-title pt-0">Información de trabajadores</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Agregar"
+        [onClickButton]="onClick.agregarTrabajador"
+        *ngIf="!verDetalle"
+      ></app-general-button>
+    </div>
+
+    <div class="mt-2">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Nro.</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Costo unitario</th>
+              <th scope="col">Costo total</th>
+              <th scope="col">Descripción</th>
+              <th scope="col" *ngIf="!verDetalle">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of trabajadoresTabla; let i = index">
               <td class="ps-2" scope="row">{{ item.numero }}</td>
               <td scope="row">{{ item.descripcionTipoTrabajador }}</td>
               <td scope="row">{{ item.cantidad }}</td>
@@ -132,48 +284,48 @@
                 </div>
               </td>
             </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
       <app-general-pagination
-          [paginaActual]="paginacionTrabajadorVars.paginaActual"
-          [totalPaginas]="paginacionTrabajadorVars.totalPaginas"
-          [totalFilas]="paginacionTrabajadorVars.totalFilas"
-          (eventChangePage)="paginacionTrabajadorVars.onChangePage($event)"
-          *ngIf="trabajadores.length > 0"
-        ></app-general-pagination>
-        <app-general-sin-datos 
-          *ngIf="verMensajeSinDatosTrabajadores"
-          texto = "No ha agregado información de trabajadores"
-        ></app-general-sin-datos>
+        [paginaActual]="paginacionTrabajadorVars.paginaActual"
+        [totalPaginas]="paginacionTrabajadorVars.totalPaginas"
+        [totalFilas]="paginacionTrabajadorVars.totalFilas"
+        (eventChangePage)="paginacionTrabajadorVars.onChangePage($event)"
+        *ngIf="trabajadores.length > 0"
+      ></app-general-pagination>
+      <app-general-sin-datos
+        *ngIf="verMensajeSinDatosTrabajadores"
+        texto="No ha agregado información de trabajadores"
+      ></app-general-sin-datos>
     </div>
-  </div>
 
-  <div class="d-flex justify-content-between mt-3 align-items-center">
-    <h5 class="card-title pt-0">Información de gastos</h5>
-    <app-general-button
-      claseBoton="primary"
-      label="Agregar"
-      [onClickButton]="onClick.agregarGasto"
-      *ngIf="!verDetalle"
-    ></app-general-button>
-  </div>
+    <div class="d-flex justify-content-between mt-3 align-items-center">
+      <h5 class="card-title pt-0">Información de gastos</h5>
+      <app-general-button
+        claseBoton="primary"
+        label="Agregar"
+        [onClickButton]="onClick.agregarGasto"
+        *ngIf="!verDetalle"
+      ></app-general-button>
+    </div>
 
-  <div class="mt-2">
-    <div class="table-responsive">
-      <table class="table table-hover table-sm mt-3">
-        <thead>
-          <tr>
-            <th scope="col">Nro.</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Costo unitario</th>
-            <th scope="col">Costo total</th>
-            <th scope="col">Descripción</th>
-            <th scope="col" *ngIf="!verDetalle">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of gastosTabla, let i = index">
+    <div class="mt-2">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Nro.</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Costo unitario</th>
+              <th scope="col">Costo total</th>
+              <th scope="col">Descripción</th>
+              <th scope="col" *ngIf="!verDetalle">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of gastosTabla; let i = index">
               <td class="ps-2" scope="row">{{ item.numero }}</td>
               <td scope="row">{{ item.descripcionTipoGasto }}</td>
               <td scope="row">{{ item.cantidad }}</td>
@@ -211,48 +363,49 @@
                 </div>
               </td>
             </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
       <app-general-pagination
-          [paginaActual]="paginacionGastosVars.paginaActual"
-          [totalPaginas]="paginacionGastosVars.totalPaginas"
-          [totalFilas]="paginacionGastosVars.totalFilas"
-          (eventChangePage)="paginacionGastosVars.onChangePage($event)"
-          *ngIf="gastos.length > 0"
-        ></app-general-pagination>
-        <app-general-sin-datos 
-          *ngIf="verMensajeSinDatosGastos"
-          texto = "No ha agregado información de gastos"
-        ></app-general-sin-datos>
+        [paginaActual]="paginacionGastosVars.paginaActual"
+        [totalPaginas]="paginacionGastosVars.totalPaginas"
+        [totalFilas]="paginacionGastosVars.totalFilas"
+        (eventChangePage)="paginacionGastosVars.onChangePage($event)"
+        *ngIf="gastos.length > 0"
+      ></app-general-pagination>
+      <app-general-sin-datos
+        *ngIf="verMensajeSinDatosGastos"
+        texto="No ha agregado información de gastos"
+      ></app-general-sin-datos>
     </div>
-  </div>
-</form>
-<div footer>
-  <div class="d-flex justify-content-end mt-3" *ngIf="!verDetalle">
-    <app-general-button
-    claseBoton="secondary"
-    label="Cancelar"
-    [esSecundario]="true"
-    class="m-1"
-    [onClickButton]="onClick.cerrarModal"
-    ></app-general-button>
-    <app-general-button
-    claseBoton="primary"
-    label="Guardar"
-    class="m-1"
-    (click)="guardar()" 
-    ></app-general-button>
-  </div>
-  
-  <app-general-button
-    claseBoton="primary"
-    label="Salir"
-    class="m-1"
-    [onClickButton]="onClick.cerrarModal"
-    *ngIf="verDetalle"
-  ></app-general-button>
-</div>
 
+    
+  </form>
+  <div footer>
+    <div class="d-flex justify-content-end mt-3" *ngIf="!verDetalle">
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        [esSecundario]="true"
+        class="m-1"
+        [onClickButton]="onClick.cerrarModal"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Guardar"
+        class="m-1"
+        (click)="guardar()"
+      ></app-general-button>
+    </div>
+
+    <app-general-button
+      claseBoton="primary"
+      label="Salir"
+      class="m-1"
+      [onClickButton]="onClick.cerrarModal"
+      *ngIf="verDetalle"
+    ></app-general-button>
+  </div>
 </app-modal>
 <app-nuevo-editar-trbajador
   *ngIf="nuevoEditarTrabajadorVars.mostrarModal"
@@ -262,8 +415,23 @@
 ></app-nuevo-editar-trbajador>
 
 <app-nuevo-editar-gastos
-  *ngIf="nuevoEditarGastosVars.mostrarModal" 
+  *ngIf="nuevoEditarGastosVars.mostrarModal"
   [isEditar]="isEditarGasto"
   (enviarGasto)="obtenerGasto($event)"
   [gastoItem]="gastoItem"
 ></app-nuevo-editar-gastos>
+
+<app-agregar-editar-abonacion
+  *ngIf="nuevoEditarAbonoVars.mostrarModal"
+  [isEditar]="isEditarAbono"
+  (enviarAbono)="obtenerAbono($event)"
+  [abonoItem]="abonoItem"
+></app-agregar-editar-abonacion>
+
+<app-nuevo-editar-fumigacion
+  *ngIf="nuevoEditarFumigacionVars.mostrarModal"
+  [isEditar]="isEditarFumigacion"
+  (enviarFumigacion)="obtenerFumigacion($event)"
+  [fumigacionItem]="fumigacionItem"
+></app-nuevo-editar-fumigacion>
+

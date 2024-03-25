@@ -5,11 +5,9 @@ import { Paginacion } from 'src/app/models/paginacion';
 import { ListaPaginadaCosechasRequest } from 'src/app/models/requests/listaPaginadaCosechasRequest';
 import { ListaPaginadaCosechasResponse, ListaPaginadaCosechasResponseItem } from 'src/app/models/responses/listaPaginadaCosechasResponse';
 import { CosechaService } from 'src/app/services/cosecha.service';
-import { NuevoCosechaVars } from '../ver-detalle-campania/components/nuevo-cosecha/nuevo-cosecha.vars';
-import { NuevoDetalleCosechaVars } from '../ver-detalle-campania/components/nuevo-detalle-cosecha/nuevo-detalle-cosecha.vars';
-import { VerDetalleCosechaVars } from '../ver-detalle-campania/components/ver-detalle-cosecha/ver-detalle-cosecha.vars';
-import { EliminarCosechaVars } from '../ver-detalle-campania/components/eliminar-cosecha/eliminar-cosecha.vars';
+
 import { ActivatedRoute } from '@angular/router';
+import { AgregarCosechaVars } from './components/agregar-editar-cosecha/agregar-cosecha.vars';
 
 @Component({
   selector: 'app-cosechas-campania',
@@ -30,22 +28,19 @@ export class CosechasCampaniaComponent implements OnInit {
   constructor(
     private cosechaService: CosechaService,
     private fb: FormBuilder,
-    public modalNuevoCosecha: NuevoCosechaVars,
-    public modalNuevoDetalleCosecha: NuevoDetalleCosechaVars,
-    public modalVerDetalleCosecha: VerDetalleCosechaVars,
-    public modalEliminarCosecha: EliminarCosechaVars,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public servicioModal: AgregarCosechaVars,
   ) { }
 
   ngOnInit(): void {
     this.idCampania = this.route.snapshot.parent?.params['id'];
     this.iniciarControles();
-    this.buscarCosechas();
+    this.buscar();
   }
 
   private iniciarControles() {
     this.form = this.fb.nonNullable.group({
-
+      fechaCosecha: [""],
     });
   }
 
@@ -56,11 +51,11 @@ export class CosechasCampaniaComponent implements OnInit {
     onChangePage: (paginaActual: any) => {
       this.paginacionVarsCosechas.paginaActual = paginaActual;
       this.listaCosechas.pageNumber = paginaActual;
-      this.buscarCosechas();
+      this.buscar();
     }
   }
 
-  public async buscarCosechas() {
+  public async buscar() {
     this.itemsTablaCosecha = new ListaPaginadaCosechasResponse();
     let response = await this.service.obtenerListaPaginadaCosechas();
     this.itemsTablaCosecha = response.body!;
@@ -72,6 +67,7 @@ export class CosechasCampaniaComponent implements OnInit {
 
   private setDatosBusquedaCosechas() {
     this.listaCosechas = {
+      fechaCosecha: this.form.controls["fechaCosecha"].value,
       idCampania: parseInt(this.idCampania),
       pageNumber: this.paginacionVarsCosechas.paginaActual,
       pageSize: 10
@@ -80,22 +76,25 @@ export class CosechasCampaniaComponent implements OnInit {
 
   public onClick = {
     nuevaCosecha: () => {
-      this.modalNuevoCosecha.mostrarModal = true;
+      this.servicioModal.mostrarModal = true;
       this.esEditarNuevoCosecha = false;
     },
     editarCosecha: () => {
-      this.modalNuevoCosecha.mostrarModal = true;
+      // this.modalNuevoCosecha.mostrarModal = true;
       this.esEditarNuevoCosecha = true;
     },
     nuevoDetalleCosecha: () => {
-      this.modalNuevoDetalleCosecha.mostrarModal = true;
+      // this.modalNuevoDetalleCosecha.mostrarModal = true;
     },
     verDetalleCosecha: () => {
-      this.modalVerDetalleCosecha.mostrarModal = true;
+      // this.modalVerDetalleCosecha.mostrarModal = true;
     },
     eliminarCosecha: () => {
-      this.modalEliminarCosecha.mostrarModal = true;
-    }
+      //this.modalEliminarCosecha.mostrarModal = true;
+    },
+    limpiar: () => {
+      this.form.controls["fechaCosecha"].setValue("");
+    },
   }
 
   private service = {

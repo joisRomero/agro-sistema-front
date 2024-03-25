@@ -6,8 +6,8 @@ export class ListaPaginadaCosechasResponse {
 }
 
 export interface ListaPaginadaCosechasResponseItem {
-  idCosecha : number,
   numero : number,
+  idCosecha : number,
   fecha : string,
   descripcion : string
 }

@@ -1,4 +1,29 @@
-<!-- <h5 class="card-title pt-0">Filtros</h5> -->
+<h5 class="card-title pt-0">Filtros</h5>
+<div class="align-items-end row">
+  <app-general-input
+    [fGroup]="form"
+    nombreControl="fechaCosecha"
+    label="Fecha: "
+    tipo="date"
+    class="col-12 col-md-3"
+  ></app-general-input>
+  <div class="col-md-4 gap-1 mt-1">
+    <app-general-button
+      claseBoton="secondary"
+      label="Limpiar"
+      class="col-12"
+      [esSecundario]="true"
+      [onClickButton]="onClick.limpiar"
+    ></app-general-button>
+    <app-general-button
+      claseBoton="primary"
+      label="Buscar"
+      (click)="buscar()"
+      class="col-12 ms-2"
+    ></app-general-button>
+  </div>
+</div>
+
 
 <div class="d-flex justify-content-between align-items-center mt-2">
   <h5 class="card-title">Listado</h5>
@@ -81,16 +106,13 @@
   *ngIf="verMensajeSinDatosCosecha"
 ></app-general-sin-datos>
 
-<app-nuevo-cosecha
-  *ngIf="modalNuevoCosecha.mostrarModal"
+<app-agregar-editar-cosecha
+  *ngIf="servicioModal.mostrarModal"
   [esEditar]="esEditarNuevoCosecha"
-></app-nuevo-cosecha>
-<app-nuevo-detalle-cosecha
-  *ngIf="modalNuevoDetalleCosecha.mostrarModal"
-></app-nuevo-detalle-cosecha>
-<app-ver-detalle-cosecha
-  *ngIf="modalVerDetalleCosecha.mostrarModal"
-></app-ver-detalle-cosecha>
+></app-agregar-editar-cosecha>
+
+
+<!-- 
 <app-eliminar-cosecha
   *ngIf="modalEliminarCosecha.mostrarModal"
-></app-eliminar-cosecha>
+></app-eliminar-cosecha> -->

@@ -42,6 +42,7 @@ export interface DetalleAbonacionDTO {
 }
 
 export interface DetalleFumigacionDTO {
+    idFumigacionDetalle: number;
     cantidadFumigacionDetalle: number;
     unidadDatoComunFumigacionDetalle: number;
     idAgroQuimico: number;

@@ -14,6 +14,14 @@ import { ObtenerTipoActividadPorUsuarioResponse } from '../models/responses/obte
 import { ObtenerTipoGastoPorUsuarioRequest } from '../models/requests/obtenerTipoGastoPorUsuarioRequest';
 import { ObtenerTipoGastoPorUsuarioResponse } from '../models/responses/obtenerTipoGastoPorUsuarioResponse';
 import { ObtenerTipoAgroquimicoResponse } from '../models/responses/obtenerTipoAgroquimicoResponse';
+import { ObtenerUnidadAbonacionResponse } from '../models/responses/obtenerUnidadAbonacionResponse';
+import { ObtenerUnidadFumigacionResponse } from '../models/responses/obtenerUnidadFumigacionResponse';
+import { ObtenerUnidadFumigacionDetalleResponse } from '../models/responses/obtenerUnidadFumigacionDetalleResponse';
+import { ObtenerUnidadSemillaResponse } from '../models/responses/obtenerUnidadSemillaResponse';
+import { ObtenerAbonoUsuarioRequest } from '../models/requests/obtenerAbonoUsuarioRequest';
+import { ObtenerAbonoUsuarioResponse } from '../models/responses/obtenerAbonoUsuarioResponse';
+import { ObtenerAgroquimicoUsuarioResponse } from '../models/responses/obtenerAgroquimicoUsuarioResponse';
+import { ObtenerAgroquimicoUsuarioRequest } from '../models/requests/obtenerAgroquimicoUsuarioRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +63,29 @@ export class CombosService {
 
   public obtenerTipoAgroquimico(): Observable<HttpResponse<ObtenerTipoAgroquimicoResponse[]>> {
     return this.http.get<ObtenerTipoAgroquimicoResponse[]>(`${this.url}/obtenerTipoAgroquimico`,  {observe: 'response'});
+  }
+
+  public obtenerUnidadAbonacion(): Observable<HttpResponse<ObtenerUnidadAbonacionResponse[]>> {
+    return this.http.get<ObtenerUnidadAbonacionResponse[]>(`${this.url}/obtenerUnidadAbonacion`,  {observe: 'response'});
+  }
+
+  public obtenerUnidadFumigacion(): Observable<HttpResponse<ObtenerUnidadFumigacionResponse[]>> {
+    return this.http.get<ObtenerUnidadFumigacionResponse[]>(`${this.url}/obtenerUnidadFumigacion`,  {observe: 'response'});
+  }
+
+  public obtenerUnidadFumigacionDetalle(): Observable<HttpResponse<ObtenerUnidadFumigacionDetalleResponse[]>> {
+    return this.http.get<ObtenerUnidadFumigacionDetalleResponse[]>(`${this.url}/obtenerUnidadFumigacionDetalle`,  {observe: 'response'});
+  }
+
+  public obtenerUnidadSemilla(): Observable<HttpResponse<ObtenerUnidadSemillaResponse[]>> {
+    return this.http.get<ObtenerUnidadSemillaResponse[]>(`${this.url}/obtenerUnidadSemilla`,  {observe: 'response'});
+  }
+
+  public obtenerAbonoUsuario(params: ObtenerAbonoUsuarioRequest): Observable<HttpResponse<ObtenerAbonoUsuarioResponse[]>> {
+    return this.http.get<ObtenerAbonoUsuarioResponse[]>(`${this.url}/obtenerAbonoUsuario`,  {observe: 'response', params: params as {}});
+  }
+
+  public obtenerAgroquimicoUsuario(params: ObtenerAgroquimicoUsuarioRequest): Observable<HttpResponse<ObtenerAgroquimicoUsuarioResponse[]>> {
+    return this.http.get<ObtenerAgroquimicoUsuarioResponse[]>(`${this.url}/obtenerAgroquimicoUsuario`,  {observe: 'response', params: params as {}});
   }
 }

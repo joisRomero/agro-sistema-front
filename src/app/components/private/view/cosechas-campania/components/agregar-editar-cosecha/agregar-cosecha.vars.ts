@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class NuevoDetalleCosechaVars {
+export class AgregarCosechaVars {
   public mostrarModal: boolean = false;
 
   constructor() { }

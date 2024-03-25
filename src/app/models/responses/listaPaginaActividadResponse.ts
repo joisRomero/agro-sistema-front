@@ -11,4 +11,5 @@ export interface ListaPaginaActividadResponseItem {
     fechaActividad: Date;
     descripcionActividad?: string;
     nombreTipoActividad?: string;
+    totalGasto: number
 }

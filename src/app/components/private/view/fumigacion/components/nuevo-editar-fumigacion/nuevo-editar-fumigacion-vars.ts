@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class EliminarCosechaVars {
+export class NuevoEditarFumigacionVars {
   public mostrarModal: boolean = false;
-
+  
   constructor() { }
-
+  
 }

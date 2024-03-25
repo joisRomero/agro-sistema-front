@@ -1,0 +1,127 @@
+<app-modal
+  [titulo]="tituloModal"
+  [cerrarModal]="onClick.cerrarModal"
+  [extraLarge]="true"
+>
+  <form class="w-100" [formGroup]="form!">
+    <div class="d-flex flex-wrap row">
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="fecha"
+        label="Fecha: "
+        [mensajeError]="mensajesError.nombre"
+        class="py-1 col-lg-6 col-md-6 col-sm-12"
+        tipo="date"
+      ></app-general-input>
+
+      <app-general-input
+        [fGroup]="form"
+        nombreControl="descripcion"
+        label="Descripción: "
+        [mensajeError]="mensajesError.nombre"
+        class="px-2 py-1 col-12 col-md-8 col-sm-8"
+        tipo="area"
+        [filas]="2"
+      ></app-general-input>
+    </div>
+  </form>
+
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h5 class="card-title pt-0">Detalle</h5>
+    <app-general-button
+      claseBoton="primary"
+      label="Agregar"
+      [onClickButton]="onClick.agregarCosecha"
+      *ngIf="!verDetalle"
+    ></app-general-button>
+  </div>
+
+  <div class="mt-2">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Nro.</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Calidad</th>
+            <th scope="col">Descripción</th>
+            <th scope="col" *ngIf="!verDetalle">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cosechaTabla; let i = index">
+            <td class="ps-2" scope="row">{{ item.numero }}</td>
+            <td scope="row">{{ item.cantidad }}</td>
+            <td scope="row">{{ item.unidadDescripcion }}</td>
+            <td scope="row">{{ item.calidadDescripcion }}</td>
+            <td scope="row">{{ item.descripcion }}</td>
+            <td *ngIf="!verDetalle">
+              <div class="gap-2 d-flex">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-info dropdown-toggle btn-sm px-3"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Editar"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.editarCosecha(item)"
+                      ></app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Eliminar"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.eliminarCosecha(item)"
+                      ></app-general-button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-general-pagination
+      [paginaActual]="paginacionCosechaVars.paginaActual"
+      [totalPaginas]="paginacionCosechaVars.totalPaginas"
+      [totalFilas]="paginacionCosechaVars.totalFilas"
+      (eventChangePage)="paginacionCosechaVars.onChangePage($event)"
+      *ngIf="cosechas.length > 0"
+    ></app-general-pagination>
+    <app-general-sin-datos
+      *ngIf="verMensajeSinDatosCosechas"
+      texto="No ha agregado información de trabajadores"
+    ></app-general-sin-datos>
+  </div>
+
+  <div footer>
+    <app-general-button
+      claseBoton="secondary"
+      label="Cancelar"
+      [esSecundario]="true"
+      class="m-1"
+      [onClickButton]="onClick.cerrarModal"
+    ></app-general-button>
+    <app-general-button
+      claseBoton="primary"
+      label="Guardar"
+      class="m-1"
+    ></app-general-button>
+  </div>
+</app-modal>
+
+<app-agregar-detalle-cosecha
+  *ngIf="servicioModalCosecha.mostrarModal"
+  [isEditar]="isEditarCosecha"
+  (enviarCosecha)="obtenerTrabajador($event)"
+  [cosechaItem]="cosechaItem"
+></app-agregar-detalle-cosecha>
