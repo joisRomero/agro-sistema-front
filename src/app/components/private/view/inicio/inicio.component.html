@@ -1,60 +1,160 @@
-<!-- <div class="mt-1 animate__animated animate__fadeIn animate__faster">
-  <div class="d-flex justify-content-between align-items-center">
-    <h4 class="m-0">Campañas</h4>
-    <div>
-      <app-general-button
-      class="me-2"
-      claseBoton="primary"
-      [esSecundario]="true"
-      label="Ver todos"
-      ></app-general-button>
-      <app-general-button
-      claseBoton="primary"
-      label="Nuevo"
-      ></app-general-button>
-    </div>
-  </div>
+<!-- <div class="row">
 
-  <div class="row g-2 mt-1">
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <a href="" class="ref-campania">
-        <div class="boton-campania card">
-          <div class="card-body">
-            <h5 class="card-title">Campaña de arroz</h5>
-            <p class="card-text m-0">Propietario: Yo <br> Terreno: Dominga</p>
-          </div>
+  <div class="col-xxl-4 col-md-4">
+    <div class="card info-card sales-card">
+      <div class="card-body">
+        <h5 class="card-title">Campañas en proceso</h5>
+        <div class="ps-3"  
+        >
+          <h6 style="font-size: 40px;
+          color: #012970;
+          font-weight: 700;
+          margin: 0;
+          padding: 0; ">{{ data.campaniasProceso }}</h6>
         </div>
-      </a>
-    </div>
-
-  </div>
-
-  <div class="mt-4 d-flex justify-content-between align-items-center">
-    <h4 class="m-0 align-text-bottom">Sociedades</h4>
-    <div>
-      <app-general-button
-      class="me-2"
-      claseBoton="primary"
-      [esSecundario]="true"
-      label="Ver todos"
-      ></app-general-button>
-      <app-general-button
-      claseBoton="primary"
-      label="Nuevo"
-      ></app-general-button>
+      </div>
     </div>
   </div>
-
-  <div class="row g-2  mt-1">
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="p-3 border bg-light boton p-3 bg-body rounded">Mi almacén</div>
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="p-3 border bg-light boton p-3 bg-body rounded">Mi almacén</div>
+  <div class="col-xxl-4 col-md-4">
+    <div class="card info-card sales-card">
+      <div class="card-body">
+        <h5 class="card-title">Campañas en terminadas</h5>
+        <div class="ps-3"  
+        >
+          <h6 style="font-size: 40px;
+          color: #012970;
+          font-weight: 700;
+          margin: 0;
+          padding: 0; ">{{ data.campaniasTerminadas }}</h6>
+        </div>
+      </div>
     </div>
   </div>
-</div> -->
-<div class="alert alert-primary" role="alert">
-  Bienvenido!!!
+
+  <div class="col-xxl-4 col-md-4">
+    <div class="card info-card sales-card">
+      <div class="card-body">
+        <h5 class="card-title">Campañas en reabiertas</h5>
+        <div class="ps-3"  
+        >
+          <h6 style="font-size: 40px;
+          color: #012970;
+          font-weight: 700;
+          margin: 0;
+          padding: 0; ">{{ data.campaniasReabiertas }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xxl-5 col-md-5">
+    <div class="card">
+      <div class="card-body pb-0">
+        <h5 class="card-title">Cultivos en campañas</h5>
+      </div>
+      <apx-chart
+        [series]="chartOptions2.seriesNumber!"
+        [chart]="chartOptions2.chart!"
+        [labels]="chartOptions2.labels!"
+        [responsive]="chartOptions2.responsive!"
+      ></apx-chart>
+    </div>
+  </div>
+  
+
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body pb-0">
+        <h5 class="card-title">Gastos totales por cultivos</h5>
+
+        <apx-chart
+          [series]="chartOptions.series!"
+          [chart]="chartOptions.chart!"
+          [xaxis]="chartOptions.xaxis!"
+          [title]="chartOptions.title!"
+        ></apx-chart>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body pb-0">
+        <h5 class="card-title">Campañas terminadas con más gastos</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Campaña</th>
+              <th scope="col">Gasto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.campaniasTerminadasTop5; index as i">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ item.campania }}</td>
+              <td>{{ item.gasto}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <app-general-sin-datos *ngIf="data.campaniasTerminadasTop5.length == 0"></app-general-sin-datos>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-body pb-0">
+        <h5 class="card-title">Últimas sociedades unido</h5>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Sociedad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.ultimasSociedadesUnido; index as i">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ item }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <app-general-sin-datos *ngIf="data.ultimasSociedadesUnido.length == 0"></app-general-sin-datos>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body pb-0">
+        <h5 class="card-title">Campañas en proceso con más gastos</h5>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Campaña</th>
+              <th scope="col">Gasto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.campaniasProcesoTop5; index as i">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ item.campania }}</td>
+              <td>{{ item.gasto}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <app-general-sin-datos *ngIf="data.campaniasProcesoTop5.length == 0"></app-general-sin-datos>
+      </div>
+    </div>
+  </div>
+
+  
+
 </div>
+
+ -->

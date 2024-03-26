@@ -1,0 +1,21 @@
+<app-general-alert titulo="Campaña" [cerrarAlert]="onClick.cerrarAlert">
+    <p class="fw-normal mb-0">¿Estás seguro de reabrir la campaña?</p>
+    <div footer>
+      <app-general-button
+        claseBoton="secondary"
+        label="Cancelar"
+        
+        [esSecundario]="true"
+        class="m-1"
+        (click)="onClick.cerrarAlert()"
+      ></app-general-button>
+      <app-general-button
+        claseBoton="primary"
+        label="Aceptar"
+        
+        class="m-1"
+        (click)="onClick.accion()"
+      ></app-general-button>
+    </div>
+  </app-general-alert>
+  

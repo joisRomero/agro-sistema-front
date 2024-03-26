@@ -97,7 +97,7 @@
                         label="Editar"
                         [sinClasesDeBoton]="true"
                         (click)="onClick.editarCampania(item)"
-                        *ngIf="item.estadoProceso == 'P'"
+                        *ngIf="item.estadoProceso != 'T'"
                       >
                       </app-general-button>
                       <app-general-button
@@ -105,7 +105,15 @@
                         label="Finalizar campaña"
                         [sinClasesDeBoton]="true"
                         (click)="onClick.finalizarCampania(item)"
-                        *ngIf="item.estadoProceso == 'P'"
+                        *ngIf="item.estadoProceso != 'T'"
+                      >
+                      </app-general-button>
+                      <app-general-button
+                        claseBoton="dropdown-item"
+                        label="Reabrir campaña"
+                        [sinClasesDeBoton]="true"
+                        (click)="onClick.reabrirCampania(item)"
+                        *ngIf="item.estadoProceso == 'T'"
                       >
                       </app-general-button>
                       <app-general-button
@@ -142,13 +150,21 @@
   [idUsuario]="idUsuario"
   [idCampania]="idCampaniaEditar"
 ></app-modal-nuevo-editar-campania-sociedad>
+
 <app-finalizar-campania
   *ngIf="modalFinalizarCampania.mostrarModal"
   [idCampania]="idCampaniaEditar"
   (actualizo)="actualizarTabla()"
 ></app-finalizar-campania>
+
 <app-aler-eliminar-campania
   *ngIf="modalEliminarCampania.mostrar"
   [idCampania]="idCampaniaEditar"
   (recargar)="actualizarTabla()"
 ></app-aler-eliminar-campania>
+
+<app-alert-reabrir-campania
+  *ngIf="modalReabrirCampania.mostrar"
+  [idCampania]="idCampaniaEditar"
+  (recargar)="actualizarTabla()"
+></app-alert-reabrir-campania>

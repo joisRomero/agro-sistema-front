@@ -71,9 +71,10 @@ export class HeaderComponent implements OnInit {
     this.listaInvitaciones = [];
     this.listaInvitaciones = listaInvitaciones;
     if(listaInvitaciones.length > 0) {
-      this.toastService.info(`Tienes una nueva invitacion de ${listaInvitaciones.at(-1)?.nombreEmisor}`, "Invitación", {
+      this.toastService.info("Tienes una nueva invitacion para unirte a una socuedad", "Invitación", {
         closeButton: true,
-        positionClass: 'toast-bottom-right'
+        positionClass: 'toast-bottom-right',
+        
       })
     }
   }

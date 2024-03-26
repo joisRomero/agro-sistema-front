@@ -12,6 +12,7 @@ import { ObtenerCampaniaResponse } from '../models/responses/obtenerCampaniaResp
 import { FinalizarCampaniaRequest } from '../models/requests/finalizarCampaniaRequest';
 import { EliminarCampaniaRequest } from '../models/requests/eliminarCampaniaRequest';
 import { ValidarPertenenciaCampaniaSociedadResponse } from '../models/responses/validarPertenenciaCampaniaSociedadResponse';
+import { ReabrirCampaniaRequest } from '../models/requests/reabrirCampaniaRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -51,4 +52,7 @@ export class CampaniaService {
     return this.http.post<any>(`${this.url}/eliminarCampania`, params, {observe: 'response'});
   }
 
+  public reabrirCampania(params: ReabrirCampaniaRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/reabrirCampania`, params, {observe: 'response'});
+  }
 }

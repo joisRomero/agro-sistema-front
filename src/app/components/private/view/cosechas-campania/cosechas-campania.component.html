@@ -31,7 +31,7 @@
     claseBoton="primary"
     label="Nuevo"
     (click)="onClick.nuevaCosecha()"
-    *ngIf="data.estadoProcesoCampania == 'P'"
+    *ngIf="data.estadoProcesoCampania != 'T'"
   ></app-general-button>
 </div>
 
@@ -68,7 +68,7 @@
                     label="Editar"
                     [sinClasesDeBoton]="true"
                     (click)="onClick.editarCosecha(item)"
-                    *ngIf="data.estadoProcesoCampania == 'P'"
+                    *ngIf="data.estadoProcesoCampania != 'T'"
                   ></app-general-button>
                   <app-general-button
                   claseBoton="dropdown-item"
@@ -81,7 +81,7 @@
                     label="Eliminar"
                     [sinClasesDeBoton]="true"
                     (click)="onClick.eliminarCosecha(item)"
-                    *ngIf="data.estadoProcesoCampania == 'P'"
+                    *ngIf="data.estadoProcesoCampania != 'T'"
                   ></app-general-button>
                 </li>
               </ul>

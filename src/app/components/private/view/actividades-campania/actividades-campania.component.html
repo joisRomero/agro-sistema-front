@@ -36,7 +36,7 @@
     claseBoton="primary"
     label="Nuevo"
     [onClickButton]="click.nuevo"
-    *ngIf="data.estadoProcesoCampania == 'P'"
+    *ngIf="data.estadoProcesoCampania != 'T'"
   ></app-general-button>
 </div>
 
@@ -77,7 +77,7 @@
                     label="Editar"
                     [sinClasesDeBoton]="true"
                     (click)="click.editar(item)"
-                    *ngIf="data.estadoProcesoCampania == 'P'"
+                    *ngIf="data.estadoProcesoCampania != 'T'"
                   >
                   </app-general-button>
                   <app-general-button
@@ -92,7 +92,7 @@
                     label="Eliminar"
                     [sinClasesDeBoton]="true"
                     (click)="click.eliminar(item)"
-                    *ngIf="data.estadoProcesoCampania == 'P'"
+                    *ngIf="data.estadoProcesoCampania != 'T'"
                   ></app-general-button>
                 </li>
               </ul>

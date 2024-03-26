@@ -10,6 +10,7 @@ import { CampaniaService } from 'src/app/services/campania.service';
 import { NuevoEditarCampaniaSociedadVars } from '../ver-detalle-sociedad/components/modal-nuevo-editar-campania-sociedad/nuevo-editar-campania-sociedad-vars';
 import { FinalizarCampaniaVars } from '../ver-detalle-sociedad/components/finalizar-campania/finalizar-campania-vars';
 import { AlerEliminarCampaniaVars } from '../ver-detalle-sociedad/components/aler-eliminar-campania/aler-eliminar-campania-vars';
+import { AlerReabrirCampaniaVars } from '../ver-detalle-sociedad/components/alert-reabrir-campania/aler-reabrir-campania-vars';
 
 @Component({
   selector: 'app-campanias',
@@ -31,7 +32,8 @@ export class CampaniasComponent implements OnInit {
     private campaniaService: CampaniaService,
     public modalNuevoEditarCampaniaSociedad: NuevoEditarCampaniaSociedadVars,
     public modalFinalizarCampania: FinalizarCampaniaVars,
-    public modalEliminarCampania: AlerEliminarCampaniaVars
+    public modalEliminarCampania: AlerEliminarCampaniaVars,
+    public modalReabrirCampania: AlerReabrirCampaniaVars
   ) { }
 
   ngOnInit(): void {
@@ -102,7 +104,11 @@ export class CampaniasComponent implements OnInit {
     eliminarCampania: (item: ListaPaginaCampaniasUsuarioResponseItem) => {
       this.modalEliminarCampania.mostrar = true;
       this.idCampaniaEditar = item.idCampania;
-    }
+    },
+    reabrirCampania:  (item: ListaPaginaCampaniasUsuarioResponseItem) => {
+      this.modalReabrirCampania.mostrar = true;
+      this.idCampaniaEditar = item.idCampania;
+    },
   }
 
   private service = {

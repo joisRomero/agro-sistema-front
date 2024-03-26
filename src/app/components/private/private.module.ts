@@ -64,6 +64,8 @@ import { AgregarEditarCosechaComponent } from './view/cosechas-campania/componen
 import { AlertEliminarCosechaComponent } from './view/cosechas-campania/components/alert-eliminar-cosecha/alert-eliminar-cosecha.component';
 import { AgregarDetalleCosechaComponent } from './view/cosechas-campania/components/agregar-detalle-cosecha/agregar-detalle-cosecha.component';
 import { AlertRetirarSociedadComponent } from './view/integrantes-sociedad/components/alert-retirar-sociedad/alert-retirar-sociedad.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { AlertReabrirCampaniaComponent } from './view/ver-detalle-sociedad/components/alert-reabrir-campania/alert-reabrir-campania.component'
 
 @NgModule({
   declarations: [
@@ -128,12 +130,14 @@ import { AlertRetirarSociedadComponent } from './view/integrantes-sociedad/compo
     AlertEliminarCosechaComponent,
     AgregarDetalleCosechaComponent,
     AlertRetirarSociedadComponent,
+    AlertReabrirCampaniaComponent,
   ],
   imports: [
     CommonModule,
     PrivateRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgApexchartsModule
   ]
 })
 export class PrivateModule { }
